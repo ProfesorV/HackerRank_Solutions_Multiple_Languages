@@ -1,4 +1,3 @@
-// The Hurdle Race
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Collections;
@@ -15,16 +14,17 @@ using System;
 
 class Solution {
 
-    // Complete the hurdleRace function below.
+    //int, int[]
     static int hurdleRace(int k, int[] height) {
+        //set to
         var max = 0;
-
+        //foreach condition
         foreach(var h in height)
+            //set to apply function
             max = Math.Max(max, h - k);
-        
+        //return
         return max;
     }
-
     static void Main(string[] args) {
         TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
 
