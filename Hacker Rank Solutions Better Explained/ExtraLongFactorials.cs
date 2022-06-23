@@ -1,4 +1,3 @@
-// Extra Long Factorials
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Collections;
@@ -15,16 +14,17 @@ using System;
 
 class Solution {
 
-    // Complete the extraLongFactorials function below.
+    // int
     static void extraLongFactorials(int n) {
+        //set to
         var result = System.Numerics.BigInteger.One;
-
+        //for condition (int <= int)
         for(var index = 2; index <= n; index++)
+        //augment by *=
             result *= index;
-        
+        //apply function .WriteLine
         Console.WriteLine(result);
     }
-
     static void Main(string[] args) {
         int n = Convert.ToInt32(Console.ReadLine());
 

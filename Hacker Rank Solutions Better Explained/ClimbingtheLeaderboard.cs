@@ -1,4 +1,3 @@
-// Climbing the Leaderboard
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Collections;
@@ -15,32 +14,36 @@ using System;
 
 class Solution {
 
-    // Complete the climbingLeaderboard function below.
+    //int[], int[]
     static int[] climbingLeaderboard(int[] scores, int[] alice)
     {
+        //set to apply function .Distinct(). ToArray()
         var distict = scores.Distinct().ToArray();
+        //set to create new
         var result = new int[alice.Length];
-
+        //set to create new ReverseComparer<int>
         var comparer = new ReverseComparer<int>();
-
+        //for condition
         for (int index = 0; index < alice.Length; index++)
         {
+            //set to apply function. BinarySearch()
             var search = Array.BinarySearch(distict, alice[index], comparer);
-
+            //if condition
             if(search >= 0)
+            //set to calculate
                 result[index] = search + 1;
             else
+            //set to decrement
                 result[index] = -search;
         }
-
+        //return
         return result;
     }
-
     class ReverseComparer<T> : IComparer<T>
     {
+        //arrow function, apply function .Compare()
         public int Compare(T x, T y) => Comparer<T>.Default.Compare(y, x);
     }
-
     static void Main(string[] args) {
         TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
 
