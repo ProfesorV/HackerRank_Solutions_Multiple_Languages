@@ -1,5 +1,3 @@
-// https://www.hackerrank.com/challenges/array-left-rotation/problem
-// https://www.hackerrank.com/challenges/ctci-array-left-rotation/problem
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Collections;
@@ -16,18 +14,19 @@ using System;
 
 class Solution {
 
-    // Complete the rotLeft function below.
+    // int[], int
     static int[] rotLeft(int[] a, int d) {
-var effective = a.Length - (d % a.Length);
-
+     //set to
+    var effective = a.Length - (d % a.Length);
+        //set to create new int[int[].Length]
         var result = new int[a.Length];
-
+        //for condition (int < int[].Length)
         for (int index = 0; index < a.Length; index++)
+            //set to
             result[(index + effective) % a.Length] = a[index];
-
+        //return
         return result;
     }
-
     static void Main(string[] args) {
         TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
 

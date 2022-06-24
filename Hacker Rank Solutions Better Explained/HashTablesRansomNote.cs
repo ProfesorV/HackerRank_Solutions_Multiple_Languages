@@ -1,4 +1,3 @@
-// Hash Tables: Ransom Note
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Collections;
@@ -15,27 +14,29 @@ using System;
 
 class Solution
 {
-
-    // Complete the checkMagazine function below.
+    // string[], string[]
     static void checkMagazine(string[] magazine, string[] note)
     {
+        //set to create new SortedDictionary<string,int>
         var dic = new SortedDictionary<string, int>();
-
+        //foreach condition (in apply function .GroupBy(=>))
         foreach (var group in magazine.GroupBy(x => x))
+            //apply function .Add()
             dic.Add(group.Key, group.Count());
-
+        //foreach condition (in apply function GroupBy(=>))
         foreach (var word in note.GroupBy(x => x))
         {
+            //if condition (! .TryGetValue()||.Count())
             if(!dic.TryGetValue(word.Key, out int count) || word.Count() > count)
             {
+                //apply function .WriteLine()
                 Console.WriteLine("No");
+                //return
                 return;
             }
         }
-
         Console.WriteLine("Yes");
     }
-
     static void Main(string[] args)
     {
         string[] mn = Console.ReadLine().Split(' ');

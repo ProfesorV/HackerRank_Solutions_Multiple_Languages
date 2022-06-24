@@ -1,4 +1,3 @@
-// Fraudulent Activity Notifications
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Collections;
@@ -15,88 +14,102 @@ using System;
 
 class Solution {
 
-    // Complete the activityNotifications function below.
+    // int[], int
     static int activityNotifications(int[] expenditure, int d)
     {
+        //set to
         int count = 0;
-        // create freq array as exp <= 200 always
-        //maintain a queue to find ontgoing and incoming exp
-        //get median from freq array
-
+        //set to create new int[]
         var freq = new int[201];
+        //set to create new List<int>
         List<int> q = new List<int>();
-
+        //for condition (int < int[].Length)
         for (int i = 0; i < expenditure.Length; i++)
         {
+            //while condition (int < int)
             while (i < d)
             {
+                //apply function .Add(int[int])
                 q.Add(expenditure[i]);
+                //set to int[int[int]]+1
                 freq[expenditure[i]] = freq[expenditure[i]] + 1;
+                //increment
                 i++;
             }
-
-
+            //set to apply function
             float median = getMedian(freq, d);
-
+            //if condition (>= )
             if (expenditure[i] >= 2 * median)
             {
+                //increment
                 count++;
             }
-
-
-            // removing outing going element freq
+            // set to int[0]
             int elem = q[0];
+            //apply function .RemoveAt()
             q.RemoveAt(0);
+            //set to int[int]-1
             freq[elem] = freq[elem] - 1;
-
-            // adding incoming element to freq
+            //apply function .Add(int[int])
             q.Add(expenditure[i]);
+            //set to int[int[int]]+1
             freq[expenditure[i]] = freq[expenditure[i]] + 1;
         }
-
+        //return
         return count;
     }
-
+    //int[], int
     private static float getMedian(int[] freq, int d)
     {
+        //if condition(==)
         if (d % 2 == 1)
         {
+            //set to
             int center = 0;
+            //for condition (int < int[].Length)
             for (int i = 0; i < freq.Length; i++)
             {
+                //set to calculate
                 center = center + freq[i];
-
+                //if condition (int > int/2)
                 if (center > d / 2)
                 {
+                    //return
                     return i;
                 }
             }
         }
         else
         {
+            //set to
             int count = 0;
             int first = -1;
             int second = -1;
+            //for condition (int < int[].Length)
             for (int i = 0; i < freq.Length; i++)
             {
+                //set to
                 count = count + freq[i];
-
+                //if condition (==)
                 if (count == d / 2)
                 {
+                    //set to
                     first = i;
                 }
+                //else if (int > int/2)
                 else if (count > d / 2)
                 {
+                    //if condition (<) set to
                     if (first < 0) first = i;
                     second = i;
-
+                    //return
                     return ((float)first + (float)second) / 2;
                 }
             }
         }
+        //return
         return 0f;
     }
-
     static void Main(string[] args) {
         TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
 

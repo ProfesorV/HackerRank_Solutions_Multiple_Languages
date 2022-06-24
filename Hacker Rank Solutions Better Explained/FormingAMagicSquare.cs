@@ -1,4 +1,3 @@
-// https://www.hackerrank.com/challenges/magic-square-forming/problem
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Collections;
@@ -16,64 +15,74 @@ using System;
 class Solution
 {
 
-    // Complete the formingMagicSquare function below.
+    // int[][]
     static int formingMagicSquare(int[][] s)
     {
+        //set to create new List<int[,]<
         var types = new List<int[,]>{new int[,]
         {
             { 8, 1, 6 },
             { 3, 5, 7 },
             { 4, 9, 2 },
         }};
-
+        //apply function .Add(.Flip(List<int[,]>)
         types.Add(Flip(types[0]));
-
+        //apply function .AddRange(Rotate())
         types.AddRange(Rotate(types[0], 4));
         types.AddRange(Rotate(types[1], 4));
-
+        //set to
         var min = int.MaxValue;
-
+        //foreach condition
         foreach (var item in types)
         {
+            //set to
             var sum = 0;
-
+            //for condition (int < int)
             for (var row = 0; row < 3; row++)
+                //for condition (int < int)
                 for (var col = 0; col < 3; col++)
+                    //augment += apply function .Abs()
                     sum += Math.Abs(item[row, col] - s[row][col]);
-
+            //set to
             min = Math.Min(sum, min);
         }
-
+        //return
         return min;
     }
-
+    //int[,], int
     private static IEnumerable<int[,]> Rotate(int[,] source, int count)
     {
+        //if condition (==)
         if (count == 0) yield break;
-
+        //set to create new int [,]
         var result = new int[3, 3];
-
+        //for condition (int < int)
         for (var row = 0; row < 3; row++)
+            //for condition (int, int)
             for (var col = 0; col < 3; col++)
+                //set to int[int,2-int]
                 result[row, col] = source[col, 2 - row];
-
+        //return
         yield return result;
-
+        //foreach condition
         foreach (var item in Rotate(result, count - 1))
+            //return
             yield return item;
     }
-
+    //int[,]
     static int[,] Flip(int[,] source)
     {
+        //set to create new int[]
         var result = new int[3, 3];
-
+        //for condition (int < int)
         for (var row = 0; row < 3; row++)
+            //for condition (int < int)
             for (var col = 0; col < 3; col++)
+                //set to = int[int,2-int]
                 result[row, col] = source[row, 2 - col];
-
+        //return
         return result;
     }
-
     static void Main(string[] args)
     {
         TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
