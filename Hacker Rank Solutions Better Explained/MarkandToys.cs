@@ -1,4 +1,3 @@
-// Mark and Toys
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Collections;
@@ -15,23 +14,26 @@ using System;
 
 class Solution {
 
-    // Complete the maximumToys function below.
+    //int[], int
     static int maximumToys(int[] prices, int k) {
+        //apply function .Sort(int[])
         Array.Sort(prices);
+        //set to
         var count = 0;
-
+        //foreach condition (int in int[])
         foreach(var price in prices){
+            //subtract by -=
             k -= price;
-
+            //if condition (>=)
             if(k >= 0)
+                //increment
                 count++;
             else
                 break;
         }
-
+        //return
         return count;
     }
-
     static void Main(string[] args) {
         TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
 

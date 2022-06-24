@@ -1,5 +1,3 @@
-// https://www.hackerrank.com/challenges/ctci-big-o/problem
-
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Collections;
@@ -16,18 +14,21 @@ using System;
 
 class Solution {
 
-    // Complete the primality function below.
+    // int
     static string primality(int n) {
+        //if condition (int == 1) return
         if(n == 1) return "Not prime";
+        //if condition (int < 4) return
         if(n < 4) return "Prime";
-
+        //for condition (int <= Math.Sqrt(int))
         for(var index = 2; index <= Math.Sqrt(n); index++)
+            //if condition (int % int ==0)
             if(n % index == 0)
+                //return
                 return "Not prime";
-        
+        //return
         return "Prime";
     }
-
     static void Main(string[] args) {
         TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
 

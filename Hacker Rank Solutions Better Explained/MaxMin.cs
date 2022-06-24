@@ -15,18 +15,19 @@ using System;
 
 class Solution {
 
-    // Complete the maxMin function below.
+    //int, int[]
     static int maxMin(int k, int[] arr) {
+        //apply function .Sort(int[])
         Array.Sort(arr);
-
+        //set to
         var min = int.MaxValue;
-
+        //for condition (ind < int[].Length-int+1)
         for(var index = 0; index < arr.Length - k + 1; index++)
+            //set to apply function Min()
             min = Math.Min(min, arr[index + k - 1] - arr[index]);
-
+        //return
         return min;
     }
-
     static void Main(string[] args) {
         TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
 

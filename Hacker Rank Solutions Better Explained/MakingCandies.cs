@@ -1,4 +1,3 @@
-// Making Candies
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Collections;
@@ -15,57 +14,73 @@ using System;
 
 class Solution {
 
-    // Complete the minimumPasses function below.
+    // long, long, long, long
     static long minimumPasses(long machines, long workers, long cost, long goal)
     {
+        //set to
         var lower = 1L;
         var upper = 1000000000000L;
-
+        //while (<)
         while (lower < upper)
         {
+            //set to calculate
             long mid = (lower + upper) / 2;
+            //if condition (apply function CanProduce())
             if (CanProduce(machines, workers, cost, goal, mid))
+                //set to
                 upper = mid;
             else
+                //set to
                 lower = mid + 1;
         }
-
+        //return
         return lower;
     }
-
+    //long, long, long, long, long
     static bool CanProduce(long machines, long workers, long price, long target, long days)
     {
+        //if condition (>= /) return
         if (machines >= (target + workers - 1) / workers) return true;
-
+        //set to
         var current = machines * workers;
+        //decrement
         days--;
-
+        //if (==)
         if (days == 0) return false;
-
+        //while condition
         while (true)
         {
+            //set to
             var remaining = target - current;
+            //set to
             var daysWithCurrentSettings = (remaining + machines * workers - 1) / (machines * workers);
-
+            //if condition (<=)
             if (daysWithCurrentSettings <= days) return true;
-
+            //if condition (<)
             if (current < price)
             {
+                //set to 
                 remaining = price - current;
+                //set to calculate
                 daysWithCurrentSettings = (remaining + machines * workers - 1) / (machines * workers);
+                //subtract by -=
                 days -= daysWithCurrentSettings;
+                //if condition (<)
                 if (days < 1) return false;
+                //augment by +=
                 current += daysWithCurrentSettings * machines * workers;
             }
-
+            //subtract by -=
             current -= price;
+            //if condition (>)
             if (machines > workers)
+                //increment
                 workers++;
             else
+                //increment
                 machines++;
         }
     }
-
     static void Main(string[] args) {
         TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
 
