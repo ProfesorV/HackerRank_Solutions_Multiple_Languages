@@ -1,4 +1,3 @@
-// Minimum Swaps 2
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Collections;
@@ -15,24 +14,23 @@ using System;
 
 class Solution {
 
-    // Complete the minimumSwaps function below.
-    static int minimumSwaps(int[] arr) {
-        var result = 0;
-        for (var i = 0; i < arr.Length - 1; i++)
+    // int[]
+    static int minimumAbsoluteDifference(int[] arr) {
+        //apply function .Sort(int[])
+        Array.Sort(arr);
+        //set to 
+        var result = int.MaxValue;
+        //for condition (int < int[].Length)
+        for (int index = 1; index < arr.Length; index++)
         {
-            var temp = arr[i];
-            var wentIn = false;
-            while (temp != arr[temp - 1])
-            {
-                wentIn = true;
-                var temp2 = arr[temp - 1];
-                arr[temp - 1] = temp;
-                temp = temp2;
-                result++;
-            }
-            if(wentIn)
-            result--;
+            //set to int[int]-int[int-1]
+            var diff = arr[index] - arr[index - 1];
+            //if condition (==)
+            if(diff == 0) return 0;
+            //if condition (int > int) set to
+            if(result > diff) result = diff;
         }
+        //return
         return result;
     }
 
@@ -43,9 +41,9 @@ class Solution {
 
         int[] arr = Array.ConvertAll(Console.ReadLine().Split(' '), arrTemp => Convert.ToInt32(arrTemp))
         ;
-        int res = minimumSwaps(arr);
+        int result = minimumAbsoluteDifference(arr);
 
-        textWriter.WriteLine(res);
+        textWriter.WriteLine(result);
 
         textWriter.Flush();
         textWriter.Close();

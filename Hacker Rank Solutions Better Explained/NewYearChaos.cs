@@ -1,4 +1,3 @@
-// New Year Chaos
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
     using System.Collections;
@@ -15,46 +14,25 @@
 
     class Solution
     {
-
-        // Complete the minimumBribes function below.
-        //static void minimumBribes(int[] q)
-        //{
-        //    var bribesCount = 0;
-        //    Func<int, int> getOriginal = (int index) => q[index];
-        //    Func<int, int> getCurrent = (int index) => index + 1;
-
-        //    for (var index = 0; index < q.Length; index++)
-        //    {
-        //        if (getOriginal(index) > getCurrent(index) + 2 /* 2 bribes*/)
-        //        {
-        //            Console.WriteLine("Too chaotic");
-        //            return;
-        //        }
-
-        //        if (getOriginal(index) > getCurrent(index))
-        //            bribesCount += getOriginal(index) - getCurrent(index);
-        //    }
-
-        //    Console.WriteLine(bribesCount);
-        //}
-
+        //int[]
         static void minimumBribes(int[] q)
         {
+            //set to
             int ans = 0;
-
-for (var i = q.Length - 1; i >= 0; i--) {
-        if (q[i] - (i + 1) > 2) {
-            Console.WriteLine("Too chaotic");
-            return;
+            //for condition (int = int[].Length -1)
+            for (var i = q.Length - 1; i >= 0; i--) {
+                //if condition (int[int]-(int+1)>2)
+                if (q[i] - (i + 1) > 2) {
+                    Console.WriteLine("Too chaotic");
+                    return;
         }
-
+        //for condition (int < int)
         for (int j = Math.Max(0, q[i] - 2); j < i; j++)
-            if (q[j] > q[i]) ans++;
-}
-
+        //if condition (int[int] > int[int]) increment++
+        if (q[j] > q[i]) ans++;
+        }
             Console.WriteLine(ans);
         }
-
         static void Main(string[] args)
         {
             int t = Convert.ToInt32(Console.ReadLine());

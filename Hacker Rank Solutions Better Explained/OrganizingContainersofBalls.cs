@@ -1,4 +1,3 @@
-// Organizing Containers of Balls
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Collections;
@@ -15,36 +14,42 @@ using System;
 
 class Solution {
 
-    // Complete the organizingContainers function below.
+    //int[][]
     static string organizingContainers(int[][] container) {
+        //set to int[][].Length
         var n = container.Length;
-
+        //set to create new int[int]
         var balls = new int[n];
         var boxes = new int[n];
-
+        //for condition (int < int)
         for(var i = 0; i < n; i++)
         {
+            //set to
             var sumBalls = 0;
             var sumBoxes = 0;
+            //for condition (int < int)
             for(var j = 0; j < n; j++)
             {
+                //augment by += int[int][int]
                 sumBalls += container[i][j];
                 sumBoxes += container[j][i];
             }
-
+            //set to
             balls[i] = sumBalls;
+            //set to
             boxes[i] = sumBoxes;
         }
-
+        //apply function .Sort(int[])
         Array.Sort(balls);
         Array.Sort(boxes);
+        //for condition(int < int)
         for(var i = 0; i < n; i++)
+            //if (int[int]!= int[int])
             if(balls[i] != boxes[i])
                 return "Impossible";
-        
+        //return
         return "Possible";
     }
-
     static void Main(string[] args) {
         TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
 

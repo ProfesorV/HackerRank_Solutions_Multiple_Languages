@@ -1,4 +1,3 @@
-
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Collections;
@@ -15,22 +14,25 @@ using System;
 
 class Solution {
 
-    // Complete the pairs function below.
+    //int, int[]
     static int pairs(int k, int[] arr) {
+        //apply function .Sort(int[])
         Array.Sort(arr);
-
+        //set to
         var sum = 0;
-
+        //for condition (int < int[].Length)
         for (var index = 0; index < arr.Length; index++)
         {
+            //set to int[int]
             var current = arr[index];
+            //if (apply function .BinarySearch(int[], int + int) > -1)
             if (Array.BinarySearch(arr, current + k) > -1)
+                //increment++
                 sum++;
         }
-
+        //return
         return sum;
     }
-
     static void Main(string[] args) {
         TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
 

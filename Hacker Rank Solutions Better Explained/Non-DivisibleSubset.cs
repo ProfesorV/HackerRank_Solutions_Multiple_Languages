@@ -1,4 +1,3 @@
-// Non-Divisible Subset
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Collections;
@@ -15,39 +14,34 @@ using System;
 
 class Result
 {
-
-    /*
-     * Complete the 'nonDivisibleSubset' function below.
-     *
-     * The function is expected to return an INTEGER.
-     * The function accepts following parameters:
-     *  1. INTEGER k
-     *  2. INTEGER_ARRAY s
-     */
-
+    //int, List<int>
     public static int nonDivisibleSubset(int k, List<int> s)
     {
+        //set to create new int[int]
         var remainders = new int[k];
+        //set to
         int count = 0;
-
+        //apply function .ForEach(int => int[int % int]++)
         s.ForEach(x => remainders[x % k]++);
-
+        //for condition (int <= (int/2))
         for (var j = 1; j <= (k / 2); j++)
         {
+            //if (int == int - int)
             if (j == k - j)
+                //increment ++
                 count++;
             else
+                //augment by apply function .Max(int[int],int[int-int])
                 count += Math.Max(remainders[j], remainders[k - j]);
         }
-
+        //if(int[0]>0)
         if (remainders[0] > 0)
+            //increment
             count++;
-
+        //return
         return count;
     }
-
 }
-
 class Solution
 {
     public static void Main(string[] args)
