@@ -1,4 +1,3 @@
-// https://www.hackerrank.com/challenges/ctci-queue-using-two-stacks/problem
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -29,26 +28,31 @@ class Solution
 
 class MyQueue
 {
+    //set to new Stack<int>
     Stack<int> PushStack = new Stack<int>();
     Stack<int> PopStack = new Stack<int>();
 
     public int Dequeue()
     {
+        //if condition (==) apply function LoadToPopStack
         if (PopStack.Count == 0) LoadToPopStack();
+        //return 
         return PopStack.Pop();
     }
-
+    //int arrow function apply function .Push(int)
     public void Enqueue(int value) => PushStack.Push(value);
-
     public int Peek()
     {
+        //if condition (==) apply function LoadToPopStack()
         if (PopStack.Count == 0) LoadToPopStack();
+        //return apply function .Peek()
         return PopStack.Peek();
     }
-
     void LoadToPopStack()
     {
+        //while condition (>)
         while (PushStack.Count > 0)
+            //apply function .Push( apply function .Pop())
             PopStack.Push(PushStack.Pop());
     }
 }

@@ -1,4 +1,3 @@
-// https://www.hackerrank.com/challenges/sherlock-and-cost/problem
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Collections;
@@ -15,28 +14,32 @@ using System;
 
 class Solution
 {
-
-    // Complete the cost function below.
+    // int[]
     static int cost(int[] B)
     {
+        //set to
         var ifOnePicked = 0;
         var ifValuePicked = 0;
+        //for condition (int<int[].Length)
         for (var index = 1; index < B.Length; index++)
         {
+            //set to int[int]-1
             var fromOneToValue = B[index] - 1;
+            //set to int[int-1]-1
             var fromValueToOne = B[index - 1] - 1;
+            //set to apply function .Abs(int[int]-int[int-1])
             var fromPreviousValueToValue = Math.Abs(B[index] - B[index - 1]);
-
+            //set to apply function .Abs(int, int + int)
             var nextIfOnePicked = Math.Max(ifOnePicked, ifValuePicked + fromValueToOne);
+            //set to apply function .Abs(int + int, int + int)
             var nextIfValuePicked = Math.Max(ifValuePicked + fromPreviousValueToValue, ifOnePicked + fromOneToValue);
-
+            //set to
             ifOnePicked = nextIfOnePicked;
             ifValuePicked = nextIfValuePicked;
         }
-
+        //return apply function .Max(int,int)
         return Math.Max(ifOnePicked, ifValuePicked);
     }
-
     static void Main(string[] args)
     {
         TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);

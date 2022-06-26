@@ -1,4 +1,3 @@
-// Recursion: Davis' Staircase
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Collections;
@@ -14,26 +13,32 @@ using System.Text;
 using System;
 
 class Solution {
-
-    // Complete the stepPerms function below.
+    // int
     static int stepPerms(int n) {
+        //set to create new Dictionary<int,int>
         var map = new Dictionary<int, int>();
+        //apply function .Add(1,1)
         map.Add(1, 1);
         map.Add(2, 2);
         map.Add(3, 4);
-
+        //return function count(int, Dictionary<int,int>)
         return count(n, map);
     }
+    //int, Dictionary<int,int>
     static int count(int n, Dictionary<int, int> map){
+        //if condition (apply function .ContainsKey()) return Dictionary<int,int>[int]
         if(map.ContainsKey(n)) return map[n];
+        //set to
         int res = 0;
+        //augment by apply function count(int-1,Dictionary<int,int>)
         res += count(n - 1, map);
         res += count(n - 2, map);
         res += count(n - 3, map);
+        //apply function .Add(int, int)
         map.Add(n, res);
+        //return int
         return res;
     }
-
     static void Main(string[] args) {
         TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
 
