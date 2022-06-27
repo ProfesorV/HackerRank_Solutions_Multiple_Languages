@@ -1,5 +1,3 @@
-// https://www.hackerrank.com/challenges/sparse-arrays/problem
-
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Collections;
