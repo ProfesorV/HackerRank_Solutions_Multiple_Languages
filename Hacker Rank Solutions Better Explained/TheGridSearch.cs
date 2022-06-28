@@ -1,4 +1,3 @@
-// https://www.hackerrank.com/challenges/the-grid-search/problem
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Collections;
@@ -15,41 +14,47 @@ using System;
 
 class Solution
 {
-
-    // Complete the gridSearch function below.
+    //string[], string[]
     static string gridSearch(string[] G, string[] P)
     {
+        //set to
         var firsLine = P[0];
-
+        //for condition (int < string[].Length)
         for (var row = 0; row < G.Length; row++)
         {
+            //set to apply function .IndexOf
             var indexOf = G[row].IndexOf(firsLine);
-
+            //while condition (int>=)
             while (indexOf >= 0)
             {
+                //if condition (apply function IsMatch(string[],string[],int,int))
                 if (IsMatch(G, P, row, indexOf))
+                    //return
                     return "YES";
-
+                //set to string[int] apply function .IndexOf(int,int+)
                 indexOf = G[row].IndexOf(firsLine, indexOf + 1);
             }
         }
-
+        //return
         return "NO";
     }
-
+    //string[], string[], int, int
     private static bool IsMatch(string[] g, string[] p, int firstRow, int firstCol)
     {
+        //if condition (int + string[0].Length > string[0].Length || int + string[].Length > string[].Length) return
         if (firstCol + p[0].Length > g[0].Length ||
             firstRow + p.Length > g.Length) return false;
-
+        //for condition (int < string[].Length)
         for (var row = 0; row < p.Length; row++)
+            //for condition (int < string[int].Length)
             for (var col = 0; col < p[row].Length; col++)
+                //if condition (string[int + int][int+int]!= string[int][int])
                 if (g[row + firstRow][col + firstCol] != p[row][col])
+                    //return
                     return false;
-
+        //return
         return true;
     }
-
     static void Main(string[] args)
     {
         TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
