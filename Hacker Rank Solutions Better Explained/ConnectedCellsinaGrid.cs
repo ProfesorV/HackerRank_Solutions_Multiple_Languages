@@ -29,42 +29,42 @@ class Solution {
         var cols = matrix[0].Length;
         //set to
         var max = 0;
-        //create delegate
+        //create delegate, parameters, pass on =>
         Func<int, int, bool> isValid = (int x, int y) =>
         {
-            //return condition
+            //return >= && < && >= && <
             return x >= 0 && x < cols && y >= 0 && y < rows;
         };
-        //for condition
+        //for <
         for (int y = 0; y < rows; y++)
         {
-            //for condition
+            //for <
             for (int x = 0; x < cols; x++)
             {
-                //if condition
+                //if <
                 if(matrix[y][x] == 0) continue;
                 //set to create new
                 var current = new CellKey(x, y);
-                //apply function
+                //.
                 ds.AddNew(current);
-                //set to apply function
+                //set to .
                 max = Math.Max(max, 1);
-                //for condition
+                //for <
                 for (int index = 0; index < xOffset.Length; index++)
                 {
-                    //set to calculate
+                    //set to +
                     var ox = x + xOffset[index];
-                    //set to calculate
+                    //set to +
                     var oy = y + yOffset[index];
-                    //if condition ! delegate
+                    //if !function
                     if (!isValid(ox, oy)) continue;
-                    //if condition
+                    //if ==
                     if(matrix[oy][ox] == 0) continue;
                     //set to create new
                     var offset = new CellKey(ox, oy);
-                    //if condition apply function
+                    //if .!= .
                     if (ds.Find(current) != ds.Find(offset))
-                    //set to apply function
+                    //set to .
                         max = Math.Max(max, ds.Union(current, offset));
                 }
             }
@@ -94,9 +94,9 @@ class Solution {
         //CellKey
         public void AddNew(CellKey key)
         {
-            //apply function
+            //.
             Parents.Add(key, key);
-            //apply function
+            //.
             Counts.Add(key, 1);
         }
         //CellKey
@@ -104,13 +104,13 @@ class Solution {
         //CellKey *2
         public int Union(CellKey left, CellKey right)
         {
-            //set to apply function
+            //set to
             var pLeft = Find(left);
-            //set to apply function
+            //set to
             var pRight = Find(right);
             //set to
             Parents[pRight] = pLeft;
-            //set to calculate
+            //set to +
             Counts[pLeft] = Counts[pLeft] + Counts[pRight];
             //return
             return Counts[pLeft];

@@ -25,66 +25,66 @@ long long sum[1100000];
 void dfs1(int x, int f) {
     //set to
 	sum[x] = c[x];
-    //for condition
+    //for <
 	for (int i = 0; i < (int) ve[x].size(); i++)
-    //if condition
+    //if !=
 		if (ve[x][i] != f) {
-            //apply function
+            //function
 			dfs1(ve[x][i], x);
-            //augment by
+            //+=
 			sum[x] += sum[ve[x][i]];
 		}
-    //augment by
+    //+=
 	Map1[sum[x]] += 1;
 }
 //long long
 void test(long long x) {
-    //set to calculate
+    //set to
 	long long y = ctot - 2 * x;
-    //if condition
+    //if > && <=
 	if (y > 0 && y <= x)
-        //set to apply function
+        //set to
 		ans = min(ans, x - y);
 }
 //int, int
 void dfs2(int x, int f) {
-    //if condition
+    //if
 	if (Map2[2 * sum[x]])
-        //apply function
+        //function
 		test(sum[x]);
-    //if condition
+    //if
 	if (Map2[ctot - sum[x]])
-        //apply function
+        //apply
 		test(sum[x]);
-    //if condition &&
+    //if == &&
 	if ((ctot - sum[x]) % 2 == 0 && Map2[ctot - (ctot - sum[x]) / 2])
-        //apply function
+        //function
 		test((ctot - sum[x]) / 2);
-    //augment by
+    //+=
 	Map2[sum[x]] += 1;
-    //if condition
+    //if >
 	if (Map1[sum[x]] > Map2[sum[x]])
-        //apply function
+        //function
 		test(sum[x]);
-    //if condition &&
+    //if >= && >
 	if (ctot - 2 * sum[x] >= sum[x] && Map1[ctot - 2 * sum[x]] > Map2[ctot - 2 * sum[x]])
-        //apply function
+        //function
 		test(sum[x]);
-    //if condition &&
+    //if == && >= && >
 	if ((ctot - sum[x]) % 2 == 0 && (ctot - sum[x]) / 2 >= sum[x] && Map1[(ctot - sum[x]) / 2] > Map2[(ctot - sum[x]) / 2])
 		test((ctot - sum[x]) / 2);
-    //if condition ==
+    //if ==
 	if (sum[x] * 2 == ctot)
         //set to
 		ans = min(ans, sum[x]);
-    //for condition
+    //for <
 	for (int i = 0; i < (int) ve[x].size(); i++)
-        //if condition
+        //if !=
 		if (ve[x][i] != f) {
-            //apply function
+            //function
 			dfs2(ve[x][i], x);
 		}
-    //subtract by
+    //-=
 	Map2[sum[x]] -= 1;
 }
 int main() {

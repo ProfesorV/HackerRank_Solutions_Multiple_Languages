@@ -16,11 +16,11 @@ def compareTriplets(a, b):
     for i in range(0,len(a)):
         #if
         if a[i]>b[i]:
-            #augment
+            #set to +
             x=x+1
         #elif
         elif b[i]>a[i]:
-            #augment
+            #set to +
             y=y+1
         else:
             continue

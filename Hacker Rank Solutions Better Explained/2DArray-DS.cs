@@ -16,30 +16,30 @@ class Solution {
     
     // int [][]
     static int hourglassSum(int[][] arr) {
-        //int[], int[]; set to
+        //set to
         var  xPattern = new [] {0, 1, 2, 1, 0, 1, 2 };
         var  yPattern = new [] {0, 0, 0, 1, 2, 2, 2 };
-        //delegate<int, int,int> = (int, int) => {var}; set to
+        //delegate name, set to, parameters, pass on
         Func<int, int, int> calculateHourglass = (int x, int y) => {
-            //int, set to
+            //set to
             var sum = 0;
-            //for(int i < int[].Length); loop condition
+            //for
             for(var i = 0; i < yPattern.Length; i++){
-                //int += int[int + int[int]][int+int[int]]; augment
+                //add on 
                 sum += arr[y + yPattern[i]][x + xPattern[i]];
             }
-            //int
+            //return
             return sum;
         };
-        //int; set to
+        //set to
         var maxSum = int.MinValue;
-        //for(int < int[][].Length - 2); loop condition
+        //for
         for(var y = 0; y < arr.Length - 2; y++){
-            //for(int<int[int].Length-2); loop condition
+            //for
             for(var x = 0; x < arr[y].Length - 2; x++){
-                //int = function(x,y); set to
+                //set to function calculate
                 var temp = calculateHourglass(x, y);
-                //if(int > int); if condition
+                //if, compare, set to
                 if(temp > maxSum) maxSum = temp;
             }
         }

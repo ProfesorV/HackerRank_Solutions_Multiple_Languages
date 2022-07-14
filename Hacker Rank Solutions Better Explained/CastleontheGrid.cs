@@ -19,7 +19,7 @@ class Solution {
         public readonly int X;
         //declare
         public readonly int Y;
-
+        //declare
         public Point(int x, int y)
         {
             //set to
@@ -28,56 +28,56 @@ class Solution {
             Y = y;
         }
     }
-    // string[], 4 ints
+    // string[], int, int, int, int
     static int minimumMoves(string[] grid, int startX, int startY, int goalX, int goalY)
     {
         //set to create new
         var xMoves = new[] { 1, 0, -1, 0 };
         //set to create new
         var yMoves = new[] { 0, 1, 0, -1 };
-        //set to create new bool[string[].Length,]
+        //set to create new 
         var visited = new bool[grid.Length, grid.Length];
-        //set to create new int
+        //set to create new 
         var stepsToReach = new int[grid.Length, grid.Length];
-        //set to create new Queue<Point>
+        //set to create new 
         var queue = new Queue<Point>();
-        //apply function .Enqueue(create new)
+        //.(create new)
         queue.Enqueue(new Point(startX, startY));
         //set to
         stepsToReach[startX, startY] = 0;
         //set to
         visited[startX, startY] = true;
-        //while condition
+        //while >
         while (queue.Count > 0)
         {
-            //set to apply function
+            //set to, .
             var current = queue.Dequeue();
-            //for condition (int < int[].Length)
+            //for <
             for (var directionIndex = 0; directionIndex < xMoves.Length; directionIndex++)
             {
                 //set to
                 var counter = 1;
-                //while condition apply function
+                //while function
                 while (IsValid(grid,
                     current.X + xMoves[directionIndex] * counter,
                     current.Y + yMoves[directionIndex] * counter))
                 {
-                    //set to calculate
+                    //set to
                     var x = current.X + xMoves[directionIndex] * counter;
-                    //set to calculate
+                    //set to
                     var y = current.Y + yMoves[directionIndex] * counter;
                     counter++;
-                    //if condition (&&)
+                    //if == && ==
                     if (x == goalX && y == goalY)
                     //return
                         return stepsToReach[current.X, current.Y] + 1;
-                    //if condition ()
+                    //if
                     if (visited[x, y]) continue;
-                    //set to calculate
+                    //set to
                     stepsToReach[x, y] = stepsToReach[current.X, current.Y] + 1;
                     //set to
                     visited[x, y] = true;
-                    //apply function enqueue(create new)
+                    //.enqueue(create new)
                     queue.Enqueue(new Point(x, y));
                 }
             }

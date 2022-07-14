@@ -16,35 +16,35 @@ class Solution {
 
     //int, int[][]
     static long arrayManipulation(int n, int[][] queries) {
-        //long[int+1] set to
+        //set to create new
         var array = new long[n+1];
-        //for(int < long[].Length) loop condition
+        //for
         for (var index = 0; index < array.Length; index++)
         {
-            //long[int]=0 set to
+            //set to
             array[index] = 0;
         }
-        //long set to
+        //set to
         long x = 0;
-        //long set to
+        //set to
         long max = 0;
-        //foreach(int[] in int[][]) loop through condition
+        //foreach
         foreach (var query in queries)
         {
-            //long[int[0]]+= int[2] augment by
+            //add to
             array[query[0]] += query[2];
-            //if(int[1]+1) <= int) long[int[1]+1]-= int[2] if condition subtract by
+            //if <=, -=
             if ((query[1] + 1) <= n) array[query[1] + 1] -= query[2];
         }
-        //for(int < long[].Length) loop through condition
+        //for
         for (var index = 0; index < array.Length; index++)
         {
-            //long += long[int] augment by
+            //+=
             x += array[index];
-            //if(long < long) long = long if condition set to
+            //if < set to
             if (max < x) max = x;
         }
-        //return long
+        //return
         return max;
     }
 

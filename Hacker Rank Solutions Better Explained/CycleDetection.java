@@ -30,9 +30,9 @@ public class Solution {
         }
         //int
         public void insertNode(int nodeData) {
-            //set to new SinglyLinkedListNode(int)
+            //set to create new
             SinglyLinkedListNode node = new SinglyLinkedListNode(nodeData);
-            //if condition (=)
+            //if ==
             if (this.head == null) {
                 //set to
                 this.head = node;
@@ -47,15 +47,15 @@ public class Solution {
     }
     //SinglyLinkedListNode, String, BufferedWriter,
     public static void printSinglyLinkedList(SinglyLinkedListNode node, String sep, BufferedWriter bufferedWriter) throws IOException {
-        //while condition (!=)
+        //while !=
         while (node != null) {
-            //apply function .write(String.valueOf)
+            //.,.
             bufferedWriter.write(String.valueOf(node.data));
             //set to
             node = node.next;
-            //if condition (!=)
+            //if !=
             if (node != null) {
-                //apply function .write(String)
+                //.
                 bufferedWriter.write(sep);
             }
         }
@@ -64,13 +64,13 @@ public class Solution {
     static boolean hasCycle(SinglyLinkedListNode head) {
         //set to create new Set<SinglyLinkedListNode>
     Set<SinglyLinkedListNode> set=new HashSet<>();
-    //while condition (!=)
+    //while !=
     while(head!=null){
-    //if (apply function .contains())
+    //if .
     if(set.contains(head.next))
     //return
     return true;
-    //apply function .add()
+    //apply .
     set.add(head.next);
     //set to
     head=head.next;

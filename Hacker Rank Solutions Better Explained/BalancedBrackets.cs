@@ -1,4 +1,3 @@
-// Balanced Brackets
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Collections;
@@ -22,42 +21,42 @@ class Solution {
         var openings = new[] { '[', '{', '(' };
         //set to create new
         var stack = new Stack<char>();
-        //foreach condition
+        //foreach
         foreach (var c in s.ToCharArray())
         {
-            //if condition apply function
+            //if .
             if (openings.Contains(c))
-            //apply function
+            //.
                 stack.Push(c);
-                //else if condition
+                //else if ==
             else if (c == ']')
-                //if condition ! apply function or
+                //if !function || !=
                 if (!TryPeek(stack, out var c1) || c1 != '[')
-                //return ""
+                //return
                     return "NO";
                 else
-                //apply function
+                //function
                     stack.Pop();
-            //else if condition
+            //else if
             else if (c == ')')
-                //if condition ! apply function or
+                //if !function ||
                 if (!TryPeek(stack, out var c2) || c2 != '(')
-                    //return ""
+                    //return
                     return "NO";
                 else
-                    //apply function
+                    //function
                     stack.Pop();
-            //else if condition
+            //else if ==
             else if (c == '}')
-                //if condition ! apply function or
+                //if !function ||
                 if (!TryPeek(stack, out var c3) || c3 != '{')
                     //return
                     return "NO";
                 else
-                    //apply function
+                    //function
                     stack.Pop();
         }
-        //return
+        //return == ?
         return stack.Count == 0 ? "YES" : "NO";
     }
     //<char>, char
@@ -65,9 +64,9 @@ class Solution {
     {
         //set to
         value = default(char);
-        //if condition return
+        //if == return
         if (stack.Count == 0) return false;
-        //set to apply function
+        //set to .function
         value = stack.Peek();
         //return
         return true;

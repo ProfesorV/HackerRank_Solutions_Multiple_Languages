@@ -26,19 +26,19 @@ class Solution {
         var current = 0;
         //set to
         var wentIntoValley = false;
-        //foreach condition (char in string.ToCharArray())
+        //foreach 
         foreach(var s in steps.ToCharArray()){
-            //if condition (![].Contains(char))
+            //if !.
             if(!directions.Contains(s)) throw new ArgumentException();
-            //set to apply function .IndexOf([], string)
+            //set to .
             var effective = Array.IndexOf(directions, s);
             //set to
             var temp = current;
-            //augment by [int]
+            //+=
             current += deltas[effective];
-            //if condition (== && <)
+            //if == && <
             if(current == 0 && temp < 0)
-                //increment
+                //++
                 valleys++;
         }
         //return

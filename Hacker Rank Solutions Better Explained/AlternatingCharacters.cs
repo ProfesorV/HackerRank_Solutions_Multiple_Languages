@@ -20,17 +20,17 @@ class Solution {
         var @char = 'z';
         //int set to
         var counter = 0;
-        //for(int < string.Length) loop condition
+        //for
         for (var index = 0; index < s.Length; index++)
         {
-            //if(string[int]==char) if condition equals
+            //if ==
             if (s[index] == @char) 
-            //int++ increment
+                //++
                 counter++;
-                //char = string[int] set to
+            //set to
             @char = s[index];
         }
-        //return int
+        //return
         return counter;
     }
 

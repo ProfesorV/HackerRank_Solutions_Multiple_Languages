@@ -22,16 +22,16 @@ class Solution {
         var sum = 0L;
         //set to
         var candiesCount = 1;
-        //for condition
+        //for <
         for (var index = 0; index < n; index++)
         {
             //set to
             candies[index] = candiesCount;
-            //augment by
+            //+=
             sum += candiesCount;
-            //if condition &&
+            //if < && <
             if (index + 1 < n && arr[index] < arr[index + 1])
-                //increment
+                //++
                 candiesCount++;
             else
                 //set to
@@ -39,21 +39,21 @@ class Solution {
         }
         //set to
         candiesCount = candies[n - 1];
-        //for condition
+        //for >=
         for (var index = n - 1; index >= 0; index--)
         {
-            //set to apply function
+            //set to
             var diff = Math.Max(candies[index], candiesCount) - candies[index];
-            //augment by
+            //+=
             candies[index] += diff;
-            //augment by
+            //+=
             sum += diff;
-            //if condition &&
+            //if > && >
             if (index > 0 && arr[index - 1] > arr[index])
-                //increment
+                //++
                 candiesCount++;
             else
-                //set to
+                //=
                 candiesCount = 1;
         }
         //return 

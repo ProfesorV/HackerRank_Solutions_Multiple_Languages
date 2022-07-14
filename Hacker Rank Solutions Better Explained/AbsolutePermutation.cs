@@ -18,30 +18,30 @@ class Solution
     // int, int
     static int[] absolutePermutation(int n, int k)
     {
-        //if(int != 0 && int % (int * 2) != 0); if condition crete new
+        //if != && != return new
         if (k != 0 && n % (k * 2) != 0) return new[] { -1 };
-        //return int[]; create new set to
+        //set to create new
         var result = new int[n];
-        //if(int==0); if condition
+        //if ==
         if (k == 0)
-        //for(int < int); loop condition
+        //for
             for (int index = 0; index < n; index++)
-            //int[int] = int + 1; set to
+            //set to
                 result[index] = index + 1;
         else
-        //for(int < n/(int * 2)); loop condition
+        //for
             for (var index = 0; index < n / (k * 2); index++)
             {
-                //for (int < int); loop condition
+                //for
                 for (int inner = 0; inner < k; inner++)
                 {
-                    //int[int * int * 2 + int] = int * int * 2 + int + int + 1; set to
+                    //set to
                     result[index * k * 2 + inner] = index * k * 2 + k + inner + 1;
-                    //int[int * int * 2 + int + int] = int * int * 2 + int + 1; set to
+                    //set to
                     result[index * k * 2 + k + inner] = index * k * 2 + inner + 1;
                 }
             }
-            //return int[]
+            //return
         return result;
     }
 

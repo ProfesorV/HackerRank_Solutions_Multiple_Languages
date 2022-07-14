@@ -15,31 +15,31 @@ using System;
 class Solution {
     // string w
     static string biggerIsGreater(string w) {
-        //List<char> create new
+        //set to create new
         var list = new List<char>();
-        //for(int = string.Length-1) loop condition
+        //for
         for (var i = w.Length - 1; i >= 0; i--)
         {
-            //List<char>.Any(x=>x>string[int]) if condition
+            //if, pass on to >
             if(list.Any(x => x > w[i]))
             {
-                //char = List<char>.First(int=>x>string[int]) set to
+                //set to, ., pass on to >
                 var c = list.First(x => x > w[i]);
-                //List<char>.Remove(char) apply function
+                //.
                 list.Remove(c);
-                //List<char>.Add(string[int]) apply function
+                //.
                 list.Add(w[i]);
-                //string = $"{string.Substring(0,int)}{char}" set to
+                //set to .
                 var result = $"{w.Substring(0, i)}{c}";
-                //List<char>.Sort() apply function
+                //.
                 list.Sort();
-                //string += string.Concat(List<char>) augment
+                //+=, .
                 result += string.Concat(list);
-                //return string
+                //return
                 return result;
             }
             else
-                //List<char>.Add(string[int]) apply function
+                //.
                 list.Add(w[i]);
         }
         return "no answer";

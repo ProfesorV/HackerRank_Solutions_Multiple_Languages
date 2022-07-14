@@ -1,4 +1,3 @@
-// Common Child
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Collections;
@@ -18,28 +17,28 @@ class Solution {
     //string, string
     static int commonChild(string s1, string s2)
     {
-        //set to create new int[string.Length + 1, ]
+        //set to create new
         var arry = new int[s1.Length + 1, s2.Length + 1];
-        //for condition (int < int[].GetLength(0))
+        //for <
         for (int i = 0; i < arry.GetLength(0); i++)
-        //set to 
+            //set to 
             arry[i, 0] = 0;
-        //for condition (int < int[].GetLength(1))
+        //for <
         for (int i = 0; i < arry.GetLength(1); i++)
-        //set to 
+            //set to 
             arry[0, i] = 0;
-         //for condition (int < int[].GetLength(0))
+         //for <
         for (int i = 1; i < arry.GetLength(0); i++)
-         //for condition (int < int[].GetLength(1))
+         //for <
             for (int j = 1; j < arry.GetLength(1); j++)
-            //if condition (string[int-1]==string[int-1])
+            //if ==
                 if (s1[i - 1] == s2[j - 1])
-                //set to calculate
+                //set to
                     arry[i, j] = arry[i - 1, j - 1] + 1;
                 else
-                //set to apply function .Max() int[int,int-1], int[int-1,int]
+                //set to .
                     arry[i, j] = Math.Max(arry[i, j - 1], arry[i - 1, j]);
-        //return int[int[].GetLength(0)-1, int[].GetLength(1)-1]
+        //return 
         return arry[arry.GetLength(0) - 1, arry.GetLength(1) - 1];
     }
     static void Main(string[] args) {

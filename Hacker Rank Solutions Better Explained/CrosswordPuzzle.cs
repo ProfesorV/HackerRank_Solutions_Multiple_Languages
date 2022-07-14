@@ -18,11 +18,11 @@ class Solution {
     // string [], string
     static string[] crosswordPuzzle(string[] crossword, string words)
     {
-    //string[] = string.Split().ToArray apply function
+    //set to .,.
         var wordsArray = words.Split(';').ToArray();
-        //if(TryFill(string[].Select(int=>int.Replace()).ToArray, string[], string[])) if condition apply function
+        //if function . passon => .,.
         if (TryFill(crossword.Select(x => x.Replace("-", ".")).ToArray(), wordsArray, out var result))
-        //return string[]
+        //return
             return result;
         else
             throw new Exception("Could not find a solution.");
@@ -33,40 +33,40 @@ class Solution {
         string[] words,
         out string[] result)
     {
-        //string[] = string[].Select(x=>x).ToArray() set to apply function
+        //set to . passon =>.
         result = crossword.Select(x => x).ToArray();
         //set to create new Regex
         var regex = new Regex("[^\\+]*\\.[^\\+]*");
-        //int = string[0].Length set to
+        //set to
         var colCount = crossword[0].Length;
         //set to
         var rowCount = crossword.Length;
         //set to create new
         var pivotCrossword = new string[colCount];
-        //for(int < int) for condition 
+        //for <
         for (var i = 0; i < rowCount; i++)
-        //for(int < int) for condition
+            //for <
             for (var j = 0; j < colCount; j++)
-            //string[int] = (string[int] ?? "") + string[int][int] set to calculate
+                //set to +
                 pivotCrossword[j] = (pivotCrossword[j] ?? "") + crossword[i][j];
-                //for condition
+        //for <
         for (var index = 0; index < rowCount; index++)
         {
-            //foreach condition
+            //foreach
             foreach (Match match in regex.Matches(result[index]))
             {
                 //set to create new
                 var matchRegex = new Regex(match.Value);
-                //foreach condition 
+                //foreach . passon => ==  && .. 
                 foreach (var word in words.Where(x => x.Length == match.Value.Length && matchRegex.IsMatch(x)))
                 {
                     //set to 
                     var temp = result[index];
-                    //for condition
+                    //for <
                     for (var j = 0; j < match.Length; j++)
-                    //set to apply function
+                    //set to 
                         result[index] = Replace(result[index], match.Index + j, word[j]);
-                        //if condition (recursive function calling)
+                        //if . passon =>
                     if (TryFill(result, words.Where(x => x != word).ToArray(), out var grandResult))
                     {
                         //set to
@@ -87,28 +87,28 @@ class Solution {
                     //        word[j]);
                 }
             }
-            //foreach condition
+            //foreach
             foreach (Match match in regex.Matches(pivotCrossword[index]))
             {
                 //set to create new
                 var matchRegex = new Regex(match.Value);
-                //foreach condition
+                //foreach . passon => == &&
                 foreach (var word in words.Where(x => x.Length == match.Value.Length && matchRegex.IsMatch(x)))
                 {
                     //set to
                     var temp = "";
-                    //for condition
+                    //for <
                     for (var j = 0; j < match.Length; j++)
                     {
-                        //augment by calculation
+                        //+=
                         temp += match.Value[j];
-                        //set to apply function
+                        //set to
                         result[match.Index + j] = Replace(
                             result[match.Index + j],
                             index,
                             word[j]);
                     }
-                    //if condition
+                    //if . passon => .
                     if (TryFill(result, words.Where(x => x != word).ToArray(), out var grandResult))
                     {
                         //set to
@@ -118,12 +118,12 @@ class Solution {
                     }
                     else
                     {
-                        //for condition
+                        //for
                         for (var j = 0; j < match.Length; j++)
                         {
-                            //augment by
+                            //+=
                             temp += pivotCrossword[match.Index + j];
-                            //set to apply function
+                            //set to
                             result[match.Index + j] = Replace(
                                 result[match.Index + j],
                                 index + j,
@@ -133,17 +133,17 @@ class Solution {
                 }
             }
         }
-        //return ! of apply function
+        //return !. passon => . >
         return !result.Any(x => regex.Matches(x).Count > 0);
     }
     //string, int, char
     static string Replace(string input, int index, char @char)
     {
-        //set to apply function
+        //set to .
         var array = input.ToCharArray();
         //set to
         array[index] = @char;
-        //return apply function
+        //return .
         return string.Concat(array);
     }
 

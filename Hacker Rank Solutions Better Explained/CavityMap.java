@@ -6,22 +6,30 @@ public class Solution {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int n = Integer.parseInt(in.nextLine());
-        //setmto create new int[int][int]
+        //set to create new
         int[][] array = new int[n][n];
         int[][] target = new int[n][n];
-        //for condition (int < int)
+        //for < 
         for(int i=0; i<n; i++){
+            //set to
         	String line = in.nextLine();
+            //set to
         	char[] data = line.toCharArray();
+            //for <
             for(int j=0; j<n; j++){
+                //set to
                 array[i][j] = Character.getNumericValue(data[j]);
             }
         }
         cavityMap(array, target);
+        //for <
         for(int i=0; i<n; i++){
+            //for <
             for(int j=0; j<n; j++){
+                //if ==
                 if(target[i][j] == -1)
                     System.out.print("X");
+                //else
                 else
                     System.out.print(array[i][j]);
             }
@@ -30,17 +38,17 @@ public class Solution {
     }
     //int[][], int[][]
     public static void cavityMap(int[][] array, int[][] target) {
-        //set to int[][].length
+        //set to
         int row = array.length;
-        //set to int[0][].length
+        //set to
         int col = array[0].length;
-        //for condition (int<int-1)
+        //for <
         for(int i=1; i<row-1; i++){
-            //for condition (int<int-1)
+            //for <
             for(int j=1; j<col-1; j++){
-                //if condition (apply function isMaximum(int[][],int,int))
+                //if
                 if(isMaximum(array, i, j)){
-                    //int[int][int]=-1
+                    //set to
                     target[i][j] = -1;
                 }
             }
@@ -48,9 +56,9 @@ public class Solution {
     }
     //int[][], int, int
     public static boolean isMaximum(int[][] array, int i, int j) {
-        //set to apply function .max(apply function .max(int[int-1][int], int[int+1][int]), apply function .max(int[int][int-1], int[int][int+1]))
+        //set to .,.
         int max = Math.max(Math.max(array[i-1][j], array[i+1][j]), Math.max(array[i][j-1], array[i][j+1]));
-        //if int >= int[int][int]
+        //if  >= 
         if(max >= array[i][j])
             //return
             return false;

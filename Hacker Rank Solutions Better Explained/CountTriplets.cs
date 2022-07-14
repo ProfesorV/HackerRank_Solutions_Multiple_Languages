@@ -29,25 +29,25 @@ class Solution {
         var mp3 = new System.Collections.Generic.Dictionary<long, long>();
         //set to
         long res = 0;
-        //foreach condition (long in List<long>)
+        //foreach
         foreach (long val in arr)
         {
-            //if condition (apply function .ContainsKey(long))
+            //if .
             if (mp3.ContainsKey(val))
-            //augment by Dictionary[long]
+            // +=
                 res += mp3[val];
-            //if condition(apply function .ContainsKey(long))
+            //if .
             if (mp2.ContainsKey(val))
-                //if condition (apply function .ContainsKey(long * long))
+                //if .
                 if (mp3.ContainsKey(val * r))
-                    //augment by 
+                    //+=
                     mp3[val * r] += mp2[val];
                 else
                     //set to
                     mp3[val * r] = mp2[val];
-            //if condition (apply function .ContainsKey(long * long))
+            //if .
             if (mp2.ContainsKey(val * r))
-                //increment
+                //++
                 mp2[val * r]++;
             else
                 //set to
@@ -59,16 +59,16 @@ class Solution {
     //int, int
     static long Count(int index, int level)
     {
-        //if condition (==)
+        //if ==
         if(level == 2)
         {
             //set to
             long result = 0;
-            //for condition (int < int)
+            //for <
             for (int i = index + 1; i < s_Array.Count; i++)
-                //if condition (==)
+                //if ==
                 if(s_Array[index] * s_Ratio == s_Array[i] )
-                    //increment
+                    //++
                     result++;
             //return
             return result;
@@ -77,11 +77,11 @@ class Solution {
         {
             //set to
             long result = 0;
-            //for condition (int < int)
+            //for <
             for (int i = index + 1; i < s_Array.Count; i++)
-                //if condition (==)
+                //if ==
                 if (s_Array[index] * s_Ratio == s_Array[i])
-                    //augment by apply function Count(int, int+1)
+                    //+=
                     result += Count(i, level + 1);
             //return
             return result;

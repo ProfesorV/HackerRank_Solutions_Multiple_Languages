@@ -4,46 +4,48 @@ import java.util.*;
 public class Solution {
 
     public static void main(String[] args) {
+        //set to create new
         Scanner input = new Scanner(System.in);
+        //set to
         int count = input.nextInt();
         //set to create new int[int]
         int[] sticks = new int[count];
         //set to
         int in = 0;
-        //while condition (int < int)
+        //while <
         while(in < count) {
             //set to
             sticks[in] = input.nextInt();
-            //increment
+            //++
             in++;
         }
-        //while condition (true)
+        //while
         while(true) {
             //set to
             int min = Integer.MAX_VALUE;
-            //for condition (int < int)
+            //for <
             for (int i = 0; i < count; i++) {
-                //if condition (int[int] < int && int[1]!=0)
+                //if < && !=
                 if (sticks[i] < min && sticks[i] != 0) {
-                    //int = int[int]
+                    //set to
                     min = sticks[i];
                 }
             }
             //set to
             int slices = 0;
-            //for condition (int < int)
+            //for <
             for (int i = 0; i < count; i++)  {
-                //if condition (int[int]>0)
+                //if >
                 if (sticks[i] > 0) {
-                    //set to int[int]
+                    //set to 
                     int temp = sticks[i];
-                    //set to int-int
+                    //set to -
                     sticks[i] = temp - min;
-                    //increment
+                    //++
                     slices++;
                 }
             }
-            //if condition (int > 0)
+            //if >
             if (slices > 0) 
                 System.out.printf("%d%n", slices);
             else

@@ -18,21 +18,21 @@ class Solution
     // int, int int
     static long countArray(int n, int k, int x)
     {
-        //long set to condition
+        //set to == ? :
         var picked = x == 1 ? 1L : 0L;
-        //long set to condition
+        //set to == ? :
         var notPicked = x == 1 ? 0L : 1L;
-        //for (int < int) loop conditional
+        //for <
         for (var index = 1; index < n; index++)
         {
-            //long set to
+            //set to
             var newPicked = notPicked;
-            //long = (long * (int -1)% 1_000_000_007 + long * (int-2) % 1_000_000_007) % 1_000_000_007 set to condition
+            //set to 
             notPicked = (picked * (k - 1) % 1_000_000_007 + notPicked * (k - 2) % 1_000_000_007) % 1_000_000_007;
-            //long = long set to
+            //set to
             picked = newPicked;
         }
-        //return long
+        //return
         return picked;
     }
 

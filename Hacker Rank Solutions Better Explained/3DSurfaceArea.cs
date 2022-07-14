@@ -18,48 +18,48 @@ class Solution
     // int [][]
     static int surfaceArea(int[][] A)
     {
-        //int; set to
+        //set to
         var sum = 0;
-        //for(int < int[][].Length); loop condition
+        //for
         for (var row = 0; row < A.Length; row++)
-        //for(int < int[0].Length); loop condition
+        //for 
             for (var col = 0; col < A[0].Length; col++)
-            //int += Count(int[][], int, int); augment
+            //add to
                 sum += Count(A, row, col);
-        //return int
+        //return
         return sum;
     }
     //int[][], int, int
     private static int Count(int[][] a, int row, int col)
     {
-        //int = 2; set to
+        //set to
         var sum = 2;
-        //int[]; set to
+        //set to create new
         var rowDelta = new[] { -1, 0, 1, 0 };
-        //int[]; set to
+        //set to create new
         var colDelta = new[] { 0, 1, 0, -1 };
-        //for(int < int[].Length); for condition
+        //for
         for (var index = 0; index < rowDelta.Length; index++)
         {
-            //int = int + int[int]; set to
+            //set to
             var r = row + rowDelta[index];
-            //int = int + int[int]; set to
+            //set to
             var c = col + colDelta[index];
-            //if(IsValid(int[][],int,int)); if condition
+            //if, function apply
             if (IsValid(a, r, c))
-            //int += Math.Max() 0,int[int][int] - int[int][int]; augment
+            //add to
                 sum += Math.Max(0, a[row][col] - a[r][c]);
             else
-            //int+= int[int][int]; augment
+            //add to
                 sum += a[row][col];
         }
-        //return int
+        //return
         return sum;
     }
     //int[][], int, int
     private static bool IsValid(int[][] a, int row, int col)
     {
-        //return int >= 0 && int >= 0 && int < int[][] && int < int[0][].Length; compare
+        //return >=,  && >= , && <, &&  < 
         return row >= 0 && col >= 0 && row < a.Length && col < a[0].Length;
     }
 
