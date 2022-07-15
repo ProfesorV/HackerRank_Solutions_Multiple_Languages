@@ -15,21 +15,21 @@
     class Solution
     {
         //int[]
-        static void minimumBribes(int[] q)
+        static void minimumBribes(int[] pIntArrq)
         {
             //set to
             int ans = 0;
-            //for condition (int = int[].Length -1)
-            for (var i = q.Length - 1; i >= 0; i--) {
-                //if condition (int[int]-(int+1)>2)
-                if (q[i] - (i + 1) > 2) {
+            //for <
+            for (var i = pIntArrq.Length - 1; i >= 0; i--) {
+                //if >
+                if (pIntArrq[i] - (i + 1) > 2) {
                     Console.WriteLine("Too chaotic");
                     return;
         }
-        //for condition (int < int)
-        for (int j = Math.Max(0, q[i] - 2); j < i; j++)
-        //if condition (int[int] > int[int]) increment++
-        if (q[j] > q[i]) ans++;
+        //for <
+        for (int j = Math.Max(0, pIntArrq[i] - 2); j < i; j++)
+        //if >
+        if (pIntArrq[j] > pIntArrq[i]) ans++;
         }
             Console.WriteLine(ans);
         }

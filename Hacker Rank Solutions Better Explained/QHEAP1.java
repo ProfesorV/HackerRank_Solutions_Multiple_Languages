@@ -4,41 +4,44 @@ import java.util.*;
 public class Solution {
 
     	public static void main(String[] args) {
+        //set to create new
         Scanner scan = new Scanner(System.in);
+        //set to
         int N = Integer.parseInt(scan.nextLine());
-        int[][] arr = new int[N][2];
-        
+        //set to create new
+        int[][] multiDimArr = new int[N][2];
+        //for <
         for(int i = 0; i< N; i++){
-            String line = scan.nextLine();
-            String[] query = line.split(" ");
+            //set to
+            String stringLine = scan.nextLine();
+            String[] stringArrayQuery = stringLine.split(" ");
             
-            arr[i][0] = Integer.parseInt(query[0]);
-            if(query.length ==2){
-                arr[i][1] = Integer.parseInt(query[1]);
+            multiDimArr[i][0] = Integer.parseInt(stringArrayQuery[0]);
+            if(stringArrayQuery.length ==2){
+                multiDimArr[i][1] = Integer.parseInt(stringArrayQuery[1]);
             }
         }
-        
-        heapMethods(arr);     
+        heapMethods(multiDimArr);     
     }
     //int[][]
-    public static void heapMethods(int[][] arr){
-        //set to int[][].length
+    public static void heapMethods(int[][] pMultiDimArr){
+        //set to 
         int N = arr.length;
-        //set to create new PriorityQueue<Integer>
-        PriorityQueue<Integer> minHeap = new PriorityQueue<Integer>();
-        //for condition(int < int)
+        //set to create new
+        PriorityQueue<Integer> priorityQueueIntMinHeap = new PriorityQueue<Integer>();
+        //for <
         for(int i = 0; i<N; i++){
-            //if condition(int[int][0]==1)
-            if(arr[i][0] == 1){
-                //apply function .add((int[int][1]))
-                minHeap.add((arr[i][1]));
-                //else if condition (int[int][0]==2)
-            } else if(arr[i][0] == 2){
-                //apply function .remove((int[int][1]))
-                minHeap.remove((arr[i][1]));
+            //if ==
+            if(pMultiDimArr[i][0] == 1){
+                //.
+                priorityQueueIntMinHeap.add((pMultiDimArr[i][1]));
+                //else if
+            } else if(pMultiDimArr[i][0] == 2){
+                //.
+                priorityQueueIntMinHeap.remove((pMultiDimArr[i][1]));
             } else{
-                //apply function .peek()
-                System.out.println(minHeap.peek());
+                //.
+                System.out.println(priorityQueueIntMinHeap.peek());
             }
         }
     }

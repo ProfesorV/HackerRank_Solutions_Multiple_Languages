@@ -11,7 +11,7 @@ int main() {
     unsigned long long int N, Sum = 0, i, Num;
     //cin
     cin>>N;
-    //for
+    //for <=
     for (i = 1 ; i <= N ; i++)
         {
         //cin

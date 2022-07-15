@@ -1,4 +1,3 @@
-// Sock Merchant
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Collections;
@@ -15,27 +14,27 @@ using System;
 class Solution {
 
     // int, int[]
-    static int sockMerchant(int n, int[] ar) {
-        //List<int> set to create new
-        var temp = new  List<int>();
-        //int set to
+    static int sockMerchant(int pIntn, int[] pIntArr) {
+        //set to create new
+        var listInt = new  List<int>();
+        //set to
         var pairs = 0;
-        //int i in int[] loop through
-        foreach(var i in ar){
-            //if(List<int>.Contains(int)) if condition
-            if(temp.Contains(i)){
-                //List<int>.Remove(int) apply function
-                temp.Remove(i);
-                //int++ increment
+        //foreach in
+        foreach(var i in pIntArr){
+            //if .
+            if(listInt.Contains(i)){
+                //.
+                listInt.Remove(i);
+                //++
                 pairs++;
             }
             else
             {
-                //List<int>.Add(int)apply function
-                temp.Add(i);
+                //.
+                listInt.Add(i);
             }
         }
-        //int return
+        //return
         return pairs;
     }
 
@@ -44,8 +43,8 @@ class Solution {
 
         int n = Convert.ToInt32(Console.ReadLine());
 
-        int[] ar = Array.ConvertAll(Console.ReadLine().Split(' '), arTemp => Convert.ToInt32(arTemp));
-        int result = sockMerchant(n, ar);
+        int[] pIntArr = Array.ConvertAll(Console.ReadLine().Split(' '), arTemp => Convert.ToInt32(arTemp));
+        int result = sockMerchant(n, pIntArr);
 
         textWriter.WriteLine(result);
 
