@@ -6,53 +6,53 @@ public class Solution {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         //set to create new
-        HashMap<Integer, ArrayList<Integer>> map = new HashMap<Integer, ArrayList<Integer>>();
-        int[] sum = new int[3];
-        int[] sn = new int[3];
+        HashMap<Integer, ArrayList<Integer>> IntArrLisIntHashMap = new HashMap<Integer, ArrayList<Integer>>();
+        int[] intArrSum = new int[3];
+        int[] intArrSn = new int[3];
         //for <
         for (int i =0; i< 3 ; i++)
         {
             //set to
-            sn[i] = in.nextInt();
+            intArrSn[i] = in.nextInt();
         }
         //for <
         for(int i =0; i < 3; i++)
         {
             //., create new
-            map.put(i, new ArrayList<Integer>());
+            IntArrLisIntHashMap.put(i, new ArrayList<Integer>());
             //for <
-            for(int j=0 ; j < sn[i]; j++)
+            for(int j=0 ; j < intArrSn[i]; j++)
             {
                 //set to .
                 int k = in.nextInt();
                 //+=
-                sum[i] += k;
+                intArrSum[i] += k;
                 //.,.
-                map.get(i).add(0,k);
+                IntArrLisIntHashMap.get(i).add(0,k);
             }
         }
         //while !(== & ==)
-        while (!((sum[0] == sum[1]) && (sum[1] == sum[2])))
+        while (!((intArrSum[0] == intArrSum[1]) && (intArrSum[1] == intArrSum[2])))
         {
             //set to
-            int minSum = Math.max(Math.max(sum[0], sum[1]), sum[2]);
+            int minSum = Math.max(Math.max(intArrSum[0], intArrSum[1]), intArrSum[2]);
             int j = 0;
             //if ==
-            if (minSum == sum[0])
+            if (minSum == intArrSum[0])
                 //set to
                 j =0;
             //else ==
-            else if (minSum == sum[1])
+            else if (minSum == intArrSum[1])
                 //set to
                 j = 1;
             else
                 //set to
                 j = 2;
                 //-= .,.,.
-                sum[j] -=  map.get(j).get(map.get(j).size() - 1);
+                intArrSum[j] -=  IntArrLisIntHashMap.get(j).get(IntArrLisIntHashMap.get(j).size() - 1);
                 //.,.,.,.
-                map.get(j).remove(map.get(j).size() - 1);
+                IntArrLisIntHashMap.get(j).remove(IntArrLisIntHashMap.get(j).size() - 1);
         }
-        System.out.println(sum[0]);
+        System.out.println(intArrSum[0]);
     }
 }

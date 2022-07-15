@@ -14,41 +14,41 @@ using System;
 
 class Solution {
     //string
-    static int sherlockAndAnagrams(string s)
+    static int sherlockAndAnagrams(string pString)
     {
-        //set to create new Dictionary<string,int>
-        var dic = new Dictionary<string, int>();
-        //for condition (int < string.Length)
-        for (var len = 1; len < s.Length; len++)
+        //set to create new 
+        var stringIntDic = new Dictionary<string, int>();
+        //for <
+        for (var len = 1; len < pString.Length; len++)
         {
-            //for condition (int <= string.Length - int)
-            for (int index = 0; index <= s.Length - len; index++)
+            //for <=
+            for (int index = 0; index <= pString.Length - len; index++)
             {
-                //set to apply function getKey(apply function .Substring(int,int))
-                var key = getKey(s.Substring(index, len));
-                //if condition (apply function .ContainsKey())
-                if (dic.ContainsKey(key))
-                    //Dictionary<string,int>[int] increment
-                    dic[key]++;
+                //set to 
+                var key = getKey(pString.Substring(index, len));
+                //if .
+                if (stringIntDic.ContainsKey(key))
+                    //++
+                    stringIntDic[key]++;
                 else
-                    //dDictionary<string,int>[int] =1
-                    dic[key] = 1;
+                    //set to
+                    stringIntDic[key] = 1;
             }
         }
-        //return Dictionary<string,int> apply function .Where(int => int.Value >1) apply function .Sum(int => int.Value * (int.Value-1)/2)
-        return dic.Where(x => x.Value > 1).Sum(x => x.Value * (x.Value - 1) / 2);
+        //return . passon . > . passon .
+        return stringIntDic.Where(x => x.Value > 1).Sum(x => x.Value * (x.Value - 1) / 2);
     }
     //string
-    static string getKey(string value)
+    static string getKey(string pStringValue)
     {
-        //set to create new StringBuilder(string.Length)
-        var sb = new StringBuilder(value.Length);
-        //foreach condition (char in string apply function .ToCharArray() apply function .OrderBy(int=>int))
-        foreach(var @char in value.ToCharArray().OrderBy(x => x))
-            //StringBuilder apply function .Append(char)
-            sb.Append(@char);
-        //return apply function .ToString
-        return sb.ToString();
+        //set to create new
+        var StringB = new StringBuilder(pStringValue.Length);
+        //foreach . . passon
+        foreach(var @char in pStringValue.ToCharArray().OrderBy(x => x))
+            //.
+            StringB.Append(@char);
+        //return .
+        return StringB.ToString();
     }
     static void Main(string[] args) {
         TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);

@@ -15,40 +15,40 @@ using System;
 class Solution {
 
     //string, string
-    static int commonChild(string s1, string s2)
+    static int commonChild(string pStringOne, string pStringTwo)
     {
         //set to create new
-        var arry = new int[s1.Length + 1, s2.Length + 1];
+        var intArr = new int[pStringOne.Length + 1, pStringTwo.Length + 1];
         //for <
-        for (int i = 0; i < arry.GetLength(0); i++)
+        for (int i = 0; i < intArr.GetLength(0); i++)
             //set to 
-            arry[i, 0] = 0;
+            intArr[i, 0] = 0;
         //for <
-        for (int i = 0; i < arry.GetLength(1); i++)
+        for (int i = 0; i < intArr.GetLength(1); i++)
             //set to 
-            arry[0, i] = 0;
+            intArr[0, i] = 0;
          //for <
-        for (int i = 1; i < arry.GetLength(0); i++)
+        for (int i = 1; i < intArr.GetLength(0); i++)
          //for <
-            for (int j = 1; j < arry.GetLength(1); j++)
+            for (int j = 1; j < intArr.GetLength(1); j++)
             //if ==
-                if (s1[i - 1] == s2[j - 1])
+                if (pStringOne[i - 1] == pStringTwo[j - 1])
                 //set to
-                    arry[i, j] = arry[i - 1, j - 1] + 1;
+                    intArr[i, j] = intArr[i - 1, j - 1] + 1;
                 else
                 //set to .
-                    arry[i, j] = Math.Max(arry[i, j - 1], arry[i - 1, j]);
+                    intArr[i, j] = Math.Max(intArr[i, j - 1], intArr[i - 1, j]);
         //return 
-        return arry[arry.GetLength(0) - 1, arry.GetLength(1) - 1];
+        return intArr[intArr.GetLength(0) - 1, intArr.GetLength(1) - 1];
     }
     static void Main(string[] args) {
         TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
 
-        string s1 = Console.ReadLine();
+        string pStringOne = Console.ReadLine();
 
-        string s2 = Console.ReadLine();
+        string pStringTwo = Console.ReadLine();
 
-        int result = commonChild(s1, s2);
+        int result = commonChild(pStringOne, pStringTwo);
 
         textWriter.WriteLine(result);
 

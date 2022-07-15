@@ -15,18 +15,18 @@ using System;
 class Solution {
     
     // int [][]
-    static int hourglassSum(int[][] arr) {
+    static int hourglassSum(int[][] pIntArr) {
         //set to
-        var  xPattern = new [] {0, 1, 2, 1, 0, 1, 2 };
-        var  yPattern = new [] {0, 0, 0, 1, 2, 2, 2 };
+        var  intArrX = new [] {0, 1, 2, 1, 0, 1, 2 };
+        var  intArrY = new [] {0, 0, 0, 1, 2, 2, 2 };
         //delegate name, set to, parameters, pass on
-        Func<int, int, int> calculateHourglass = (int x, int y) => {
+        Func<int, int, int> delegateCalculateHourglass = (int x, int y) => {
             //set to
             var sum = 0;
             //for
-            for(var i = 0; i < yPattern.Length; i++){
+            for(var i = 0; i < intArrY.Length; i++){
                 //add on 
-                sum += arr[y + yPattern[i]][x + xPattern[i]];
+                sum += paraIntArr[y + intArrY[i]][x + intArrX[i]];
             }
             //return
             return sum;
@@ -34,11 +34,11 @@ class Solution {
         //set to
         var maxSum = int.MinValue;
         //for
-        for(var y = 0; y < arr.Length - 2; y++){
+        for(var y = 0; y < paraIntArr.Length - 2; y++){
             //for
-            for(var x = 0; x < arr[y].Length - 2; x++){
+            for(var x = 0; x < paraIntArr[y].Length - 2; x++){
                 //set to function calculate
-                var temp = calculateHourglass(x, y);
+                var temp = delegateCalculateHourglass(x, y);
                 //if, compare, set to
                 if(temp > maxSum) maxSum = temp;
             }
@@ -49,13 +49,13 @@ class Solution {
     static void Main(string[] args) {
         TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
 
-        int[][] arr = new int[6][];
+        int[][] paraIntArr = new int[6][];
 
         for (int i = 0; i < 6; i++) {
-            arr[i] = Array.ConvertAll(Console.ReadLine().Split(' '), arrTemp => Convert.ToInt32(arrTemp));
+            paraIntArr[i] = Array.ConvertAll(Console.ReadLine().Split(' '), arrTemp => Convert.ToInt32(arrTemp));
         }
 
-        int result = hourglassSum(arr);
+        int result = hourglassSum(paraIntArr);
 
         textWriter.WriteLine(result);
 

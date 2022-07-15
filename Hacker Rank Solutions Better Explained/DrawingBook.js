@@ -24,11 +24,11 @@ function readLine() {
 
 
 function pageCount(n, p) {
-    //set to apply function .floor(int/2)
+    //set to .
   var frontFlip = Math.floor(p/2);
-  //set to apply function .floor((int/2)-int)
+  //set to 
   var backFlip = Math.floor((n/2)-frontFlip);
-  //set to apply function .min(int,int)
+  //set to .
   var result = Math.min(frontFlip, backFlip);
   //return
   return result;

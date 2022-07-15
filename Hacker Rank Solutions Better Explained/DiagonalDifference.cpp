@@ -7,7 +7,7 @@ int main()
   //cin
   cin >> N;
   //declare
-  int a[N][N];
+  int multiDimArr[N][N];
   //for
   for (int i = 0; i < N; i++) 
   {
@@ -15,12 +15,12 @@ int main()
     for (int j = 0; j < N; j++) 
     {
         //cin
-      cin >> a[i][j];
+      cin >> multiDimArr[i][j];
       //if
       if (i == j) 
    {
     //set to augment by
-        LeftDiagonal = LeftDiagonal + a[i][j];
+        LeftDiagonal = LeftDiagonal + multiDimArr[i][j];
       }
     }
   }
@@ -31,7 +31,7 @@ int main()
     for (int j = N - 1 - i; j >= 0;) 
     {
         //set to augment by
-      RightDiagonal = RightDiagonal + a[i][j];
+      RightDiagonal = RightDiagonal + multiDimArr[i][j];
       break;
     }
   }

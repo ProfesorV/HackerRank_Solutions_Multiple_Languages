@@ -15,23 +15,23 @@ using System;
 class Solution {
 
     //int[]
-    static int jumpingOnClouds(int[] c) {
-        //int set to
+    static int jumpingOnClouds(int[] intArrClouds) {
+        // set to
         var current = 0;
-        //int set to
+        // set to
         var jumps = 0;
-        //int = int[].Length set to
-        var max = c.Length;
-        //for(int<int-1) loop condition
+        //set to .
+        var max = intArrClouds.Length;
+        //for <
         for(var i = 0; i< max - 1; i++){
-            //if(int+2<int && int[int + 2] ==0) if condition compare increment         
-            if(i + 2 < max && c[i + 2] == 0) i++;
-            //if(int[int+1]==1) if condition compare throw new
-            if(c[i + 1] == 1) throw new Exception();
-            //int++ increment
+            //if < && == ++         
+            if(i + 2 < max && intArrClouds[i + 2] == 0) i++;
+            //if == 
+            if(intArrClouds[i + 1] == 1) throw new Exception();
+            //++
             jumps++;
         }
-        //return int
+        //return
         return jumps;
     }
 

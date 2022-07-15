@@ -16,51 +16,51 @@ class Solution
 {
 
     // int [][]
-    static int surfaceArea(int[][] A)
+    static int surfaceArea(int[][] pIntMuDiArr)
     {
         //set to
         var sum = 0;
         //for
-        for (var row = 0; row < A.Length; row++)
+        for (var row = 0; row < pIntMuDiArr.Length; row++)
         //for 
-            for (var col = 0; col < A[0].Length; col++)
+            for (var col = 0; col < pIntMuDiArr[0].Length; col++)
             //add to
-                sum += Count(A, row, col);
+                sum += Count(pIntMuDiArr, row, col);
         //return
         return sum;
     }
     //int[][], int, int
-    private static int Count(int[][] a, int row, int col)
+    private static int Count(int[][] pIntMDArr, int row, int col)
     {
         //set to
         var sum = 2;
         //set to create new
-        var rowDelta = new[] { -1, 0, 1, 0 };
+        var intArrRowDelta = new[] { -1, 0, 1, 0 };
         //set to create new
-        var colDelta = new[] { 0, 1, 0, -1 };
+        var intArrColDelta = new[] { 0, 1, 0, -1 };
         //for
-        for (var index = 0; index < rowDelta.Length; index++)
+        for (var index = 0; index < intArrRowDelta.Length; index++)
         {
             //set to
-            var r = row + rowDelta[index];
+            var r = row + intArrRowDelta[index];
             //set to
-            var c = col + colDelta[index];
+            var c = col + intArrColDelta[index];
             //if, function apply
-            if (IsValid(a, r, c))
+            if (IsValid(pIntMDArr, r, c))
             //add to
-                sum += Math.Max(0, a[row][col] - a[r][c]);
+                sum += Math.Max(0, pIntMDArr[row][col] - pIntMDArr[r][c]);
             else
             //add to
-                sum += a[row][col];
+                sum += pIntMDArr[row][col];
         }
         //return
         return sum;
     }
     //int[][], int, int
-    private static bool IsValid(int[][] a, int row, int col)
+    private static bool IsValid(int[][] pIntMuDArr, int row, int col)
     {
         //return >=,  && >= , && <, &&  < 
-        return row >= 0 && col >= 0 && row < a.Length && col < a[0].Length;
+        return row >= 0 && col >= 0 && row < pIntMuDArr.Length && col < pIntMuDArr[0].Length;
     }
 
     static void Main(string[] args)
@@ -73,14 +73,14 @@ class Solution
 
         int W = Convert.ToInt32(HW[1]);
 
-        int[][] A = new int[H][];
+        int[][] pIntMuDiArr = new int[H][];
 
         for (int i = 0; i < H; i++)
         {
-            A[i] = Array.ConvertAll(Console.ReadLine().Split(' '), ATemp => Convert.ToInt32(ATemp));
+            pIntMuDiArr[i] = Array.ConvertAll(Console.ReadLine().Split(' '), ATemp => Convert.ToInt32(ATemp));
         }
 
-        int result = surfaceArea(A);
+        int result = surfaceArea(pIntMuDiArr);
 
         textWriter.WriteLine(result);
 
