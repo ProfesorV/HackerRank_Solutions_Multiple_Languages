@@ -15,32 +15,32 @@ using System;
 class Solution {
 
     //int, int[][]
-    static long arrayManipulation(int n, int[][] queries) {
+    static long longArrayManipulation(int n, int[][] multiDimIntQueries) {
         //set to create new
-        var array = new long[n+1];
+        var longArray = new long[n+1];
         //for
-        for (var index = 0; index < array.Length; index++)
+        for (var index = 0; index < longArray.Length; index++)
         {
             //set to
-            array[index] = 0;
+            longArray[index] = 0;
         }
         //set to
         long x = 0;
         //set to
         long max = 0;
         //foreach
-        foreach (var query in queries)
+        foreach (var query in multiDimIntQueries)
         {
             //add to
-            array[query[0]] += query[2];
+            longArray[query[0]] += query[2];
             //if <=, -=
-            if ((query[1] + 1) <= n) array[query[1] + 1] -= query[2];
+            if ((query[1] + 1) <= n) longArray[query[1] + 1] -= query[2];
         }
         //for
-        for (var index = 0; index < array.Length; index++)
+        for (var index = 0; index < longArray.Length; index++)
         {
             //+=
-            x += array[index];
+            x += longArray[index];
             //if < set to
             if (max < x) max = x;
         }
@@ -57,13 +57,13 @@ class Solution {
 
         int m = Convert.ToInt32(nm[1]);
 
-        int[][] queries = new int[m][];
+        int[][] multiDimIntQueries = new int[m][];
 
         for (int i = 0; i < m; i++) {
-            queries[i] = Array.ConvertAll(Console.ReadLine().Split(' '), queriesTemp => Convert.ToInt32(queriesTemp));
+            multiDimIntQueries[i] = longArray.ConvertAll(Console.ReadLine().Split(' '), queriesTemp => Convert.ToInt32(queriesTemp));
         }
 
-        long result = arrayManipulation(n, queries);
+        long result = longArrayManipulation(n, multiDimIntQueries);
 
         textWriter.WriteLine(result);
 

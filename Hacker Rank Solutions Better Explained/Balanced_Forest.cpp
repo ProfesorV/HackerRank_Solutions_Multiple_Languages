@@ -14,28 +14,28 @@
 using namespace std;
 
 int q;
-map <long long, int> Map1, Map2;
+map <long long, int> longLongIntMap1, longLongIntMap2;
 long long ctot;
-int c[110000];
-vector <int> ve[110000];
+int intArrC[110000];
+vector <int> intVector[110000];
 long long ans;
 int n;
-long long sum[1100000];
+long long longLongArrSum[1100000];
 //int, int
 void dfs1(int x, int f) {
     //set to
-	sum[x] = c[x];
+	longLongArrSum[x] = intArrC[x];
     //for <
-	for (int i = 0; i < (int) ve[x].size(); i++)
+	for (int i = 0; i < (int) intVector[x].size(); i++)
     //if !=
-		if (ve[x][i] != f) {
+		if (intVector[x][i] != f) {
             //function
-			dfs1(ve[x][i], x);
+			dfs1(intVector[x][i], x);
             //+=
-			sum[x] += sum[ve[x][i]];
+			longLongArrSum[x] += longLongArrSum[intVector[x][i]];
 		}
     //+=
-	Map1[sum[x]] += 1;
+	longLongIntMap1[longLongArrSum[x]] += 1;
 }
 //long long
 void test(long long x) {
@@ -49,49 +49,49 @@ void test(long long x) {
 //int, int
 void dfs2(int x, int f) {
     //if
-	if (Map2[2 * sum[x]])
+	if (longLongIntMap2[2 * longLongArrSum[x]])
         //function
-		test(sum[x]);
+		test(longLongArrSum[x]);
     //if
-	if (Map2[ctot - sum[x]])
+	if (longLongIntMap2[ctot - longLongArrSum[x]])
         //apply
-		test(sum[x]);
+		test(longLongArrSum[x]);
     //if == &&
-	if ((ctot - sum[x]) % 2 == 0 && Map2[ctot - (ctot - sum[x]) / 2])
+	if ((ctot - longLongArrSum[x]) % 2 == 0 && longLongIntMap2[ctot - (ctot - longLongArrSum[x]) / 2])
         //function
-		test((ctot - sum[x]) / 2);
+		test((ctot - longLongArrSum[x]) / 2);
     //+=
-	Map2[sum[x]] += 1;
+	longLongIntMap2[longLongArrSum[x]] += 1;
     //if >
-	if (Map1[sum[x]] > Map2[sum[x]])
+	if (longLongIntMap1[longLongArrSum[x]] > longLongIntMap2[longLongArrSum[x]])
         //function
-		test(sum[x]);
+		test(longLongArrSum[x]);
     //if >= && >
-	if (ctot - 2 * sum[x] >= sum[x] && Map1[ctot - 2 * sum[x]] > Map2[ctot - 2 * sum[x]])
+	if (ctot - 2 * longLongArrSum[x] >= longLongArrSum[x] && longLongIntMap1[ctot - 2 * longLongArrSum[x]] > longLongIntMap2[ctot - 2 * longLongArrSum[x]])
         //function
-		test(sum[x]);
+		test(longLongArrSum[x]);
     //if == && >= && >
-	if ((ctot - sum[x]) % 2 == 0 && (ctot - sum[x]) / 2 >= sum[x] && Map1[(ctot - sum[x]) / 2] > Map2[(ctot - sum[x]) / 2])
-		test((ctot - sum[x]) / 2);
+	if ((ctot - longLongArrSum[x]) % 2 == 0 && (ctot - longLongArrSum[x]) / 2 >= longLongArrSum[x] && longLongIntMap1[(ctot - longLongArrSum[x]) / 2] > longLongIntMap2[(ctot - longLongArrSum[x]) / 2])
+		test((ctot - longLongArrSum[x]) / 2);
     //if ==
-	if (sum[x] * 2 == ctot)
+	if (longLongArrSum[x] * 2 == ctot)
         //set to
-		ans = min(ans, sum[x]);
+		ans = min(ans, longLongArrSum[x]);
     //for <
-	for (int i = 0; i < (int) ve[x].size(); i++)
+	for (int i = 0; i < (int) intVector[x].size(); i++)
         //if !=
-		if (ve[x][i] != f) {
+		if (intVector[x][i] != f) {
             //function
-			dfs2(ve[x][i], x);
+			dfs2(intVector[x][i], x);
 		}
     //-=
-	Map2[sum[x]] -= 1;
+	longLongIntMap2[longLongArrSum[x]] -= 1;
 }
 int main() {
 	scanf("%d", &q);
 	while (q--) {
-		Map1.clear();
-		Map2.clear();
+		longLongIntMap1.clear();
+		longLongIntMap2.clear();
 		ans = 1e18;
 		scanf("%d", &n);
 		ctot = 0;
@@ -100,12 +100,12 @@ int main() {
 			ctot += c[i];
 		}
 		for (int i = 1; i <= n; i++)
-			ve[i].clear();
+			intVector[i].clear();
 		for (int i = 1; i < n; i++) {
 			int x, y;
 			scanf("%d%d", &x, &y);
-			ve[x].push_back(y);
-			ve[y].push_back(x);
+			intVector[x].push_back(y);
+			intVector[y].push_back(x);
 		}
 		dfs1(1, 0);
 		dfs2(1, 0);

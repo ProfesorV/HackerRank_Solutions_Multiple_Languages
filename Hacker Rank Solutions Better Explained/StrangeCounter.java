@@ -10,31 +10,28 @@ import java.util.StringTokenizer;
 public class A {
 	public static void main(String[] args) throws Exception {
 		Scanner sc = new Scanner(System.in);
-        //set to create new StringBuilder
-		StringBuilder sb = new StringBuilder();
-        //set to create new PrintWriter()
+        //set to create new
+		StringBuilder sb = new StringBuilder();()
 		PrintWriter out = new PrintWriter(System.out);
         //set to apply function .nextLong()
 		long t = sc.nextLong();
         //set to
 		long cur = 0;
 		long nxt = 3;
-        //while condition (long < long)
+        //while <
 		while (cur < t) {
-            //augment by 
+            //+= 
 			cur += nxt;
-            //long <<=1
+            //<<=
 			nxt <<= 1;
 		}
         //set to
-		long val = 1;
-        //set to long - long
+		long val = 1;g
 		long dif = cur - t;
-        //augment by
+        //+=
 		val += dif;
-        //apply function .print(long)
+        //.
 		out.print(val);
-        //apply function .flush()
 		out.flush();
 		out.close();
 	}

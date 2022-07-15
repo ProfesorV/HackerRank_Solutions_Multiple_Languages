@@ -4,7 +4,7 @@
 #include <iostream>
 #include <algorithm>
 using namespace std;
-int a[100000];
+int intArr[100000];
 
 
 int main() {
@@ -13,9 +13,9 @@ int main() {
     scanf ("%d", &n);
     //for <
     for (i = 0;i < n; i ++)
-        scanf ("%d", &a[i]);
+        scanf ("%d", &intArr[i]);
     //for >=
     for (i = n - 1; i >= 0; i --)
-        printf ("%d ", a[i]);
+        printf ("%d ", intArr[i]);
     return 0;
 }

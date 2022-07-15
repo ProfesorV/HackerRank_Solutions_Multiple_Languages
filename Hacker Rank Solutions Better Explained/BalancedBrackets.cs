@@ -15,59 +15,59 @@ using System;
 class Solution {
 
     //string
-    static string isBalanced(string s)
+    static string isBalanced(string pStringS)
     {
         //set to create new
-        var openings = new[] { '[', '{', '(' };
+        var charArrOpenings = new[] { '[', '{', '(' };
         //set to create new
-        var stack = new Stack<char>();
+        var charStack = new Stack<char>();
         //foreach
-        foreach (var c in s.ToCharArray())
+        foreach (var c in pStringS.ToCharArray())
         {
             //if .
-            if (openings.Contains(c))
+            if (charArrOpenings.Contains(c))
             //.
-                stack.Push(c);
+                charStack.Push(c);
                 //else if ==
             else if (c == ']')
                 //if !function || !=
-                if (!TryPeek(stack, out var c1) || c1 != '[')
+                if (!TryPeek(charStack, out var c1) || c1 != '[')
                 //return
                     return "NO";
                 else
                 //function
-                    stack.Pop();
+                    charStack.Pop();
             //else if
             else if (c == ')')
                 //if !function ||
-                if (!TryPeek(stack, out var c2) || c2 != '(')
+                if (!TryPeek(charStack, out var c2) || c2 != '(')
                     //return
                     return "NO";
                 else
                     //function
-                    stack.Pop();
+                    charStack.Pop();
             //else if ==
             else if (c == '}')
                 //if !function ||
-                if (!TryPeek(stack, out var c3) || c3 != '{')
+                if (!TryPeek(charStack, out var c3) || c3 != '{')
                     //return
                     return "NO";
                 else
                     //function
-                    stack.Pop();
+                    charStack.Pop();
         }
         //return == ?
-        return stack.Count == 0 ? "YES" : "NO";
+        return charStack.Count == 0 ? "YES" : "NO";
     }
     //<char>, char
-    static bool TryPeek(Stack<char> stack, out char value)
+    static bool TryPeek(Stack<char> charStack, out char value)
     {
         //set to
         value = default(char);
         //if == return
-        if (stack.Count == 0) return false;
+        if (charStack.Count == 0) return false;
         //set to .function
-        value = stack.Peek();
+        value = charStack.Peek();
         //return
         return true;
     }

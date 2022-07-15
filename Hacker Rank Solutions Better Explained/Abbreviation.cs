@@ -15,17 +15,17 @@ using System;
 class Solution {
 
     //string, string
-    static string abbreviation(string a, string b) {
+    static string abbreviation(string pStringa, string pStringb) {
         //set to
         var diff = 'a' - 'A';
         //set to
-        var m = a.Length;
+        var m = pStringa.Length;
         //set to
-        var n = b.Length;
+        var n = pStringb.Length;
         //set to create new
-        var dp = new bool[n + 1, m + 1];
+        var multiDimBoolArr = new bool[n + 1, m + 1];
         //set to
-        dp[0, 0] = true;
+        multiDimBoolArr[0, 0] = true;
         //for
         for (int i = 0; i < n + 1; i++)
         {
@@ -35,25 +35,26 @@ class Solution {
                 //if == && !=
                 if (i == 0 && j != 0)
                 //set to > &&
-                    dp[i, j] = a[j - 1] > 'Z' && dp[i, j - 1];
+                    multiDimBoolArr[i, j] = a[j - 1] > 'Z' 
+                    && multiDimBoolArr[i, j - 1];
                     //else if != && !=
                 else if (i != 0 && j != 0)
                     //if ==
                     if (a[j - 1] == b[i - 1])
                     //set to
-                        dp[i, j] = dp[i - 1, j - 1];
+                        multiDimBoolArr[i, j] = multiDimBoolArr[i - 1, j - 1];
                         //else if
                     else if (a[j - 1] - diff == b[i - 1])
                     //set to ||
-                        dp[i, j] = dp[i - 1, j - 1] || dp[i, j - 1];
+                        multiDimBoolArr[i, j] = multiDimBoolArr[i - 1, j - 1] || multiDimBoolArr[i, j - 1];
                         //else if ! < && <
                     else if (!(a[j - 1] < 'a' && b[i - 1] < 'a'))
                     //set to
-                        dp[i, j] = dp[i, j - 1];
+                        multiDimBoolArr[i, j] = multiDimBoolArr[i, j - 1];
             }
         }
         //return ? "" : ""
-        return dp[n, m] ? "YES" : "NO";
+        return multiDimBoolArr[n, m] ? "YES" : "NO";
     }
     static void Main(string[] args) {
         TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);

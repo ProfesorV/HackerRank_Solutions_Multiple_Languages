@@ -21,13 +21,13 @@ class Solution
         //if != && != return new
         if (k != 0 && n % (k * 2) != 0) return new[] { -1 };
         //set to create new
-        var result = new int[n];
+        var intArrResult = new int[n];
         //if ==
         if (k == 0)
         //for
             for (int index = 0; index < n; index++)
             //set to
-                result[index] = index + 1;
+                intArrResult[index] = index + 1;
         else
         //for
             for (var index = 0; index < n / (k * 2); index++)
@@ -36,13 +36,13 @@ class Solution
                 for (int inner = 0; inner < k; inner++)
                 {
                     //set to
-                    result[index * k * 2 + inner] = index * k * 2 + k + inner + 1;
+                    intArrResult[index * k * 2 + inner] = index * k * 2 + k + inner + 1;
                     //set to
-                    result[index * k * 2 + k + inner] = index * k * 2 + inner + 1;
+                    intArrResult[index * k * 2 + k + inner] = index * k * 2 + inner + 1;
                 }
             }
             //return
-        return result;
+        return intArrResult;
     }
 
     static void Main(string[] args)
@@ -59,9 +59,9 @@ class Solution
 
             int k = Convert.ToInt32(nk[1]);
 
-            int[] result = absolutePermutation(n, k);
+            int[] intArrResult = absolutePermutation(n, k);
 
-            textWriter.WriteLine(string.Join(" ", result));
+            textWriter.WriteLine(string.Join(" ", intArrResult));
         }
 
         textWriter.Flush();

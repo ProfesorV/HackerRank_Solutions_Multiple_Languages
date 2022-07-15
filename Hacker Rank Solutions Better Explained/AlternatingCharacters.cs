@@ -15,20 +15,20 @@ using System;
 class Solution {
 
     // string
-    static int alternatingCharacters(string s) {
+    static int alternatingCharacters(string pStrings) {
         //char; set to
         var @char = 'z';
         //int set to
         var counter = 0;
         //for
-        for (var index = 0; index < s.Length; index++)
+        for (var index = 0; index < pStrings.Length; index++)
         {
             //if ==
-            if (s[index] == @char) 
+            if (pStrings[index] == @char) 
                 //++
                 counter++;
             //set to
-            @char = s[index];
+            @char = pStrings[index];
         }
         //return
         return counter;
