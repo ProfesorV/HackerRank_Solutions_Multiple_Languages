@@ -1,60 +1,60 @@
 import sys
 from collections import deque
 #set to
-N, Q = map(int,input().strip().split(' '))
+intN, intQ = map(int,input().strip().split(' '))
 #set to, for
-s = [i for i in range(N+1)]
+listIntS = [i for i in range(intN+1)]
 #set to + for
-count = [0]+[1 for i in range(N)]
+listIntCount = [0]+[1 for i in range(intN)]
 #for 
-for i in range(Q):
+for i in range(intQ):
     #set to .,.
-    inpt = input().strip().split(' ')
+    listStringInput = input().strip().split(' ')
     #set to
-    query = inpt[0]
+    StringQuery = listStringInput[0]
     #set to lambda : pass on
-    a = sorted(map(lambda x: int(x),inpt[1:]))
+    listIntA = sorted(map(lambda x: int(x),listStringInput[1:]))
     #set to
-    i0 = a[0]
+    i0 = listIntA[0]
     #if == and !=
-    if query == 'M' and s[i0] != s[a[1]]:
+    if StringQuery == 'M' and listIntS[i0] != listIntS[listIntA[1]]:
         #set to
-        i1 = a[1]
+        i1 = listIntA[1]
         temporary = deque()
         #while !=
-        while i0 != s[i0]:
+        while i0 != listIntS[i0]:
             #.
             temporary.append(i0)
             #set to
-            i0 = s[i0]
+            i0 = listIntS[i0]
         #while !=
-        while i1 != s[i1]:
+        while i1 != listIntS[i1]:
             #.
             temporary.append(i1)
             #set to
-            i1 = s[i1]
+            i1 = listIntS[i1]
         #if !=
-        if s[i0] != s[i1]:
+        if listIntS[i0] != listIntS[i1]:
             #+=
-            count[s[i0]] += count[s[i1]]
+            listIntCount[listIntS[i0]] += listIntCount[listIntS[i1]]
             #.
             temporary.append(i1)
             #for
             for ix in temporary:
                 #set to
-                s[ix] = s[i0]
+                listIntS[ix] = listIntS[i0]
     #elif ==
-    elif query == 'Q':
+    elif StringQuery == 'Q':
         #set to
         temporary = deque()
         #while !=
-        while i0 != s[i0]:
+        while i0 != listIntS[i0]:
             #.
             temporary.append(i0)
             #set to
-            i0 = s[i0]
+            i0 = listIntS[i0]
         #for 
         for ix in temporary:
             #set to
-            s[ix] = s[i0]
-        print(count[i0])
+            listIntS[ix] = listIntS[i0]
+        print(listIntCount[i0])

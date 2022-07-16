@@ -9,7 +9,7 @@ def minWait(allOrders) :
     if numOrders == 0 :
         return 0
     #declare
-    pendingOrders = []
+    listPendingOrders = []
     #set to
     currentTime = allOrders[0][0]
     loop = True
@@ -20,11 +20,11 @@ def minWait(allOrders) :
             #set to
             order = heapq.heappop(allOrders)   
             #.heappush
-            heapq.heappush(pendingOrders, (order[1], order[0]))
+            heapq.heappush(listPendingOrders, (order[1], order[0]))
         #if !=
-        if len(pendingOrders) != 0 :
+        if len(listPendingOrders) != 0 :
             #set to
-            minWaitOrder = heapq.heappop(pendingOrders)
+            minWaitOrder = heapq.heappop(listPendingOrders)
             #set to calculate
             waitTime = currentTime - minWaitOrder[1] + minWaitOrder[0]
             #add to
@@ -36,7 +36,7 @@ def minWait(allOrders) :
             #add to
             currentTime += 1
         #if == and ==
-        if len(pendingOrders) == 0 and len(allOrders) == 0 :
+        if len(listPendingOrders) == 0 and len(allOrders) == 0 :
             #set to
             loop = False
     #calculate

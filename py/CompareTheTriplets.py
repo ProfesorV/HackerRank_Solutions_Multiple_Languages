@@ -7,7 +7,7 @@ import sys
 #a, b
 def compareTriplets(a, b):
     #declare
-    arr = []
+    listArr = []
     #set to
     x=0
     #set to
@@ -25,11 +25,11 @@ def compareTriplets(a, b):
         else:
             continue
     #.
-    arr.append(x)
+    listArr.append(x)
     #.
-    arr.append(y)
+    listArr.append(y)
     #return
-    return arr
+    return listArr
 
     
 
