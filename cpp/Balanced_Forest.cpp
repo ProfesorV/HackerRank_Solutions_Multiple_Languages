@@ -12,7 +12,9 @@
 #include <deque>
 #include <unordered_set>
 using namespace std;
-
+//Physical Equivalents: node internal values, 
+//edges and their connections [[1,2][1,3]], number of queries, number of nodes,
+//index for each node to see value, 
 int q;
 map <long long, int> longLongIntMap1, longLongIntMap2;
 long long ctot;

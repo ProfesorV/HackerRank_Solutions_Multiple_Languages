@@ -15,9 +15,9 @@ using System;
 class Solution {
 
     // int, int[]
-    static long candies(int n, int[] arr) {
+    static long intArrCandies(int n, int[] pIntArr) {
         //set to create new
-        var candies = new int[arr.Length];
+        var intArrCandies = new int[pIntArr.Length];
         //set to
         var sum = 0L;
         //set to
@@ -26,11 +26,11 @@ class Solution {
         for (var index = 0; index < n; index++)
         {
             //set to
-            candies[index] = candiesCount;
+            intArrCandies[index] = candiesCount;
             //+=
             sum += candiesCount;
             //if < && <
-            if (index + 1 < n && arr[index] < arr[index + 1])
+            if (index + 1 < n && pIntArr[index] < pIntArr[index + 1])
                 //++
                 candiesCount++;
             else
@@ -38,18 +38,19 @@ class Solution {
                 candiesCount = 1;
         }
         //set to
-        candiesCount = candies[n - 1];
+        candiesCount = intArrCandies[n - 1];
         //for >=
         for (var index = n - 1; index >= 0; index--)
         {
             //set to
-            var diff = Math.Max(candies[index], candiesCount) - candies[index];
+            var diff = Math.Max(intArrCandies[index], candiesCount) 
+            - intArrCandies[index];
             //+=
-            candies[index] += diff;
+            intArrCandies[index] += diff;
             //+=
             sum += diff;
             //if > && >
-            if (index > 0 && arr[index - 1] > arr[index])
+            if (index > 0 && pIntArr[index - 1] > pIntArr[index])
                 //++
                 candiesCount++;
             else
@@ -64,14 +65,14 @@ class Solution {
 
         int n = Convert.ToInt32(Console.ReadLine());
 
-        int[] arr = new int [n];
+        int[] pIntArr = new int [n];
 
         for (int i = 0; i < n; i++) {
             int arrItem = Convert.ToInt32(Console.ReadLine());
-            arr[i] = arrItem;
+            pIntArr[i] = arrItem;
         }
 
-        long result = candies(n, arr);
+        long result = intArrCandies(n, pIntArr);
 
         textWriter.WriteLine(result);
 

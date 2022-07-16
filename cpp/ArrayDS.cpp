@@ -5,8 +5,7 @@
 #include <algorithm>
 using namespace std;
 int intArr[100000];
-
-
+//Physical Equivalents: Number of Integers, Index Of, Container
 int main() {
     //declare
     int n, i;

@@ -60,12 +60,14 @@ public class Solution {
         try (Scanner in = new Scanner(System.in)) {
             int n = in.nextInt();
 
-            NavigableMap<Long, List<CustomClassCustomer>> pLongListCustomerMap = new TreeMap<>();
+            NavigableMap<Long, List<CustomClassCustomer>> pLongListCustomerMap = 
+            new TreeMap<>();
             for (int i = 0; i < n; i++) {
-                CustomClassCustomer customer = new CustomClassCustomer(in.nextInt(), in.nextInt());
+                CustomClassCustomer customer = new CustomClassCustomer(in.nextInt(), 
+                in.nextInt());
                 pLongListCustomerMap.computeIfAbsent(customer.arrivalTime,
-                                             a -> new ArrayList<>())
-                            .add(customer);
+                a -> new ArrayList<>())
+                .add(customer);
             }
             System.out.println(computeMinAvg(pLongListCustomerMap) / n);
         }

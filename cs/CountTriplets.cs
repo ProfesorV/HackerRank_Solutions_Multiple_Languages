@@ -15,43 +15,43 @@ using System.Threading.Tasks;
 
 class Solution {
     //declare
-    static List<long> s_Array;
+    static List<long> listLongArr;
     //declare
     static long s_Ratio;
 
 
     // List<long>, long.
-    static long countTriplets(List<long> arr, long r)
+    static long countTriplets(List<long> pListLongArr, long r)
     {
         //set to new Dictionary<long,long>
-        var mp2 = new System.Collections.Generic.Dictionary<long, long>();
+        var dictionaryLongLongTwo = new System.Collections.Generic.Dictionary<long, long>();
         //set to new Dictionary<long,long>
-        var mp3 = new System.Collections.Generic.Dictionary<long, long>();
+        var dictionaryLongLongThree = new System.Collections.Generic.Dictionary<long, long>();
         //set to
         long res = 0;
         //foreach
-        foreach (long val in arr)
+        foreach (long val in pListLongArr)
         {
             //if .
-            if (mp3.ContainsKey(val))
+            if (dictionaryLongLongThree.ContainsKey(val))
             // +=
-                res += mp3[val];
+                res += dictionaryLongLongThree[val];
             //if .
-            if (mp2.ContainsKey(val))
+            if (dictionaryLongLongTwo.ContainsKey(val))
                 //if .
-                if (mp3.ContainsKey(val * r))
+                if (dictionaryLongLongThree.ContainsKey(val * r))
                     //+=
-                    mp3[val * r] += mp2[val];
+                    dictionaryLongLongThree[val * r] += dictionaryLongLongTwo[val];
                 else
                     //set to
-                    mp3[val * r] = mp2[val];
+                    dictionaryLongLongThree[val * r] = dictionaryLongLongTwo[val];
             //if .
-            if (mp2.ContainsKey(val * r))
+            if (dictionaryLongLongTwo.ContainsKey(val * r))
                 //++
-                mp2[val * r]++;
+                dictionaryLongLongTwo[val * r]++;
             else
                 //set to
-                mp2[val * r] = 1;
+                dictionaryLongLongTwo[val * r] = 1;
         }
         //return
         return res;
@@ -65,9 +65,9 @@ class Solution {
             //set to
             long result = 0;
             //for <
-            for (int i = index + 1; i < s_Array.Count; i++)
+            for (int i = index + 1; i < listLongArr.Count; i++)
                 //if ==
-                if(s_Array[index] * s_Ratio == s_Array[i] )
+                if(listLongArr[index] * s_Ratio == listLongArr[i] )
                     //++
                     result++;
             //return
@@ -78,9 +78,9 @@ class Solution {
             //set to
             long result = 0;
             //for <
-            for (int i = index + 1; i < s_Array.Count; i++)
+            for (int i = index + 1; i < listLongArr.Count; i++)
                 //if ==
-                if (s_Array[index] * s_Ratio == s_Array[i])
+                if (listLongArr[index] * s_Ratio == listLongArr[i])
                     //+=
                     result += Count(i, level + 1);
             //return
@@ -96,9 +96,9 @@ class Solution {
 
         long r = Convert.ToInt64(nr[1]);
 
-        List<long> arr = Console.ReadLine().TrimEnd().Split(' ').ToList().Select(arrTemp => Convert.ToInt64(arrTemp)).ToList();
+        List<long> pListLongArr = Console.ReadLine().TrimEnd().Split(' ').ToList().Select(arrTemp => Convert.ToInt64(arrTemp)).ToList();
 
-        long ans = countTriplets(arr, r);
+        long ans = countTriplets(pListLongArr, r);
 
         textWriter.WriteLine(ans);
 

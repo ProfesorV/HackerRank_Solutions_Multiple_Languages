@@ -15,27 +15,27 @@ using System;
 class Solution {
 
     // int, string
-    static int countingValleys(int n, string steps) {
+    static int countingValleys(int n, string pStringSteps) {
         //set to
         var valleys = 0;
         //set to create new 
-        var deltas = new [] {1, -1};
+        var intArrDeltas = new [] {1, -1};
         //set to create new
-        var directions = new [] {'U', 'D'};
+        var charArrDirections = new [] {'U', 'D'};
         //set to
         var current = 0;
         //set to
         var wentIntoValley = false;
         //foreach 
-        foreach(var s in steps.ToCharArray()){
+        foreach(var s in pStringSteps.ToCharArray()){
             //if !.
-            if(!directions.Contains(s)) throw new ArgumentException();
+            if(!charArrDirections.Contains(s)) throw new ArgumentException();
             //set to .
-            var effective = Array.IndexOf(directions, s);
+            var effective = Array.IndexOf(charArrDirections, s);
             //set to
             var temp = current;
             //+=
-            current += deltas[effective];
+            current += intArrDeltas[effective];
             //if == && <
             if(current == 0 && temp < 0)
                 //++

@@ -15,29 +15,30 @@ using System;
 class Solution {
 
     //int[], int[]
-    static int[] climbingLeaderboard(int[] scores, int[] alice)
+    static int[] climbingLeaderboard(int[] pIntArrScore, int[] pIntArrAlice)
     {
         //set to .,.
-        var distict = scores.Distinct().ToArray();
+        var distinct = pIntArrScore.Distinct().ToArray();
         //set to create new
-        var result = new int[alice.Length];
+        var intArrResult = new int[pIntArrAlice.Length];
         //set to create new
-        var comparer = new ReverseComparer<int>();
+        var ReverseCompClass = new ReverseComparer<int>();
         //for <
-        for (int index = 0; index < alice.Length; index++)
+        for (int index = 0; index < pIntArrAlice.Length; index++)
         {
             //set to .
-            var search = Array.BinarySearch(distict, alice[index], comparer);
+            var search = Array.BinarySearch(distinct, pIntArrAlice[index], 
+            ReverseCompClass);
             //if >=
             if(search >= 0)
             //set to
-                result[index] = search + 1;
+                intArrResult[index] = search + 1;
             else
             //set to =-
-                result[index] = -search;
+                intArrResult[index] = -search;
         }
         //return
-        return result;
+        return intArrResult;
     }
     class ReverseComparer<T> : IComparer<T>
     {
@@ -49,15 +50,15 @@ class Solution {
 
         int scoresCount = Convert.ToInt32(Console.ReadLine());
 
-        int[] scores = Array.ConvertAll(Console.ReadLine().Split(' '), scoresTemp => Convert.ToInt32(scoresTemp))
+        int[] pIntArrScore = Array.ConvertAll(Console.ReadLine().Split(' '), scoresTemp => Convert.ToInt32(scoresTemp))
         ;
         int aliceCount = Convert.ToInt32(Console.ReadLine());
 
-        int[] alice = Array.ConvertAll(Console.ReadLine().Split(' '), aliceTemp => Convert.ToInt32(aliceTemp))
+        int[] pIntArrAlice = Array.ConvertAll(Console.ReadLine().Split(' '), aliceTemp => Convert.ToInt32(aliceTemp))
         ;
-        int[] result = climbingLeaderboard(scores, alice);
+        int[] intArrResult = climbingLeaderboard(pIntArrScore, pIntArrAlice);
 
-        textWriter.WriteLine(string.Join("\n", result));
+        textWriter.WriteLine(string.Join("\n", intArrResult));
 
         textWriter.Flush();
         textWriter.Close();

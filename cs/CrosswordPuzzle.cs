@@ -14,14 +14,14 @@ using System.Text;
 using System;
 
 class Solution {
-
     // string [], string
     static string[] crosswordPuzzle(string[] pStringArrCrossword, string pStringWords)
     {
     //set to .,.
         var wordsArray = pStringWords.Split(';').ToArray();
         //if function . passon => .,.
-        if (TryFill(pStringArrCrossword.Select(x => x.Replace("-", ".")).ToArray(), wordsArray, out var result))
+        if (TryFill(pStringArrCrossword.Select(x => x.Replace("-", ".")).ToArray(), 
+        wordsArray, out var result))
         //return
             return result;
         else
@@ -46,8 +46,8 @@ class Solution {
             //for <
             for (var j = 0; j < colCount; j++)
                 //set to +
-                stringArrPivotCrossWord[j] = (
-                    stringArrPivotCrossWord[j] ?? "") + pStringArrCrossword[i][j];
+                stringArrPivotCrossWord[j] = (stringArrPivotCrossWord[j] ?? "") + 
+                    pStringArrCrossword[i][j];
         //for <
         for (var index = 0; index < rowCount; index++)
         {

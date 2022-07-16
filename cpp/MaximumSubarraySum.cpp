@@ -84,7 +84,7 @@ vector<string> split_string(string input_string) {
         //return
         return x == y and x == ' ';
     });
-    //apply function .erase
+    //apply functi1on .erase
     input_string.erase(new_end, input_string.end());
     //while condition ()
     while (input_string[input_string.length() - 1] == ' ') {

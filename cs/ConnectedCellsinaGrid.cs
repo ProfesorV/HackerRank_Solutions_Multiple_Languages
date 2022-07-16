@@ -15,57 +15,57 @@ using System;
 class Solution {
 
     // int[][]
-    static int connectedCell(int[][] matrix)
+    static int connectedCell(int[][] pMultiDimIntMatrix)
     {
         //set to create new
-        var xOffset = new[] { -1, 0, 1, -1 };
+        var intArrXOff = new[] { -1, 0, 1, -1 };
         //set to create new
-        var yOffset = new[] { -1, -1, -1, 0 };
+        var intArrYOff = new[] { -1, -1, -1, 0 };
         //set to create new
-        var ds = new DisjointSets();
+        var disjointSetsClass = new DisjointSets();
         //set to
-        var rows = matrix.Length;
+        var rowArr = pMultiDimIntMatrix.Length;
         //set to
-        var cols = matrix[0].Length;
+        var colsArr = pMultiDimIntMatrix[0].Length;
         //set to
         var max = 0;
         //create delegate, parameters, pass on =>
         Func<int, int, bool> isValid = (int x, int y) =>
         {
             //return >= && < && >= && <
-            return x >= 0 && x < cols && y >= 0 && y < rows;
+            return x >= 0 && x < colsArr && y >= 0 && y < rowArr;
         };
         //for <
-        for (int y = 0; y < rows; y++)
+        for (int y = 0; y < rowArr; y++)
         {
             //for <
-            for (int x = 0; x < cols; x++)
+            for (int x = 0; x < colsArr; x++)
             {
                 //if <
-                if(matrix[y][x] == 0) continue;
+                if(pMultiDimIntMatrix[y][x] == 0) continue;
                 //set to create new
                 var current = new CellKey(x, y);
                 //.
-                ds.AddNew(current);
+                disjointSetsClass.AddNew(current);
                 //set to .
                 max = Math.Max(max, 1);
                 //for <
-                for (int index = 0; index < xOffset.Length; index++)
+                for (int index = 0; index < intArrXOff.Length; index++)
                 {
                     //set to +
-                    var ox = x + xOffset[index];
+                    var ox = x + intArrXOff[index];
                     //set to +
-                    var oy = y + yOffset[index];
+                    var oy = y + intArrYOff[index];
                     //if !function
                     if (!isValid(ox, oy)) continue;
                     //if ==
-                    if(matrix[oy][ox] == 0) continue;
+                    if(pMultiDimIntMatrix[oy][ox] == 0) continue;
                     //set to create new
                     var offset = new CellKey(ox, oy);
                     //if .!= .
-                    if (ds.Find(current) != ds.Find(offset))
+                    if (disjointSetsClass.Find(current) != disjointSetsClass.Find(offset))
                     //set to .
-                        max = Math.Max(max, ds.Union(current, offset));
+                        max = Math.Max(max, disjointSetsClass.Union(current, offset));
                 }
             }
         }
@@ -123,13 +123,13 @@ class Solution {
 
         int m = Convert.ToInt32(Console.ReadLine());
 
-        int[][] matrix = new int[n][];
+        int[][] pMultiDimIntMatrix = new int[n][];
 
         for (int i = 0; i < n; i++) {
-            matrix[i] = Array.ConvertAll(Console.ReadLine().Split(' '), matrixTemp => Convert.ToInt32(matrixTemp));
+            pMultiDimIntMatrix[i] = Array.ConvertAll(Console.ReadLine().Split(' '), matrixTemp => Convert.ToInt32(matrixTemp));
         }
 
-        int result = connectedCell(matrix);
+        int result = connectedCell(pMultiDimIntMatrix);
 
         textWriter.WriteLine(result);
 

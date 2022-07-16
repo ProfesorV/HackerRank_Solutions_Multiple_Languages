@@ -29,56 +29,58 @@ class Solution {
         }
     }
     // string[], int, int, int, int
-    static int minimumMoves(string[] grid, int startX, int startY, int goalX, int goalY)
+    static int minimumMoves(string[] pStringArrGrid, 
+    int startX, int startY, int goalX, int goalY)
     {
         //set to create new
-        var xMoves = new[] { 1, 0, -1, 0 };
+        var intArrXMoves = new[] { 1, 0, -1, 0 };
         //set to create new
-        var yMoves = new[] { 0, 1, 0, -1 };
+        var intArrYMoves = new[] { 0, 1, 0, -1 };
         //set to create new 
-        var visited = new bool[grid.Length, grid.Length];
+        var boolArrVisited = new bool[pStringArrGrid.Length, pStringArrGrid.Length];
         //set to create new 
-        var stepsToReach = new int[grid.Length, grid.Length];
+        var intArrSteps = new int[pStringArrGrid.Length, pStringArrGrid.Length];
         //set to create new 
-        var queue = new Queue<Point>();
+        var pointQueue = new Queue<Point>();
         //.(create new)
-        queue.Enqueue(new Point(startX, startY));
+        pointQueue.Enqueue(new Point(startX, startY));
         //set to
-        stepsToReach[startX, startY] = 0;
+        intArrSteps[startX, startY] = 0;
         //set to
-        visited[startX, startY] = true;
+        boolArrVisited[startX, startY] = true;
         //while >
-        while (queue.Count > 0)
+        while (pointQueue.Count > 0)
         {
             //set to, .
-            var current = queue.Dequeue();
+            var current = pointQueue.Dequeue();
             //for <
-            for (var directionIndex = 0; directionIndex < xMoves.Length; directionIndex++)
+            for (var directionIndex = 0; 
+            directionIndex < intArrXMoves.Length; directionIndex++)
             {
                 //set to
                 var counter = 1;
                 //while function
-                while (IsValid(grid,
-                    current.X + xMoves[directionIndex] * counter,
-                    current.Y + yMoves[directionIndex] * counter))
+                while (IsValid(pStringArrGrid,
+                    current.X + intArrXMoves[directionIndex] * counter,
+                    current.Y + intArrYMoves[directionIndex] * counter))
                 {
                     //set to
-                    var x = current.X + xMoves[directionIndex] * counter;
+                    var x = current.X + intArrXMoves[directionIndex] * counter;
                     //set to
-                    var y = current.Y + yMoves[directionIndex] * counter;
+                    var y = current.Y + intArrYMoves[directionIndex] * counter;
                     counter++;
                     //if == && ==
                     if (x == goalX && y == goalY)
                     //return
-                        return stepsToReach[current.X, current.Y] + 1;
+                        return intArrSteps[current.X, current.Y] + 1;
                     //if
-                    if (visited[x, y]) continue;
+                    if (boolArrVisited[x, y]) continue;
                     //set to
-                    stepsToReach[x, y] = stepsToReach[current.X, current.Y] + 1;
+                    intArrSteps[x, y] = intArrSteps[current.X, current.Y] + 1;
                     //set to
-                    visited[x, y] = true;
+                    boolArrVisited[x, y] = true;
                     //.enqueue(create new)
-                    queue.Enqueue(new Point(x, y));
+                    pointQueue.Enqueue(new Point(x, y));
                 }
             }
         }
@@ -86,25 +88,28 @@ class Solution {
         throw new Exception("No path found.");
     }
     //string[], int, int
-    static bool IsValid(string[] grid, int x, int y)
+    static bool IsValid(string[] pStringArrGrid, 
+    int x, int y)
     {
         //return 4 && and != 
         return x >= 0 &&
             y >= 0 &&
-            x < grid.Length &&
-            y < grid.Length &&
-            grid[x][y] != 'X';
+            x < pStringArrGrid.Length &&
+            y < pStringArrGrid.Length &&
+            pStringArrGrid[x][y] != 'X';
     }
     static void Main(string[] args) {
         TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
 
         int n = Convert.ToInt32(Console.ReadLine());
 
-        string[] grid = new string [n];
+        string[] pStringArrGrid =
+         new string [n];
 
         for (int i = 0; i < n; i++) {
             string gridItem = Console.ReadLine();
-            grid[i] = gridItem;
+            pStringArrGrid[i
+            ] = gridItem;
         }
 
         string[] startXStartY = Console.ReadLine().Split(' ');
@@ -117,7 +122,8 @@ class Solution {
 
         int goalY = Convert.ToInt32(startXStartY[3]);
 
-        int result = minimumMoves(grid, startX, startY, goalX, goalY);
+        int result = minimumMoves(pStringArrGrid, 
+        startX, startY, goalX, goalY);
 
         textWriter.WriteLine(result);
 
