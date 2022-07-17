@@ -15,11 +15,11 @@ using System;
 class Solution {
 
     // int
-    static void extraLongFactorials(int n) {
+    static void extraLongFactorials(int pInt) {
         //set to
         var result = System.Numerics.BigInteger.One;
         //for condition (int <= int)
-        for(var index = 2; index <= n; index++)
+        for(var index = 2; index <= pInt; index++)
         //augment by *=
             result *= index;
         //apply function .WriteLine

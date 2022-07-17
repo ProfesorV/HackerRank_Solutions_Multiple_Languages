@@ -25,8 +25,8 @@ class Solution {
         {
             //set to calculate
             long mid = (lower + upper) / 2;
-            //if condition (apply function CanProduce())
-            if (CanProduce(machines, workers, cost, goal, mid))
+            //if condition (apply function ProductionPossible())
+            if (ProductionPossible(machines, workers, cost, goal, mid))
                 //set to
                 upper = mid;
             else
@@ -37,7 +37,7 @@ class Solution {
         return lower;
     }
     //long, long, long, long, long
-    static bool CanProduce(long machines, long workers, long price, long target, long days)
+    static bool ProductionPossible(long machines, long workers, long price, long target, long days)
     {
         //if condition (>= /) return
         if (machines >= (target + workers - 1) / workers) return true;

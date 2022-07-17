@@ -14,46 +14,48 @@ using System;
 
 class Solution {
     //int, int[], int[], long[], int
-    static int findShortest(int graphNodes, int[] graphFrom, int[] graphTo, long[] ids, int val) {
+    static int findShortest(int graphNodes, 
+    int[] pIntArrFrom, int[] pIntArrTo, long[] pLongArrID, int val) {
         //set to create new bool[]
-        var visited = new bool[graphNodes];
+        var boolArrVisited = new bool[graphNodes];
         //set to create new int[]
-        var stepsToReach = new int[graphNodes];
+        var intArrSteps = new int[graphNodes];
         //set to create new Dictionary<int, List<int>>s
-        var path = new Dictionary<int, List<int>>();
+        var intListIntDicPath = new Dictionary<int, List<int>>();
         //set to create new Dictionary <int, long>
-        var colors = new Dictionary<int, long>();
+        var intLongDicColor = new Dictionary<int, long>();
         //for condition (int < int[].Length)
-        for(var index = 0; index < graphFrom.Length; index++)
+        for(var index = 0; index < pIntArrFrom.Length; index++)
             //apply function()
-            AddPath(path, graphFrom[index], graphTo[index]);
+            AddTo(intListIntDicPath, pIntArrFrom[index], pIntArrTo[index]);
         //for (int < long[].Length)
-        for(var index = 0; index < ids.Length; index++)
+        for(var index = 0; index < pLongArrID.Length; index++)
             //apply function .Add()
-            colors.Add(index + 1, ids[index]);
+            intLongDicColor.Add(index + 1, pLongArrID[index]);
         //set to create new Queue<int>
-        var queue = new Queue<int>();
+        var intQueue = new Queue<int>();
         //apply function .Enqueue()
-        queue.Enqueue(val);
-        //while condition (apply function TryDequeue())
-        while(TryDequeue(queue, out var current))
+        intQueue.Enqueue(val);
+        //while condition (apply function DequeueAttempt())
+        while(DequeueAttempt(intQueue, out var current))
         {
             //if condition(== && !=) return
-            if(colors[current] == colors[val] && current != val) return stepsToReach[current - 1];
+            if(intLongDicColor[current] == intLongDicColor[val] && current != val) 
+            return intArrSteps[current - 1];
             //if condition ()
-             if (visited[current - 1]) continue;
+             if (boolArrVisited[current - 1]) continue;
             //else
-            else visited[current - 1] = true;
+            else boolArrVisited[current - 1] = true;
             //if condition (apply function .TryGetValue())
-            if (path.TryGetValue(current, out var list))
+            if (intListIntDicPath.TryGetValue(current, out var outVarList))
             {
                 //foreach condition ()
-                foreach (var next in list)
+                foreach (var next in outVarList)
                 {
                     //set to int[int-1]+1
-                    stepsToReach[next - 1] = stepsToReach[current - 1] + 1;
+                    intArrSteps[next - 1] = intArrSteps[current - 1] + 1;
                     //apply .Enqueue()
-                    queue.Enqueue(next);
+                    intQueue.Enqueue(next);
                 }
             }
         }
@@ -61,36 +63,37 @@ class Solution {
         return -1;
     }
     //Queue<T>, T
-    static bool TryDequeue<T>(Queue<T> queue, out T value)
+    static bool DequeueAttempt<T>(Queue<T> pIntQueue, out T value)
     {
         //set to
         value = default(T);
         //if condition (==)
-        if(queue.Count == 0) return false;
+        if(pIntQueue.Count == 0) return false;
         //set to, apply function .Dequeue
-        value = queue.Dequeue();
+        value = pIntQueue.Dequeue();
         //return
         return true;
     }
     //Dictionary<int, List<int>, int, int, bool
-    static void AddPath(Dictionary<int, List<int>> path, int from, int to, bool bothWays = true)
+    static void AddTo(Dictionary<int, List<int>> pIntListIntDicPath, 
+    int from, int to, bool bothWays = true)
     {
         //if condition (apply function TryGetValue())
-        if (path.TryGetValue(from, out var list))
+        if (pIntListIntDicPath.TryGetValue(from, out var outVarList))
         {
             //if condition(! apply function .Contains())
-            if (!list.Contains(to))
+            if (!outVarList.Contains(to))
                 //apply function .Add()
-                list.Add(to);
+                outVarList.Add(to);
         }
         //else
         else
             //apply function .Add()
-            path.Add(from, new List<int> { to });
+            pIntListIntDicPath.Add(from, new List<int> { to });
         //if condition
         if(bothWays)
             //apply function
-            AddPath(path, to, from, false);
+            AddTo(pIntListIntDicPath, to, from, false);
     }
     static void Main(string[] args) {
         TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
@@ -99,20 +102,20 @@ class Solution {
         int graphNodes = Convert.ToInt32(graphNodesEdges[0]);
         int graphEdges = Convert.ToInt32(graphNodesEdges[1]);
 
-        int[] graphFrom = new int[graphEdges];
-        int[] graphTo = new int[graphEdges];
+        int[] pIntArrFrom = new int[graphEdges];
+        int[] pIntArrTo = new int[graphEdges];
 
         for (int i = 0; i < graphEdges; i++) {
             string[] graphFromTo = Console.ReadLine().Split(' ');
-            graphFrom[i] = Convert.ToInt32(graphFromTo[0]);
-            graphTo[i] = Convert.ToInt32(graphFromTo[1]);
+            pIntArrFrom[i] = Convert.ToInt32(graphFromTo[0]);
+            pIntArrTo[i] = Convert.ToInt32(graphFromTo[1]);
         }
 
-        long[] ids = Array.ConvertAll(Console.ReadLine().Trim().Split(' '), idsTemp => Convert.ToInt64(idsTemp))
+        long[] pLongArrID = Array.ConvertAll(Console.ReadLine().Trim().Split(' '), pLongArrIDTemp => Convert.ToInt64(pLongArrIDTemp))
         ;
         int val = Convert.ToInt32(Console.ReadLine());
 
-        int ans = findShortest(graphNodes, graphFrom, graphTo, ids, val);
+        int ans = findShortest(graphNodes, pIntArrFrom, pIntArrTo, pLongArrID, val);
 
         textWriter.WriteLine(ans);
 

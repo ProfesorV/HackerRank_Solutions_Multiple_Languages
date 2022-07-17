@@ -15,13 +15,13 @@ using System;
 class Solution {
 
     //int[], int
-    static int maximumToys(int[] prices, int k) {
+    static int maximumToys(int[] pIntArrPrices, int k) {
         //apply function .Sort(int[])
-        Array.Sort(prices);
+        Array.Sort(pIntArrPrices);
         //set to
         var count = 0;
         //foreach condition (int in int[])
-        foreach(var price in prices){
+        foreach(var price in pIntArrPrices){
             //subtract by -=
             k -= price;
             //if condition (>=)
@@ -43,9 +43,9 @@ class Solution {
 
         int k = Convert.ToInt32(nk[1]);
 
-        int[] prices = Array.ConvertAll(Console.ReadLine().Split(' '), pricesTemp => Convert.ToInt32(pricesTemp))
+        int[] pIntArrPrices = Array.ConvertAll(Console.ReadLine().Split(' '), pricesTemp => Convert.ToInt32(pricesTemp))
         ;
-        int result = maximumToys(prices, k);
+        int result = maximumToys(pIntArrPrices, k);
 
         textWriter.WriteLine(result);
 

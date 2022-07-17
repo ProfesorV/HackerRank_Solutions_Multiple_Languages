@@ -15,7 +15,7 @@ using System;
 class Solution {
 
     // long
-    static long flippingBits(long n) {
+    static long BitFlipper(long n) {
         //~Convert. ToUInt32(long) apply function and not statement
         return ~Convert.ToUInt32(n);
     }
@@ -28,7 +28,7 @@ class Solution {
         for (int qItr = 0; qItr < q; qItr++) {
             long n = Convert.ToInt64(Console.ReadLine());
 
-            long result = flippingBits(n);
+            long result = BitFlipper(n);
 
             textWriter.WriteLine(result);
         }

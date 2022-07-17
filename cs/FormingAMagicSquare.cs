@@ -16,24 +16,24 @@ class Solution
 {
 
     // int[][]
-    static int formingMagicSquare(int[][] s)
+    static int formingMagicSquare(int[][] pIntMultiDimArr)
     {
         //set to create new List<int[,]<
-        var types = new List<int[,]>{new int[,]
+        var listIntMultiDimArr = new List<int[,]>{new int[,]
         {
             { 8, 1, 6 },
             { 3, 5, 7 },
             { 4, 9, 2 },
         }};
-        //apply function .Add(.Flip(List<int[,]>)
-        types.Add(Flip(types[0]));
-        //apply function .AddRange(Rotate())
-        types.AddRange(Rotate(types[0], 4));
-        types.AddRange(Rotate(types[1], 4));
+        //apply function .Add(.FlipMultiDim(List<int[,]>)
+        listIntMultiDimArr.Add(FlipMultiDim(listIntMultiDimArr[0]));
+        //apply function .AddRange(RotateMultiDim())
+        listIntMultiDimArr.AddRange(RotateMultiDim(listIntMultiDimArr[0], 4));
+        listIntMultiDimArr.AddRange(RotateMultiDim(listIntMultiDimArr[1], 4));
         //set to
         var min = int.MaxValue;
         //foreach condition
-        foreach (var item in types)
+        foreach (var item in listIntMultiDimArr)
         {
             //set to
             var sum = 0;
@@ -50,7 +50,7 @@ class Solution
         return min;
     }
     //int[,], int
-    private static IEnumerable<int[,]> Rotate(int[,] source, int count)
+    private static IEnumerable<int[,]> RotateMultiDim(int[,] pIntMultiDArr, int count)
     {
         //if condition (==)
         if (count == 0) yield break;
@@ -61,16 +61,16 @@ class Solution
             //for condition (int, int)
             for (var col = 0; col < 3; col++)
                 //set to int[int,2-int]
-                result[row, col] = source[col, 2 - row];
+                result[row, col] = pIntMultiDArr[col, 2 - row];
         //return
         yield return result;
         //foreach condition
-        foreach (var item in Rotate(result, count - 1))
+        foreach (var item in RotateMultiDim(result, count - 1))
             //return
             yield return item;
     }
     //int[,]
-    static int[,] Flip(int[,] source)
+    static int[,] FlipMultiDim(int[,] pIntMultiDArr)
     {
         //set to create new int[]
         var result = new int[3, 3];
@@ -79,7 +79,7 @@ class Solution
             //for condition (int < int)
             for (var col = 0; col < 3; col++)
                 //set to = int[int,2-int]
-                result[row, col] = source[row, 2 - col];
+                result[row, col] = pIntMultiDArr[row, 2 - col];
         //return
         return result;
     }

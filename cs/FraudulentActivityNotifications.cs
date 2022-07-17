@@ -15,51 +15,52 @@ using System;
 class Solution {
 
     // int[], int
-    static int activityNotifications(int[] expenditure, int d)
+    static int activityNotifications(int[] pIntArrExpense, int d)
     {
         //set to
         int count = 0;
         //set to create new int[]
-        var freq = new int[201];
+        var intArrFrequency = new int[201];
         //set to create new List<int>
-        List<int> q = new List<int>();
+        List<int> listIntQ = new List<int>();
         //for condition (int < int[].Length)
-        for (int i = 0; i < expenditure.Length; i++)
+        for (int i = 0; i < pIntArrExpense.Length; i++)
         {
             //while condition (int < int)
             while (i < d)
             {
                 //apply function .Add(int[int])
-                q.Add(expenditure[i]);
+                listIntQ.Add(pIntArrExpense[i]);
                 //set to int[int[int]]+1
-                freq[expenditure[i]] = freq[expenditure[i]] + 1;
+                intArrFrequency[pIntArrExpense[i]] = 
+                intArrFrequency[pIntArrExpense[i]] + 1;
                 //increment
                 i++;
             }
             //set to apply function
-            float median = getMedian(freq, d);
+            float median = getMedianValue(intArrFrequency, d);
             //if condition (>= )
-            if (expenditure[i] >= 2 * median)
+            if (pIntArrExpense[i] >= 2 * median)
             {
                 //increment
                 count++;
             }
             // set to int[0]
-            int elem = q[0];
+            int elem = listIntQ[0];
             //apply function .RemoveAt()
-            q.RemoveAt(0);
+            listIntQ.RemoveAt(0);
             //set to int[int]-1
-            freq[elem] = freq[elem] - 1;
+            intArrFrequency[elem] = intArrFrequency[elem] - 1;
             //apply function .Add(int[int])
-            q.Add(expenditure[i]);
+            listIntQ.Add(pIntArrExpense[i]);
             //set to int[int[int]]+1
-            freq[expenditure[i]] = freq[expenditure[i]] + 1;
+            intArrFrequency[pIntArrExpense[i]] = intArrFrequency[pIntArrExpense[i]] + 1;
         }
         //return
         return count;
     }
     //int[], int
-    private static float getMedian(int[] freq, int d)
+    private static float getMedianValue(int[] pIntArr, int d)
     {
         //if condition(==)
         if (d % 2 == 1)
@@ -67,10 +68,10 @@ class Solution {
             //set to
             int center = 0;
             //for condition (int < int[].Length)
-            for (int i = 0; i < freq.Length; i++)
+            for (int i = 0; i < pIntArr.Length; i++)
             {
                 //set to calculate
-                center = center + freq[i];
+                center = center + pIntArr[i];
                 //if condition (int > int/2)
                 if (center > d / 2)
                 {
@@ -86,10 +87,10 @@ class Solution {
             int first = -1;
             int second = -1;
             //for condition (int < int[].Length)
-            for (int i = 0; i < freq.Length; i++)
+            for (int i = 0; i < pIntArr.Length; i++)
             {
                 //set to
-                count = count + freq[i];
+                count = count + pIntArr[i];
                 //if condition (==)
                 if (count == d / 2)
                 {
@@ -119,9 +120,9 @@ class Solution {
 
         int d = Convert.ToInt32(nd[1]);
 
-        int[] expenditure = Array.ConvertAll(Console.ReadLine().Split(' '), expenditureTemp => Convert.ToInt32(expenditureTemp))
+        int[] pIntArrExpense = Array.ConvertAll(Console.ReadLine().Split(' '), expenditureTemp => Convert.ToInt32(expenditureTemp))
         ;
-        int result = activityNotifications(expenditure, d);
+        int result = activityNotifications(pIntArrExpense, d);
 
         textWriter.WriteLine(result);
 

@@ -17,26 +17,26 @@ class Solution
 {
 
     // int[], int
-    static void whatFlavors(int[] cost, int money)
+    static void whatFlavors(int[] pIntArrCost, int money)
     {
         //set to create new Dictionary<int, List<int>>
-        var dic = new Dictionary<int, List<int>>();
+        var intListIntDic = new Dictionary<int, List<int>>();
         //for condition (int < int[].Length)
-        for (var index = 0; index < cost.Length; index++)
+        for (var index = 0; index < pIntArrCost.Length; index++)
         {
             //if condition (apply function .TryGetValue())
-            if (dic.TryGetValue(cost[index], out var val))
+            if (intListIntDic.TryGetValue(pIntArrCost[index], out var val))
                 //apply function .Add(int + 1)
                 val.Add(index + 1);
             else
                 //apply function .Add(int[int], create new List<int>{int + 1})
-                dic.Add(cost[index], new List<int> { index + 1 });
+                intListIntDic.Add(pIntArrCost[index], new List<int> { index + 1 });
         }
         //set to
         var first = 0;
         var second = 0;
         //foreach condition ()
-        foreach (var c in cost)
+        foreach (var c in pIntArrCost)
         {
             //set to calculate
             var needed = money - c;
@@ -44,19 +44,19 @@ class Solution
             if (needed == c)
             {
                 //if condition (>)
-                if (dic[c].Count > 1)
+                if (intListIntDic[c].Count > 1)
                 {
                     //set to 
-                    first = dic[c][0];
-                    second = dic[c][1];
+                    first = intListIntDic[c][0];
+                    second = intListIntDic[c][1];
                     break;
                 }
             }
             //else if condition (apply function .TryGetValue())
-            else if (dic.TryGetValue(needed, out var list))
+            else if (intListIntDic.TryGetValue(needed, out var list))
             {
                 //set to
-                first = dic[c][0];
+                first = intListIntDic[c][0];
                 second = list[0];
                 break;
             }
@@ -67,6 +67,7 @@ class Solution
         var max = Math.Max(first, second);
         Console.WriteLine($"{min} {max}");
     }
+    
     static void Main(string[] args)
     {
         int t = Convert.ToInt32(Console.ReadLine().Trim());
@@ -77,10 +78,10 @@ class Solution
 
             int n = Convert.ToInt32(Console.ReadLine().Trim());
 
-            int[] cost = Array.ConvertAll(Console.ReadLine().Trim().Split(' ')
+            int[] pIntArrCost = Array.ConvertAll(Console.ReadLine().Trim().Split(' ')
             .Select(x => x.Trim()).ToArray(), costTemp => Convert.ToInt32(costTemp));
 
-            whatFlavors(cost, money);
+            whatFlavors(pIntArrCost, money);
         }
     }
 }

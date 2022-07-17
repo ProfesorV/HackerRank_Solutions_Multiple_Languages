@@ -16,12 +16,12 @@ class Solution
 {
 
     //int[][]
-    static int flippingMatrix(int[][] matrix)
+    static int MatrixFlip(int[][] pMultiDimMatrix)
     {
         //set to
         var sum = 0;
         //set to calculate
-        var n = matrix.Length / 2;
+        var n = pMultiDimMatrix.Length / 2;
         //for condition
         for (var row = 0; row < n; row++)
         {
@@ -29,25 +29,25 @@ class Solution
             for (var col = 0; col < n; col++)
             {
                 //agument by apply function
-                sum += getMaxPossibleFor(matrix, row, col);
+                sum += maxForMatrix(pMultiDimMatrix, row, col);
             }
         }
         //return
         return sum;
     }
     //int[][], int, int
-    static int getMaxPossibleFor(int[][] matrix, int row, int col)
+    static int maxForMatrix(int[][] pMultiDimMatrix, int row, int col)
     {
         //set to calculate
-        var n2 = matrix.Length - 1;
+        var n2 = pMultiDimMatrix.Length - 1;
         //return apply function in apply function and apply function
         return Math.Max(
             Math.Max(
-                matrix[row][col],
-                matrix[n2 - row][col]),
+                pMultiDimMatrix[row][col],
+                pMultiDimMatrix[n2 - row][col]),
             Math.Max(
-                matrix[row][n2 - col],
-                matrix[n2 - row][n2 - col])
+                pMultiDimMatrix[row][n2 - col],
+                pMultiDimMatrix[n2 - row][n2 - col])
         );
     }
 
@@ -61,14 +61,14 @@ class Solution
         {
             int n = Convert.ToInt32(Console.ReadLine());
 
-            int[][] matrix = new int[2 * n][];
+            int[][] pMultiDimMatrix = new int[2 * n][];
 
             for (int i = 0; i < 2 * n; i++)
             {
-                matrix[i] = Array.ConvertAll(Console.ReadLine().Split(' '), matrixTemp => Convert.ToInt32(matrixTemp));
+                pMultiDimMatrix[i] = Array.ConvertAll(Console.ReadLine().Split(' '), matrixTemp => Convert.ToInt32(matrixTemp));
             }
 
-            int result = flippingMatrix(matrix);
+            int result = MatrixFlip(pMultiDimMatrix);
 
             textWriter.WriteLine(result);
         }

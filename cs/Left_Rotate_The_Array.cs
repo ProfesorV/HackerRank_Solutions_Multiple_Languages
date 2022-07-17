@@ -15,15 +15,15 @@ using System;
 class Solution {
 
     //int[], int
-    static int[] rotLeft(int[] a, int d) {
+    static int[] rotLeft(int[] pIntArra, int d) {
         //int = int[].Length - (int % int[].Length) set to calculate
-var effective = a.Length - (d % a.Length);
-//int[] = int[int[].Length] set to
-        var result = new int[a.Length];
+        var effective = pIntArra.Length - (d % a.Length);
+        //int[] = int[int[].Length] set to
+        var result = new int[pIntArra.Length];
         //for(int < int[].Length) loop condition
-        for (int index = 0; index < a.Length; index++)
+        for (int index = 0; index < pIntArra.Length; index++)
         //int[(int + int)%int[].Length]=int[int] set to calculate
-            result[(index + effective) % a.Length] = a[index];
+            result[(index + effective) % pIntArra.Length] = pIntArra[index];
             //return int[] 
         return result;
     }

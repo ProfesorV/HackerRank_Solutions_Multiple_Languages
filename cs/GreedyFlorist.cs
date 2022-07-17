@@ -15,11 +15,11 @@ using System;
 class Solution {
 
     // int, int[]
-    static int getMinimumCost(int k, int[] c) {
+    static int getMinimumCost(int k, int[] pIntArrC) {
         //int[].Sort() apply function
-        Array.Sort(c);
+        Array.Sort(pIntArrC);
         //int = int[].Length/int+1 set to calculate
-        var mainLoopCount = c.Length / k + 1;
+        var mainLoopCount = pIntArrC.Length / k + 1;
         //int set to
         var result = 0;
         //for(int < int) loop conditional
@@ -29,10 +29,10 @@ class Solution {
             for (int index = 0; index < k; index++)
             {
                 //if(int * int + int > int[].Length) if condition compare
-                if (loop * k + index >= c.Length)
+                if (loop * k + index >= pIntArrC.Length)
                     break;
                 //int = int[int[].Length-(int*int+int)-1] set to calculate
-                var currentOriginal = c[c.Length - (loop * k + index) - 1];
+                var currentOriginal = pIntArrC[pIntArrC.Length - (loop * k + index) - 1];
                 //int += int * (int + 1) augment by
                 result += currentOriginal * (loop + 1);
             }

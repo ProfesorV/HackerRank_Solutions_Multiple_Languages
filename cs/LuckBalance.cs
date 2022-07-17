@@ -15,27 +15,27 @@ using System;
 class Solution {
 
     // int, int[][]
-    static int luckBalance(int k, int[][] contests) {
+    static int luckBalance(int k, int[][] pIntMultiDimArrContest) {
         //int set to
         var grandTotal = 0;
         //List<int> create new
-        var importants = new List<int>();
+        var intListImportant = new List<int>();
         //(int[] in int[][]) loop through condition
-        foreach (var contest in contests)
+        foreach (var contest in pIntMultiDimArrContest)
         {
             //int += int[0] augment by
             grandTotal += contest[0];
             //if(int[1]==1) if condition
             if (contest[1] == 1)
             //List<int>.Add(int[0]) apply function
-                importants.Add(contest[0]);
+                intListImportant.Add(contest[0]);
         }
         //List<int>.Sort() appky function
-        importants.Sort(); 
+        intListImportant.Sort(); 
         //int = List<int> set to
-        var impotantScores = importants
+        var impotantScores = intListImportant
         //List<int>.Take() Math.Math (0,List<int>.Count-int)).Sum() apply function apply function
-            .Take(Math.Max(0, importants.Count - k))
+            .Take(Math.Max(0, intListImportant.Count - k))
             .Sum();
             //return int-int*2
         return grandTotal - impotantScores * 2;
@@ -50,13 +50,13 @@ class Solution {
 
         int k = Convert.ToInt32(nk[1]);
 
-        int[][] contests = new int[n][];
+        int[][] pIntMultiDimArrContest = new int[n][];
 
         for (int i = 0; i < n; i++) {
-            contests[i] = Array.ConvertAll(Console.ReadLine().Split(' '), contestsTemp => Convert.ToInt32(contestsTemp));
+            pIntMultiDimArrContest[i] = Array.ConvertAll(Console.ReadLine().Split(' '), contestsTemp => Convert.ToInt32(contestsTemp));
         }
 
-        int result = luckBalance(k, contests);
+        int result = luckBalance(k, pIntMultiDimArrContest);
 
         textWriter.WriteLine(result);
 

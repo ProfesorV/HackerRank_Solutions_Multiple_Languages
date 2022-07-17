@@ -15,74 +15,75 @@ using System;
 class Solution {
 
     // int[][]
-    static int[] maxCircle(int[][] queries)
+    static int[] maxCircle(int[][] pIntMultiDimArrQueries)
     {
         //set to create new DisjointSets()
-        var ds = new DisjointSets();
+        var disjointSetsClass = new DisjointSets();
         //set to create new int[]
-        var result = new int[queries.Length];
+        var intArrResults = new int[pIntMultiDimArrQueries.Length];
         //set to
         var max = 0;
         //for condition (int, int[][].Length)
-        for (int index = 0; index < queries.Length; index++)
+        for (int index = 0; index < pIntMultiDimArrQueries.Length; index++)
         {
-            //set to apply function .FindOrAdd(int[int][0])
-            var left = ds.FindOrAdd(queries[index][0]);
-            var right = ds.FindOrAdd(queries[index][1]);
+            //set to apply function .FindOrAddValue(int[int][0])
+            var left = disjointSetsClass.FindOrAddValue(pIntMultiDimArrQueries[index][0]);
+            var right = disjointSetsClass.FindOrAddValue(pIntMultiDimArrQueries[index][1]);
             //set to apply function .Max()
-            max = Math.Max(max, ds.Union(left, right));
+            max = Math.Max(max, disjointSetsClass.SetUnion(left, right));
             //set to
-            result[index] = max;
+            intArrResults[index] = max;
         }
         //return
-        return result;
+        return intArrResults;
     }
     class DisjointSets
     {
         //set to create new Dictionary<int,int>
-        Dictionary<int, int> Parents = new Dictionary<int, int>();
-        Dictionary<int, int> Counts = new Dictionary<int, int>();
-        Dictionary<int, int> Level = new Dictionary<int, int>();
+        Dictionary<int, int> intIntDicParents = new Dictionary<int, int>();
+        Dictionary<int, int> intIntDicCount = new Dictionary<int, int>();
+        Dictionary<int, int> intIntDicLevels = new Dictionary<int, int>();
         //int
-        public void AddNew(int key)
+        public void AddNewKey(int key)
         {
             //apply function .Add(int,ints)
-            Parents.Add(key, key);
-            Counts.Add(key, 1);
-            Level.Add(key, 1);
+            intIntDicParents.Add(key, key);
+            intIntDicCount.Add(key, 1);
+            intIntDicLevels.Add(key, 1);
         }
-        //int, arrow function Dictionary<int,int>[int]==int ? int : apply function Find(Dictionary<int,int>[int])
-        public int Find(int value) => Parents[value] == value ? value : Find(Parents[value]);
+        //int, arrow function Dictionary<int,int>[int]==int ? int : apply function FindValue(Dictionary<int,int>[int])
+        public int FindValue(int value) => 
+        intIntDicParents[value] == value ? value : FindValue(intIntDicParents[value]);
         //int
-        public int FindOrAdd(int value)
+        public int FindOrAddValue(int value)
         {
             //if condition(apply function .ContainsKey())
-            if(Parents.ContainsKey(value))
-                //return apply function Find()
-                return Find(value);
-            //apply function AddNew(s)
-            AddNew(value);
+            if(intIntDicParents.ContainsKey(value))
+                //return apply function FindValue()
+                return FindValue(value);
+            //apply function AddNewKey(s)
+            AddNewKey(value);
             //return
             return value;
         }
         //int, int
-        public int Union(int left, int right)
+        public int SetUnion(int left, int right)
         {
             //if condition (int == int) return
-            if(left == right) return Counts[left];
+            if(left == right) return intIntDicCount[left];
             //declare
             int newLevel;
             //if condition (>)
-            if (Level[left] > Level[right])
+            if (intIntDicLevels[left] > intIntDicLevels[right])
             {
                 //set to
-                newLevel = Level[left];
+                newLevel = intIntDicLevels[left];
             }
             //else if condition (<)
-            else if (Level[left] < Level[right])
+            else if (intIntDicLevels[left] < intIntDicLevels[right])
             {
                 //set to
-                newLevel = Level[right];
+                newLevel = intIntDicLevels[right];
                 //set to
                 var temp = left;
                 left = right;
@@ -91,16 +92,16 @@ class Solution {
             else
             {
                 //set to calculate
-                newLevel = Level[left] + 1;
+                newLevel = intIntDicLevels[left] + 1;
             }
             //set to
-            Parents[right] = left;
+            intIntDicParents[right] = left;
             //set to calculate
-            Counts[left] = Counts[left] + Counts[right];
+            intIntDicCount[left] = intIntDicCount[left] + intIntDicCount[right];
             //set to
-            Level[left] = newLevel;
+            intIntDicLevels[left] = newLevel;
             //return
-            return Counts[left];
+            return intIntDicCount[left];
         }
     }
     static void Main(string[] args) {
@@ -108,13 +109,13 @@ class Solution {
 
         int q = Convert.ToInt32(Console.ReadLine());
 
-        int[][] queries = new int[q][];
+        int[][] pIntMultiDimArrQueries = new int[q][];
 
         for (int i = 0; i < q; i++) {
-            queries[i] = Array.ConvertAll(Console.ReadLine().Split(' '), queriesTemp => Convert.ToInt32(queriesTemp));
+            pIntMultiDimArrQueries[i] = Array.ConvertAll(Console.ReadLine().Split(' '), queriesTemp => Convert.ToInt32(queriesTemp));
         }
 
-        int[] ans = maxCircle(queries);
+        int[] ans = maxCircle(pIntMultiDimArrQueries);
 
         textWriter.WriteLine(string.Join("\n", ans));
 

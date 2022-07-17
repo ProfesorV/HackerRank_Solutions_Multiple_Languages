@@ -15,92 +15,92 @@ using System;
 class Solution {
 
     //List<List<int>>
-    static List<int> freqQuery(List<List<int>> queries)
+    static List<int> queryFrequencyOf(List<List<int>> pListListIntQueries)
     {
         //set to create new Dictionary<int,int>
-        var data = new Dictionary<int, int>();
+        var intIntDicData = new Dictionary<int, int>();
         //set to create new Dictionary<int,int>
-        var frequency = new Dictionary<int, int>();
+        var intIntDicFrequency = new Dictionary<int, int>();
         //set to create new List<int>
-        var result = new List<int>();
+        var intListResults = new List<int>();
         //foreach condition
-        foreach (var command in queries)
+        foreach (var command in pListListIntQueries)
         {
             //if condition ()
             if (command[0] == 1)
             {
                 //if condition (apply function .TryGetValue())
-                if (data.TryGetValue(command[1], out var val))
+                if (intIntDicData.TryGetValue(command[1], out var val))
                 {
                     //if condition (apply function .TryGetValue())
-                    if (frequency.TryGetValue(val, out var val2))
+                    if (intIntDicFrequency.TryGetValue(val, out var val2))
                         //set to apply function .Max()
-                        frequency[val] = Math.Max(0, val2 - 1);
+                        intIntDicFrequency[val] = Math.Max(0, val2 - 1);
                     //augment by =++
-                    data[command[1]] = ++val;
+                    intIntDicData[command[1]] = ++val;
                     //if condition (apply function .TryGetValue())
-                    if (frequency.TryGetValue(val, out var val3))
+                    if (intIntDicFrequency.TryGetValue(val, out var val3))
                         //set to calculate
-                        frequency[val] = val3 + 1;
+                        intIntDicFrequency[val] = val3 + 1;
                     else
                         //set to
-                        frequency[val] = 1;
+                        intIntDicFrequency[val] = 1;
                 }
                 else
                 {
                     //apply function .Add()
-                    data.Add(command[1], 1);
+                    intIntDicData.Add(command[1], 1);
                     //if condition (apply function .TryGetValue())
-                    if (frequency.TryGetValue(1, out var val3))
+                    if (intIntDicFrequency.TryGetValue(1, out var val3))
                         //set to calculates
-                        frequency[1] = val3 + 1;
+                        intIntDicFrequency[1] = val3 + 1;
                     else
                         //set to
-                        frequency[1] = 1;
+                        intIntDicFrequency[1] = 1;
                 }
             }
             //else if condition (==)
             else if (command[0] == 2)
             {
                 //if condition (apply function .TryGetValue())
-                if (data.TryGetValue(command[1], out var val))
+                if (intIntDicData.TryGetValue(command[1], out var val))
                 {
                     //if condition (apply function .TryGetValue())
-                    if (frequency.TryGetValue(val, out var val2))
+                    if (intIntDicFrequency.TryGetValue(val, out var val2))
                         //set to apply function .Max()
-                        frequency[val] = Math.Max(0, val2 - 1);
+                        intIntDicFrequency[val] = Math.Max(0, val2 - 1);
                     //set to apply function .Max()
-                    data[command[1]] = Math.Max(0, --val);
+                    intIntDicData[command[1]] = Math.Max(0, --val);
                     //if condition (apply function .TryGetValue())
-                    if (frequency.TryGetValue(val, out var val3))
+                    if (intIntDicFrequency.TryGetValue(val, out var val3))
                         //set to calculates
-                        frequency[val] = val3 + 1;
+                        intIntDicFrequency[val] = val3 + 1;
                     else
                         //set to
-                        frequency[val] = 1;
+                        intIntDicFrequency[val] = 1;
                 }
             }
             else
             {
                 //apply function .Add(apply function .TryGetValue() && ?)
-                result.Add(frequency.TryGetValue(command[1], out var val) && val > 0 ? 1 : 0);
+                intListResults.Add(intIntDicFrequency.TryGetValue(command[1], out var val) && val > 0 ? 1 : 0);
             }
         }
         //return
-        return result;
+        return intListResults;
     }
     static void Main(string[] args) {
         TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
 
         int q = Convert.ToInt32(Console.ReadLine().Trim());
 
-        List<List<int>> queries = new List<List<int>>();
+        List<List<int>> pListListIntQueries = new List<List<int>>();
 
         for (int i = 0; i < q; i++) {
-            queries.Add(Console.ReadLine().TrimEnd().Split(' ').ToList().Select(queriesTemp => Convert.ToInt32(queriesTemp)).ToList());
+            pListListIntQueries.Add(Console.ReadLine().TrimEnd().Split(' ').ToList().Select(queriesTemp => Convert.ToInt32(queriesTemp)).ToList());
         }
 
-        List<int> ans = freqQuery(queries);
+        List<int> ans = queryFrequencyOf(pListListIntQueries);
 
         textWriter.WriteLine(String.Join("\n", ans));
 

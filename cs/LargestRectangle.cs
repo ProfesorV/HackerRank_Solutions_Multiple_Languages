@@ -25,21 +25,21 @@ class Solution {
         }
     }
     //int[]
-    static long largestRectangle(int[] h)
+    static long largestRectangle(int[] pintArrH)
     {
         //set to
         var max = 0L;
         //set to create new Stack<Data>
-        var stack = new Stack<Data>();
+        var dataStack = new Stack<Data>();
         //for condition (int < int.Length)
-        for (var index = 0; index < h.Length; index++)
+        for (var index = 0; index < pintArrH.Length; index++)
         {
             //if condition (! apply function TryPeek() ||)
-            if (!TryPeek(stack, out var value) || value.Size < h[index])
+            if (!TryPeek(dataStack, out var value) || value.Size < pintArrH[index])
                 //apply function .Push(create new Data())
-                stack.Push(new Data(index, h[index]));
+                dataStack.Push(new Data(index, pintArrH[index]));
             //else if (>)
-            else if (value.Size > h[index])
+            else if (value.Size > pintArrH[index])
             {
                 //set to
                 var lastBlockIndex = 0;
@@ -52,52 +52,52 @@ class Solution {
                     //set to
                     lastBlockIndex = value.Index;
                     //apply function .Pop()
-                    stack.Pop();
+                    dataStack.Pop();
                     //apply function TryPeek()
-                    TryPeek(stack, out value);
+                    TryPeek(dataStack, out value);
                     //while condition (!= && >)
-                } while (value != null && value.Size > h[index]);
+                } while (value != null && value.Size > pintArrH[index]);
                 //if condition (==)
                 if(value == null)
                     //apply function .Push(create new Data())
-                    stack.Push(new Data(0, h[index]));
+                    dataStack.Push(new Data(0, pintArrH[index]));
                 //else if(<)
-                else if(value.Size < h[index])
+                else if(value.Size < pintArrH[index])
                     //apply function .Push(create new Data())
-                    stack.Push(new Data(lastBlockIndex, h[index]));
+                    dataStack.Push(new Data(lastBlockIndex, pintArrH[index]));
             }
         }
         //while condition (apply function TryPop())
-        while (TryPop(stack, out var val))
+        while (TryPop(dataStack, out var val))
         {
             //set to apply function .Max()
             max = Math.Max(max,
-                val.Size * (h.Length - val.Index));
+                val.Size * (pintArrH.Length - val.Index));
         }
         //return
         return max;
     }
     //Stack<Data>, Data
-    static bool TryPeek(Stack<Data> stack, out Data value)
+    static bool TryPeek(Stack<Data> pdataStack, out Data value)
     {
         //set to
         value = null;
         //if condition (==) return
-        if (stack.Count == 0) return false;
+        if (pdataStack.Count == 0) return false;
         //set to apply function .Peek()
-        value = stack.Peek();
+        value = pdataStack.Peek();
         //return
         return true;
     }
     //Stack<Data>, Data
-    static bool TryPop(Stack<Data> stack, out Data value)
+    static bool TryPop(Stack<Data> pdataStack, out Data value)
     {
         //set to
         value = null;
         //if condition (==)
-        if (stack.Count == 0) return false;
+        if (pdataStack.Count == 0) return false;
         //set to apply function .Pop()
-        value = stack.Pop();
+        value = pdataStack.Pop();
         //return
         return true;
     }

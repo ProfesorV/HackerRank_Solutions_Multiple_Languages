@@ -15,17 +15,17 @@ using System;
 class Solution {
 
     // int[], int
-    static int[] rotLeft(int[] a, int d) {
+    static int[] rotateLeft(int[] pIntArra, int d) {
      //set to
-    var effective = a.Length - (d % a.Length);
+    var effective = pIntArra.Length - (d % a.Length);
         //set to create new int[int[].Length]
-        var result = new int[a.Length];
+        var intArrResult = new int[pIntArra.Length];
         //for condition (int < int[].Length)
-        for (int index = 0; index < a.Length; index++)
+        for (int index = 0; index < pIntArra.Length; index++)
             //set to
-            result[(index + effective) % a.Length] = a[index];
+            intArrResult[(index + effective) % pIntArra.Length] = pIntArra[index];
         //return
-        return result;
+        return intArrResult;
     }
     static void Main(string[] args) {
         TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
@@ -38,9 +38,9 @@ class Solution {
 
         int[] a = Array.ConvertAll(Console.ReadLine().Split(' '), aTemp => Convert.ToInt32(aTemp))
         ;
-        int[] result = rotLeft(a, d);
+        int[] intArrResult = rotateLeft(a, d);
 
-        textWriter.WriteLine(string.Join(" ", result));
+        textWriter.WriteLine(string.Join(" ", intArrResult));
 
         textWriter.Flush();
         textWriter.Close();

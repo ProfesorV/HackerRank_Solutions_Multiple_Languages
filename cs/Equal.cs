@@ -16,45 +16,45 @@ class Solution
 {
 
     // int[]
-    static int equal(int[] arr)
+    static int equal(int[] pIntArr)
     {
         //Array.Sort(int[]) apply function
-        Array.Sort(arr);
+        Array.Sort(pIntArr);
         //int = int[0] set to
-        var min = arr[0];
+        var min = pIntArr[0];
         //for(int < int[].Length) loop condition
-        for (int index = 0; index < arr.Length; index++)
+        for (int index = 0; index < pIntArr.Length; index++)
         //int[int] -= int reduce
-            arr[index] -= min;
+            pIntArr[index] -= min;
             //int = int.MaxValue set to
         var result = int.MaxValue;
         //for(int < 5) loop condition
         for (int index = 0; index < 5; index++)
         //int = Math.Min(int, CalcFor(int[],int)) set to
-            result = Math.Min(result, CalcFor(arr, index));
+            result = Math.Min(result, CalcFor(pIntArr, index));
             //int
         return result;
     }
     //int[], int
-    private static int CalcFor(int[] arr, int delta)
+    private static int CalcFor(int[] pIntArr, int delta)
     {
         //int set to
         var total = 0;
         //for(int < int[].Length) loop condition
-        for (int index = 0; index < arr.Length; index++)
+        for (int index = 0; index < pIntArr.Length; index++)
         {
             //int = int[int]+int set to calculate 
-            var temp = arr[index] + delta;
+            var holderVar = pIntArr[index] + delta;
             //int = int / 5 set to calculate
-            var fives = temp / 5;
+            var fives = holderVar / 5;
             //int %= 5 set to modulus 5
-            temp %= 5;
+            holderVar %= 5;
             //int = int / 2 set to calculate
-            var twos = temp / 2;
+            var twos = holderVar / 2;
             //int %= 2 set to modulus 2
-            temp %= 2; 
+            holderVar %= 2; 
             //int += int + int + int % 2 augment by
-            total += fives + twos + temp % 2;
+            total += fives + twos + holderVar % 2;
         }
         //int
         return total;
@@ -70,9 +70,9 @@ class Solution
         {
             int n = Convert.ToInt32(Console.ReadLine());
 
-            int[] arr = Array.ConvertAll(Console.ReadLine().Split(' '), arrTemp => Convert.ToInt32(arrTemp))
+            int[] pIntArr = Array.ConvertAll(Console.ReadLine().Split(' '), arrTemp => Convert.ToInt32(arrTemp))
             ;
-            int result = equal(arr);
+            int result = equal(pIntArr);
 
             textWriter.WriteLine(result);
         }

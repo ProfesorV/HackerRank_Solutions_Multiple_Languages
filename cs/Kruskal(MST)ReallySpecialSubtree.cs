@@ -15,42 +15,43 @@ using System;
 class Result
 {
     //int, List<int>, List<int>, List<int>
-    public static int kruskals(int gNodes, List<int> gFrom, List<int> gTo, List<int> gWeight)
+    public static int kruskals(int gNodes, 
+    List<int> pListIntFrom, List<int> pListIntTo, List<int> pListIntWeight)
     {
         //set to crearte new DisjointSets(List<int>)
-        var ds = new DisjointSets(gNodes);
+        var disJointSetClass = new DisjointSets(gNodes);
         //set to create new Edge[int]
-        var edges = new Edge[gFrom.Count];
+        var edgeClassArr = new Edge[pListIntFrom.Count];
         //for condition (int < int)
-        for(var index = 0; index < gFrom.Count; index++)
+        for(var index = 0; index < pListIntFrom.Count; index++)
         {
             //set to create new Edge
-            edges[index] = new Edge
+            edgeClassArr[index] = new Edge
             {
                 //set to List<int>[int]
-                From = gFrom[index],
-                To = gTo[index],
-                Weight = gWeight[index]
+                From = pListIntFrom[index],
+                To = pListIntTo[index],
+                Weight = pListIntWeight[index]
             };
         }
         //apply function .Sort()
-        Array.Sort(edges);
+        Array.Sort(edgeClassArr);
         //set to
         var edgesUsed = 0;
         var sum = 0;
         //foreach condition ()
-        foreach(var edge in edges)
+        foreach(var edge in edgeClassArr)
         {
             //if condition (==)
             if(edgesUsed == gNodes - 1) break;
-            //if condition ( apply function .Find() ==)
-            if(ds.Find(edge.From) == ds.Find(edge.To)) continue;
+            //if condition ( apply function .FindValue() ==)
+            if(disJointSetClass.FindValue(edge.From) == disJointSetClass.FindValue(edge.To)) continue;
             //increment
             edgesUsed++;
             //augment by +=
             sum += edge.Weight;
-            //apply function .Union()
-            ds.Union(edge.From, edge.To);
+            //apply function .SetUnion()
+            disJointSetClass.SetUnion(edge.From, edge.To);
         }
         //return
         return sum;
@@ -58,56 +59,56 @@ class Result
     class DisjointSets
     {
         //int[]
-        int[] Parents;
-        int[] Ranks;
+        int[] intArrParents;
+        int[] intArrRanks;
 
         public DisjointSets(int nodes)
         {
             //set to create new int[]
-            Parents = new int[nodes];
-            Ranks = new int[nodes];
+            intArrParents = new int[nodes];
+            intArrRanks = new int[nodes];
             //for condition (int < int)
             for(var index = 0; index < nodes; index++)
                 //int[int] = int
-                Parents[index] = index;
+                intArrParents[index] = index;
         }
-        //int => apply function FindImpl(int-1)+1
-        public int Find(int value) => FindImpl(value - 1) + 1;
+        //int => apply function FindImplementation(int-1)+1
+        public int FindValue(int value) => FindImplementation(value - 1) + 1;
         //int
-        private int FindImpl(int value)
+        private int FindImplementation(int value)
         {
             //if condition (int[int]==int)
-            if(Parents[value] == value)
+            if(intArrParents[value] == value)
                 //return
                 return value;
             else
-                //return apply function FindImpl(int[int])
-                return FindImpl(Parents[value]);
+                //return apply function FindImplementation(int[int])
+                return FindImplementation(intArrParents[value]);
         }
         //int, int
-        public void Union(int left, int right)
+        public void SetUnion(int left, int right)
         {
-            //set to apply function Find(int)-1
-            left = Find(left) - 1;
-            right = Find(right) - 1;
+            //set to apply function FindValue(int)-1
+            left = FindValue(left) - 1;
+            right = FindValue(right) - 1;
             //if condition (>))
-            if(Ranks[left] > Ranks[right])
+            if(intArrRanks[left] > intArrRanks[right])
             {
                 //set to
-                Parents[right] = left;
+                intArrParents[right] = left;
             }
             //else if condition (<)
-            else if(Ranks[left] < Ranks[right])
+            else if(intArrRanks[left] < intArrRanks[right])
             {  
                 //set to
-                Parents[left] = right;
+                intArrParents[left] = right;
             }
             else
             {
                 //set to
-                Parents[right] = left;
+                intArrParents[right] = left;
                 //increment
-                Ranks[left]++;
+                intArrRanks[left]++;
             }                
         }
     }
@@ -117,14 +118,14 @@ class Result
         public int To;
         public int Weight;
         //Edge
-        public int CompareTo(Edge other)
+        public int CompareEdges(Edge other)
         {
-            //set to apply function .CompareTo()
-            var result = Weight.CompareTo(other.Weight);
+            //set to apply function .CompareEdges()
+            var result = Weight.CompareEdges(other.Weight);
             //if condition (!=)
             if(result != 0) return result;
-            //return calculation apply function .CompareTo(calculation)
-            return (From + Weight + To).CompareTo(other.From + other.Weight + other.To);
+            //return calculation apply function .CompareEdges(calculation)
+            return (From + Weight + To).CompareEdges(other.From + other.Weight + other.To);
         }
     }
 }
@@ -139,20 +140,20 @@ class Solution
         int gNodes = Convert.ToInt32(gNodesEdges[0]);
         int gEdges = Convert.ToInt32(gNodesEdges[1]);
 
-        List<int> gFrom = new List<int>();
-        List<int> gTo = new List<int>();
-        List<int> gWeight = new List<int>();
+        List<int> pListIntFrom = new List<int>();
+        List<int> pListIntTo = new List<int>();
+        List<int> pListIntWeight = new List<int>();
 
         for (int i = 0; i < gEdges; i++)
         {
             string[] gFromToWeight = Console.ReadLine().TrimEnd().Split(' ');
 
-            gFrom.Add(Convert.ToInt32(gFromToWeight[0]));
-            gTo.Add(Convert.ToInt32(gFromToWeight[1]));
-            gWeight.Add(Convert.ToInt32(gFromToWeight[2]));
+            pListIntFrom.Add(Convert.ToInt32(gFromToWeight[0]));
+            pListIntTo.Add(Convert.ToInt32(gFromToWeight[1]));
+            pListIntWeight.Add(Convert.ToInt32(gFromToWeight[2]));
         }
 
-        int res = Result.kruskals(gNodes, gFrom, gTo, gWeight);
+        int res = Result.kruskals(gNodes, pListIntFrom, pListIntTo, pListIntWeight);
 
         textWriter.Write(res);
 
