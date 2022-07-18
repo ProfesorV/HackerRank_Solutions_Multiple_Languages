@@ -63,15 +63,15 @@ public class Solution {
     //SinglyLinkedListNode
     static boolean hasCycle(SinglyLinkedListNode head) {
         //set to create new Set<SinglyLinkedListNode>
-    Set<SinglyLinkedListNode> set=new HashSet<>();
+    Set<SinglyLinkedListNode> singlyLinkedListNodeSet=new HashSet<>();
     //while !=
     while(head!=null){
     //if .
-    if(set.contains(head.next))
+    if(singlyLinkedListNodeSet.contains(head.next))
     //return
     return true;
     //apply .
-    set.add(head.next);
+    singlyLinkedListNodeSet.add(head.next);
     //set to
     head=head.next;
     }
