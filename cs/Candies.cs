@@ -16,20 +16,20 @@ class Solution {
 
     // int, int[]
     static long intArrCandies(int n, int[] pIntArr) {
-        //set to create new
+        //new []
         var intArrCandies = new int[pIntArr.Length];
-        //set to
+        //=
         var sum = 0L;
-        //set to
+        //=
         var candiesCount = 1;
         //for <
         for (var index = 0; index < n; index++)
         {
-            //set to
+            //[] =
             intArrCandies[index] = candiesCount;
             //+=
             sum += candiesCount;
-            //if < && <
+            //if  + < && [] < [+1]
             if (index + 1 < n && pIntArr[index] < pIntArr[index + 1])
                 //++
                 candiesCount++;
@@ -37,19 +37,19 @@ class Solution {
                 //set to
                 candiesCount = 1;
         }
-        //set to
+        //set to [-1]
         candiesCount = intArrCandies[n - 1];
         //for >=
         for (var index = n - 1; index >= 0; index--)
         {
-            //set to
+            //= .Max([],) - []
             var diff = Math.Max(intArrCandies[index], candiesCount) 
             - intArrCandies[index];
-            //+=
+            //[] +=
             intArrCandies[index] += diff;
             //+=
             sum += diff;
-            //if > && >
+            //if > && [] > []
             if (index > 0 && pIntArr[index - 1] > pIntArr[index])
                 //++
                 candiesCount++;

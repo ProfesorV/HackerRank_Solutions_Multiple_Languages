@@ -18,26 +18,26 @@ class Solution
     // int, int
     static int[] absolutePermutation(int n, int k)
     {
-        //if != && != return new
+        //if != && % (*) != return new[]
         if (k != 0 && n % (k * 2) != 0) return new[] { -1 };
-        //set to create new
+        //= new []
         var intArrResult = new int[n];
         //if ==
         if (k == 0)
         //for
             for (int index = 0; index < n; index++)
-            //set to
+            //[] = + 
                 intArrResult[index] = index + 1;
         else
-        //for
+        //for < / (*)
             for (var index = 0; index < n / (k * 2); index++)
             {
-                //for
+                //for <
                 for (int inner = 0; inner < k; inner++)
                 {
-                    //set to
+                    //[* * +] = * * + + +
                     intArrResult[index * k * 2 + inner] = index * k * 2 + k + inner + 1;
-                    //set to
+                    //[* * + +] = * * + +
                     intArrResult[index * k * 2 + k + inner] = index * k * 2 + inner + 1;
                 }
             }

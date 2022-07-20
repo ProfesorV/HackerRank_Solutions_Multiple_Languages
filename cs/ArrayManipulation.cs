@@ -16,32 +16,32 @@ class Solution {
 
     //int, int[][]
     static long longArrayManipulation(int n, int[][] multiDimIntQueries) {
-        //set to create new
+        //new [+]
         var longArray = new long[n+1];
-        //for
+        //for < .Length
         for (var index = 0; index < longArray.Length; index++)
         {
-            //set to
+            //[]=
             longArray[index] = 0;
         }
-        //set to
+        //=
         long x = 0;
-        //set to
+        //=
         long max = 0;
-        //foreach
+        //foreach (in)
         foreach (var query in multiDimIntQueries)
         {
-            //add to
+            //[[]] += []
             longArray[query[0]] += query[2];
-            //if <=, -=
+            //if []+1 <= [[]+1] -= []
             if ((query[1] + 1) <= n) longArray[query[1] + 1] -= query[2];
         }
-        //for
+        //for < .Length
         for (var index = 0; index < longArray.Length; index++)
         {
-            //+=
+            //+= []
             x += longArray[index];
-            //if < set to
+            //if < =
             if (max < x) max = x;
         }
         //return

@@ -14,20 +14,18 @@ using System;
 
 class Solution {
 
-    // string
     static int alternatingCharacters(string pStrings) {
-        //char; set to
+        //=
         var @char = 'z';
-        //int set to
         var counter = 0;
-        //for
+        //for < .Length
         for (var index = 0; index < pStrings.Length; index++)
         {
-            //if ==
+            //if []==@
             if (pStrings[index] == @char) 
                 //++
                 counter++;
-            //set to
+            //= []
             @char = pStrings[index];
         }
         //return

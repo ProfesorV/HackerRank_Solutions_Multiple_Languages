@@ -3,39 +3,42 @@
 using namespace std;
 //declare
 int n,p1,p2;
+//< > []
 vector <int> vecOfAdj[100005];
 typedef long long ll;
+//[][][]
 ll multiDimArr[100005][2][2];
 ll filterFunc(int v, int p, int col, int pacol){
-    //if >=, return
+    //if [][][]>= return [][][]
 	if(multiDimArr[v][col][pacol]>=0ll) return multiDimArr[v][col][pacol];
-    //set to
+    //[][][] =
 	multiDimArr[v][col][pacol]=1ll;
-    //for <
+    //for < [].size()
 	for(int x=0;x<vecOfAdj[v].size();x++){
-        //if ==
+        //if [][]==
 		if(vecOfAdj[v][x]==p) continue;
-        //*=
+        //[][][] *= filterFunc([][],,,) + filterFunc([][],,,)
 		multiDimArr[v][col][pacol]*=filterFunc(vecOfAdj[v][x],v,0,col)+filterFunc(vecOfAdj[v][x],v,1,col);
-		//%=
+		//[][][] %= MOD
         multiDimArr[v][col][pacol]%=MOD;
 	}
     //if !=
 	if(col!=pacol){
-        //set to
+        //=
 		ll temp=1ll;
-        //for <
+        //for < [].size()
 		for(int x=0;x<vecOfAdj[v].size();x++){
-            //if ==
+            //if [][] ==
 			if(vecOfAdj[v][x]==p) continue;
-            //*=
+            //*= filterFunc([][],,,)
 			temp*=filterFunc(vecOfAdj[v][x],v,pacol,col);
             //%=
 			temp%=MOD;
 		}
-        //set to
+        //[][][]=([][][]+MOD-)%MOD
 		multiDimArr[v][col][pacol]=(multiDimArr[v][col][pacol]+MOD-temp)%MOD;
 	}
+	//return [][][]
 	return multiDimArr[v][col][pacol];
 }
 int main(){

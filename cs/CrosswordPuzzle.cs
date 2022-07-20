@@ -17,112 +17,112 @@ class Solution {
     // string [], string
     static string[] crosswordPuzzle(string[] pStringArrCrossword, string pStringWords)
     {
-    //set to .,.
+    //= .Split().ToArray()
         var wordsArray = pStringWords.Split(';').ToArray();
-        //if function . passon => .,.
-        if (TryFill(pStringArrCrossword.Select(x => x.Replace("-", ".")).ToArray(), 
+        //FillCrosswordAtt(.Select( =>.Replace("","")).ToArray(), , out)
+        if (FillCrosswordAtt(pStringArrCrossword.Select(x => x.Replace("-", ".")).ToArray(), 
         wordsArray, out var result))
         //return
             return result;
         else
+        //throw new Exception()
             throw new Exception("Could not find a solution.");
     }
-    //3 string[]
-    static bool TryFill(string[] pStringArrCrossword,string[] pStringWords,
+    static bool FillCrosswordAtt(string[] pStringArrCrossword,string[] pStringWords,
     out string[] pStringArrResult)
     {
-        //set to . passon =>.
+        //= .Select(=>).ToArray()
         pStringArrResult = pStringArrCrossword.Select(x => x).ToArray();
-        //set to create new Regex
+        //new ("")
         var regex = new Regex("[^\\+]*\\.[^\\+]*");
-        //set to
+        //= [0].Length
         var colCount = pStringArrCrossword[0].Length;
-        //set to
+        //=
         var rowCount = pStringArrCrossword.Length;
-        //set to create new
+        //= new []
         var stringArrPivotCrossWord = new string[colCount];
         //for <
         for (var i = 0; i < rowCount; i++)
             //for <
             for (var j = 0; j < colCount; j++)
-                //set to +
+                //[] = ([]??"") + [][]
                 stringArrPivotCrossWord[j] = (stringArrPivotCrossWord[j] ?? "") + 
                     pStringArrCrossword[i][j];
         //for <
         for (var index = 0; index < rowCount; index++)
         {
-            //foreach
+            //foreach in .Matches([])
             foreach (Match match in regex.Matches(pStringArrResult[index]))
             {
-                //set to create new
+                //= new(.Value)
                 var matchRegex = new Regex(match.Value);
-                //foreach . passon => ==  && .. 
+                //foreach in .Where( => .Length == .Value.Length && .IsMatch())
                 foreach (var word in 
                 pStringWords.Where(x => x.Length == match.Value.Length 
                 && matchRegex.IsMatch(x)))
                 {
-                    //set to 
+                    //= []
                     var temp = pStringArrResult[index];
-                    //for <
+                    //for < .Length
                     for (var j = 0; j < match.Length; j++)
-                    //set to 
+                    //[] = Replace([], .Index +, [])
                         pStringArrResult[index] = 
                         Replace(pStringArrResult[index], match.Index + j, word[j]);
-                        //if . passon =>
-                    if (TryFill(pStringArrResult, pStringWords.Where(x => x != word)
+                        //if .FillCrosswordArr(,.Where(=> !=).ToArray(), out)
+                    if (FillCrosswordAtt(pStringArrResult, pStringWords.Where(x => x != word)
                     .ToArray(), out var grandResult))
                     {
-                        //set to
+                        //=
                         pStringArrResult = grandResult;
                         //return
                         return true;
                     }
                     else
                     {
-                        //set to
+                        //[]=
                         pStringArrResult[index] = temp;
                     }
             }
-            //foreach
+            //foreach (in .Matches([]))
             foreach (Match match in regex.Matches(stringArrPivotCrossWord[index]))
             {
-                //set to create new
+                //new
                 var matchRegex = new Regex(match.Value);
-                //foreach . passon => == &&
+                //foreach in .Where(=> ,Length == .Value.Length && .IsMatch())
                 foreach (var word in 
                 pStringWords.Where(x => x.Length == match.Value.Length 
                 && matchRegex.IsMatch(x)))
                 {
                     //set to
                     var temp = "";
-                    //for <
+                    //for < .Length
                     for (var j = 0; j < match.Length; j++)
                     {
-                        //+=
+                        //+= .Value[]
                         temp += match.Value[j];
-                        //set to
+                        //[.Index +] = Replace([.Index + ],[])
                         pStringArrResult[match.Index + j] = Replace(
                             pStringArrResult[match.Index + j],
                             index,
                             word[j]);
                     }
-                    //if . passon => .
-                    if (TryFill(pStringArrResult, pStringWords.Where(x => x != word)
+                    //if FillCrosswordAtt(, .Where(=> !=).ToArray() out)
+                    if (FillCrosswordAtt(pStringArrResult, pStringWords.Where(x => x != word)
                     .ToArray(), out var grandResult))
                     {
-                        //set to
+                        //=
                         pStringArrResult = grandResult;
                         //return
                         return true;
                     }
                     else
                     {
-                        //for
+                        //for <
                         for (var j = 0; j < match.Length; j++)
                         {
-                            //+=
+                            //+= [.Index + ]
                             temp += stringArrPivotCrossWord[match.Index + j];
-                            //set to
+                            //[.Index + ] = Replace([.Index +], +, [])
                             pStringArrResult[match.Index + j] = Replace(
                                 respStringArrResultult[match.Index + j],
                                 index + j,
@@ -132,17 +132,17 @@ class Solution {
                 }
             }
         }
-        //return !. passon => . >
+        //return ! .Any( => .Matches().Count >)
         return !result.Any(x => regex.Matches(x).Count > 0);
     }
     //string, int, char
     static string Replace(string pStringInput, int index, char @char)
     {
-        //set to .
+        //= .ToCharArray()
         var array = pStringInput.ToCharArray();
-        //set to
+        //[] = @
         array[index] = @char;
-        //return .
+        //return .Concat()
         return string.Concat(array);
     }
 

@@ -7,33 +7,33 @@ import java.util.regex.*;
 public class Solution {
 
     public static void main(String[] args) {
-        //set to create new
+        //new
         Scanner in = new Scanner(System.in);
-        //set to
+        //= .nextInt
         int s = in.nextInt();
         int t = in.nextInt();
         int a = in.nextInt();
         int b = in.nextInt();
         int m = in.nextInt();
         int n = in.nextInt();
-        //set to create new
+        //new []
         int[] intListApple = new int[m];
         //for <
         for(int iApple=0; iApple < m; iApple++){
-            //set to
+            //[] = .nextInt() +
             intListApple[iApple] = in.nextInt() + a;
         }
-        //set to create new
+        //= new []
         int[] intListOrange = new int[n];
         //for <
         for(int iOrange=0; iOrange < n; iOrange++){
-            //set to
+            //[] = .nextInt() +
             intListOrange[iOrange] = in.nextInt() + b;
         }
-        //set to
+        //=
         int numberOfApples = 0;
         int numberOfOranges = 0;
-        //for 
+        //for (:) 
         for (int appleInIntList : intListApple) {
             //if >= && <=
             if (appleInIntList >= s && appleInIntList <= t) {

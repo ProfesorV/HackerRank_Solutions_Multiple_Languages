@@ -28,30 +28,34 @@ int main(){
     int n;
     int m;
     cin >> n >> m;
-    //declare
+    //< >
     vector<int> a(n);
     //for <
     for(int arrOnei = 0;arrOnei < n;arrOnei++){
+        //>> []
        cin >> a[arrOnei];
     }
-    //declare
+    //< >
     vector<int> b(m);
     //for <
     for(int arrTwoi = 0;arrTwoi < m;arrTwoi++){
+        //>> []
        cin >> b[arrTwoi];
     }
-    //set to
+    //=
     int answer=0;
     //for <=
     for(int x=1;x<=100;x++){
-        //set to
+        //= true
         bool validNumber=true;
-        //for <
+        //for < if %[]!=
         for(int i=0;i<n;i++) if(x%a[i]!=0) validNumber=false;
+        //for < if []% !=
         for(int i=0;i<m;i++) if(b[i]%x!=0) validNumber=false; 
         //if
         if(validNumber) answer++;
     }
+    //<< <<
     cout<<answer<<endl;
     return 0;
 }

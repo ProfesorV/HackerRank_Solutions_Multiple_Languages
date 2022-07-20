@@ -12,9 +12,11 @@ int main() {
     scanf ("%d", &n);
     //for <
     for (i = 0;i < n; i ++)
+        //& []
         scanf ("%d", &intArr[i]);
     //for >=
     for (i = n - 1; i >= 0; i --)
+        //[]
         printf ("%d ", intArr[i]);
     return 0;
 }

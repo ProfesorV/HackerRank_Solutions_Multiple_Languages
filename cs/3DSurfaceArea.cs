@@ -18,13 +18,13 @@ class Solution
     // int [][]
     static int surfaceArea(int[][] pIntMuDiArr)
     {
-        //set to
+        //=
         var sum = 0;
-        //for
+        //for < .Length
         for (var row = 0; row < pIntMuDiArr.Length; row++)
-        //for 
+        //for < [].Length
             for (var col = 0; col < pIntMuDiArr[0].Length; col++)
-            //add to
+            //+= Count(,,)
                 sum += Count(pIntMuDiArr, row, col);
         //return
         return sum;
@@ -32,25 +32,24 @@ class Solution
     //int[][], int, int
     private static int Count(int[][] pIntMDArr, int row, int col)
     {
-        //set to
+        //=
         var sum = 2;
-        //set to create new
+        //new []{,,,}
         var intArrRowDelta = new[] { -1, 0, 1, 0 };
-        //set to create new
         var intArrColDelta = new[] { 0, 1, 0, -1 };
-        //for
+        //for < .Length
         for (var index = 0; index < intArrRowDelta.Length; index++)
         {
-            //set to
+            //= + []
             var r = row + intArrRowDelta[index];
-            //set to
+            //= + []
             var c = col + intArrColDelta[index];
-            //if, function apply
+            //if isValid(,,)
             if (IsValid(pIntMDArr, r, c))
-            //add to
+            //+= .Max(,[][]-[][])
                 sum += Math.Max(0, pIntMDArr[row][col] - pIntMDArr[r][c]);
             else
-            //add to
+            //+= [][]
                 sum += pIntMDArr[row][col];
         }
         //return
@@ -59,7 +58,7 @@ class Solution
     //int[][], int, int
     private static bool IsValid(int[][] pIntMuDArr, int row, int col)
     {
-        //return >=,  && >= , && <, &&  < 
+        //return >=  && >= && < .Length &&  < [].Length 
         return row >= 0 && col >= 0 && row < pIntMuDArr.Length && col < pIntMuDArr[0].Length;
     }
 

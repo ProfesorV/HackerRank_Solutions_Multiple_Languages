@@ -14,44 +14,42 @@ using System;
 using System.Threading.Tasks;
 
 class Solution {
-    //declare
+    //< >
     static List<long> listLongArr;
-    //declare
     static long s_Ratio;
 
 
-    // List<long>, long.
+    // < >
     static long countTriplets(List<long> pListLongArr, long r)
     {
-        //set to new Dictionary<long,long>
+        //= new . . . .<,>()
         var dictionaryLongLongTwo = new System.Collections.Generic.Dictionary<long, long>();
-        //set to new Dictionary<long,long>
         var dictionaryLongLongThree = new System.Collections.Generic.Dictionary<long, long>();
-        //set to
+        //=
         long res = 0;
-        //foreach
+        //foreach (in)
         foreach (long val in pListLongArr)
         {
-            //if .
+            //if .ContainsKey()
             if (dictionaryLongLongThree.ContainsKey(val))
-            // +=
+            // +=[]
                 res += dictionaryLongLongThree[val];
-            //if .
+            //if .ContainsKey()
             if (dictionaryLongLongTwo.ContainsKey(val))
-                //if .
+                //if .ContainsKey(*)
                 if (dictionaryLongLongThree.ContainsKey(val * r))
-                    //+=
+                    //[*] += []
                     dictionaryLongLongThree[val * r] += dictionaryLongLongTwo[val];
                 else
-                    //set to
+                    //[*] = []
                     dictionaryLongLongThree[val * r] = dictionaryLongLongTwo[val];
-            //if .
+            //if .ContainsKey(*)
             if (dictionaryLongLongTwo.ContainsKey(val * r))
-                //++
+                //[*]++
                 dictionaryLongLongTwo[val * r]++;
             else
-                //set to
-                dictionaryLongLongTwo[val * r] = 1;
+                //[*] =
+                 dictionaryLongLongTwo[val * r] = 1;
         }
         //return
         return res;
@@ -66,7 +64,7 @@ class Solution {
             long result = 0;
             //for <
             for (int i = index + 1; i < listLongArr.Count; i++)
-                //if ==
+                //if []* == []
                 if(listLongArr[index] * s_Ratio == listLongArr[i] )
                     //++
                     result++;
@@ -79,9 +77,9 @@ class Solution {
             long result = 0;
             //for <
             for (int i = index + 1; i < listLongArr.Count; i++)
-                //if ==
+                //if [] * == []
                 if (listLongArr[index] * s_Ratio == listLongArr[i])
-                    //+=
+                    //+= Count(,+)
                     result += Count(i, level + 1);
             //return
             return result;

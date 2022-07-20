@@ -17,56 +17,56 @@ class Solution {
     //string
     static string isBalanced(string pStringS)
     {
-        //set to create new
+        //new [] {,,}
         var charArrOpenings = new[] { '[', '{', '(' };
-        //set to create new
+        //new <char>
         var charStack = new Stack<char>();
-        //foreach
+        //foreach (in .ToCharArray())
         foreach (var c in pStringS.ToCharArray())
         {
-            //if .
+            //if .Contains()
             if (charArrOpenings.Contains(c))
-            //.
+            //.Push()
                 charStack.Push(c);
-                //else if ==
+                //else if == ''
             else if (c == ']')
-                //if !function || !=
+                //if (!TryPeek(,out var)|| != '')
                 if (!TryPeek(charStack, out var c1) || c1 != '[')
                 //return
                     return "NO";
                 else
-                //function
+                //.Pop()
                     charStack.Pop();
             //else if
             else if (c == ')')
-                //if !function ||
+                //if (!TryPeek(,out var)|| != '')
                 if (!TryPeek(charStack, out var c2) || c2 != '(')
                     //return
                     return "NO";
                 else
-                    //function
+                    //.Pop()
                     charStack.Pop();
             //else if ==
             else if (c == '}')
-                //if !function ||
+                //if (!TryPeek(,out var)|| != '')
                 if (!TryPeek(charStack, out var c3) || c3 != '{')
                     //return
                     return "NO";
                 else
-                    //function
+                    //.Pop()
                     charStack.Pop();
         }
-        //return == ?
+        //return .Count == ? :
         return charStack.Count == 0 ? "YES" : "NO";
     }
     //<char>, char
     static bool TryPeek(Stack<char> charStack, out char value)
     {
-        //set to
+        //= default()
         value = default(char);
-        //if == return
+        //if .Count == return
         if (charStack.Count == 0) return false;
-        //set to .function
+        //= .Peek()
         value = charStack.Peek();
         //return
         return true;

@@ -17,28 +17,28 @@ class Solution {
     //string, string
     static int commonChild(string pStringOne, string pStringTwo)
     {
-        //set to create new
+        //new [.Length+1, Length+1]
         var intArr = new int[pStringOne.Length + 1, pStringTwo.Length + 1];
-        //for <
+        //for < .GetLength()
         for (int i = 0; i < intArr.GetLength(0); i++)
-            //set to 
+            //[,]=
             intArr[i, 0] = 0;
-        //for <
+        //for < .GetLength()
         for (int i = 0; i < intArr.GetLength(1); i++)
-            //set to 
+            //[,] =
             intArr[0, i] = 0;
-         //for <
+         //for < .GetLength()
         for (int i = 1; i < intArr.GetLength(0); i++)
-         //for <
+         //for < .GetLength()
             for (int j = 1; j < intArr.GetLength(1); j++)
-            //if ==
+            //if [-1] == [-1]
                 if (pStringOne[i - 1] == pStringTwo[j - 1])
-                //set to
+                // [,] = [-1,-1] + 1
                     intArr[i, j] = intArr[i - 1, j - 1] + 1;
                 else
-                //set to .
+                //[,] = .Max([,-1],[-1,])
                     intArr[i, j] = Math.Max(intArr[i, j - 1], intArr[i - 1, j]);
-        //return 
+        //return [.GetLength()-1, GetLength()-1]
         return intArr[intArr.GetLength(0) - 1, intArr.GetLength(1) - 1];
     }
     static void Main(string[] args) {

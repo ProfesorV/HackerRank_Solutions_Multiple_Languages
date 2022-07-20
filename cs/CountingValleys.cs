@@ -16,25 +16,25 @@ class Solution {
 
     // int, string
     static int countingValleys(int n, string pStringSteps) {
-        //set to
+        //=
         var valleys = 0;
-        //set to create new 
+        //new [] {,}
         var intArrDeltas = new [] {1, -1};
-        //set to create new
+        //= new []{'',''}
         var charArrDirections = new [] {'U', 'D'};
-        //set to
+        //=
         var current = 0;
-        //set to
+        //=
         var wentIntoValley = false;
-        //foreach 
+        //foreach (in . ToCharArray())
         foreach(var s in pStringSteps.ToCharArray()){
-            //if !.
+            //if !.Contains() throw new ()
             if(!charArrDirections.Contains(s)) throw new ArgumentException();
-            //set to .
+            //= .IndexOf(,)
             var effective = Array.IndexOf(charArrDirections, s);
-            //set to
+            //=
             var temp = current;
-            //+=
+            //+= []
             current += intArrDeltas[effective];
             //if == && <
             if(current == 0 && temp < 0)

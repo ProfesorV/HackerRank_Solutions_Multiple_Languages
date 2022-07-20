@@ -16,44 +16,42 @@ class Solution {
 
     //string, string
     static string abbreviation(string pStringa, string pStringb) {
-        //set to
-        var diff = 'a' - 'A';
-        //set to
+        //=
+        var diff = 'a' - 'A';  
         var m = pStringa.Length;
-        //set to
         var n = pStringb.Length;
-        //set to create new
+        //new bool[+,+]
         var multiDimBoolArr = new bool[n + 1, m + 1];
-        //set to
+        //[,]=
         multiDimBoolArr[0, 0] = true;
-        //for
+        //for <
         for (int i = 0; i < n + 1; i++)
         {
-            //for
+            //for <
             for (int j = 0; j < m + 1; j++)
             {
                 //if == && !=
                 if (i == 0 && j != 0)
-                //set to > &&
-                    multiDimBoolArr[i, j] = a[j - 1] > 'Z' 
+                //[,] = [-] > '' && [,-]
+                    multiDimBoolArr[i, j] = pStringa[j - 1] > 'Z' 
                     && multiDimBoolArr[i, j - 1];
                     //else if != && !=
                 else if (i != 0 && j != 0)
-                    //if ==
-                    if (a[j - 1] == b[i - 1])
-                    //set to
+                    //if [-] = [-]
+                    if (pStringa[j - 1] == pStringb[i - 1])
+                        //[,] = [-1,-1]
                         multiDimBoolArr[i, j] = multiDimBoolArr[i - 1, j - 1];
-                        //else if
-                    else if (a[j - 1] - diff == b[i - 1])
-                    //set to ||
+                    //else if ([-1]- ==[-])
+                    else if (pStringa[j - 1] - diff == pStringb[i - 1])
+                        //[,] = [-,-] || [,-]
                         multiDimBoolArr[i, j] = multiDimBoolArr[i - 1, j - 1] || multiDimBoolArr[i, j - 1];
-                        //else if ! < && <
-                    else if (!(a[j - 1] < 'a' && b[i - 1] < 'a'))
-                    //set to
+                    //else if ![-] < '' && [-] < ''
+                    else if (!(pStringa[j - 1] < 'a' && pStringb[i - 1] < 'a'))
+                        //[,] = [,-]
                         multiDimBoolArr[i, j] = multiDimBoolArr[i, j - 1];
             }
         }
-        //return ? "" : ""
+        //return [,]?"":""
         return multiDimBoolArr[n, m] ? "YES" : "NO";
     }
     static void Main(string[] args) {

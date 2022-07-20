@@ -17,24 +17,24 @@ class Solution {
     //int[], int[]
     static int[] climbingLeaderboard(int[] pIntArrScore, int[] pIntArrAlice)
     {
-        //set to .,.
+        //= .Distinct().ToArray()
         var distinct = pIntArrScore.Distinct().ToArray();
-        //set to create new
+        //= new []
         var intArrResult = new int[pIntArrAlice.Length];
-        //set to create new
+        //= new <int>
         var ReverseCompClass = new ReverseComparer<int>();
-        //for <
+        //for < .Length
         for (int index = 0; index < pIntArrAlice.Length; index++)
         {
-            //set to .
+            //= .BinarySearch(,[],)
             var search = Array.BinarySearch(distinct, pIntArrAlice[index], 
             ReverseCompClass);
             //if >=
             if(search >= 0)
-            //set to
+            //[]= +
                 intArrResult[index] = search + 1;
             else
-            //set to =-
+            //[] =-
                 intArrResult[index] = -search;
         }
         //return
@@ -42,7 +42,7 @@ class Solution {
     }
     class ReverseComparer<T> : IComparer<T>
     {
-        //parameters, pass on =>, .
+        //(T, T) => <T>.Default.Compare(,)
         public int Compare(T x, T y) => Comparer<T>.Default.Compare(y, x);
     }
     static void Main(string[] args) {

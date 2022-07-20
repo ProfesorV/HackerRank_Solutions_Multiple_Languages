@@ -18,18 +18,18 @@ class Solution
     // int, int int
     static long countArray(int n, int k, int x)
     {
-        //set to == ? :
+        //= ==? :
         var picked = x == 1 ? 1L : 0L;
-        //set to == ? :
+        //= == ? :
         var notPicked = x == 1 ? 0L : 1L;
         //for <
         for (var index = 1; index < n; index++)
         {
-            //set to
+            //=
             var newPicked = notPicked;
-            //set to 
+            //=(*(-)%+*(-)%)%
             notPicked = (picked * (k - 1) % 1_000_000_007 + notPicked * (k - 2) % 1_000_000_007) % 1_000_000_007;
-            //set to
+            //=
             picked = newPicked;
         }
         //return

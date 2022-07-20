@@ -15,16 +15,15 @@ using System;
 class Solution {
     class Point
     {
-        //declare
+        //readonly
         public readonly int X;
-        //declare
+        //readonly
         public readonly int Y;
-        //declare
         public Point(int x, int y)
         {
-            //set to
+            //=
             X = x;
-            //set to
+            //=
             Y = y;
         }
     }
@@ -32,66 +31,67 @@ class Solution {
     static int minimumMoves(string[] pStringArrGrid, 
     int startX, int startY, int goalX, int goalY)
     {
-        //set to create new
+        //= new [] {,,,}
         var intArrXMoves = new[] { 1, 0, -1, 0 };
-        //set to create new
+        //= new [] {,,,}
         var intArrYMoves = new[] { 0, 1, 0, -1 };
-        //set to create new 
+        //= new [.Length,.Length]
         var boolArrVisited = new bool[pStringArrGrid.Length, pStringArrGrid.Length];
-        //set to create new 
+        //= new [.Length, .Length]
         var intArrSteps = new int[pStringArrGrid.Length, pStringArrGrid.Length];
-        //set to create new 
+        //= new < >
         var pointQueue = new Queue<Point>();
-        //.(create new)
+        //.Enqueue(new Point(,))
         pointQueue.Enqueue(new Point(startX, startY));
-        //set to
+        //[,]
         intArrSteps[startX, startY] = 0;
-        //set to
+        //[,]
         boolArrVisited[startX, startY] = true;
-        //while >
+        //while .Count >
         while (pointQueue.Count > 0)
         {
-            //set to, .
+            //= .Dequeue()
             var current = pointQueue.Dequeue();
-            //for <
+            //for < .Length
             for (var directionIndex = 0; 
             directionIndex < intArrXMoves.Length; directionIndex++)
             {
-                //set to
+                //=
                 var counter = 1;
-                //while function
+                //while IsValid(, . + [] * ,. + [] *)
                 while (IsValid(pStringArrGrid,
                     current.X + intArrXMoves[directionIndex] * counter,
                     current.Y + intArrYMoves[directionIndex] * counter))
                 {
-                    //set to
+                    //= . + [] *
                     var x = current.X + intArrXMoves[directionIndex] * counter;
-                    //set to
+                    //= . + [] *
                     var y = current.Y + intArrYMoves[directionIndex] * counter;
+                    //++
                     counter++;
                     //if == && ==
                     if (x == goalX && y == goalY)
-                    //return
+                    //return [,]+1
                         return intArrSteps[current.X, current.Y] + 1;
-                    //if
+                    //if [,]
                     if (boolArrVisited[x, y]) continue;
-                    //set to
+                    //[,] = [.,.]+1
                     intArrSteps[x, y] = intArrSteps[current.X, current.Y] + 1;
-                    //set to
+                    //[,] =
                     boolArrVisited[x, y] = true;
-                    //.enqueue(create new)
+                    //.Enqueue(new Point(,))
                     pointQueue.Enqueue(new Point(x, y));
                 }
             }
         }
-        //create new
+        //throw new Exception()
         throw new Exception("No path found.");
     }
     //string[], int, int
     static bool IsValid(string[] pStringArrGrid, 
     int x, int y)
     {
-        //return 4 && and != 
+        //return >= && >= && < .Length && < .Length && [][]!= '' 
         return x >= 0 &&
             y >= 0 &&
             x < pStringArrGrid.Length &&

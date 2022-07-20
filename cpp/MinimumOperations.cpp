@@ -7,48 +7,54 @@
 #include <iostream> 
 #include <map> 
 using namespace std; 
-
+//[][<<]
 int multiDimIntArr[110][1<<3];
-
+//< >, < >, < >
 int min_operations(vector <int> intVectorRed, 
 vector <int> intVectorGreen, vector <int> intVectorBlue) {
-    //set to
+    //= (int) .size()
     int n = (int)intVectorRed.size(), i, j;
     //for <=
     for (i = 0; i <= n; i++) {
         //for <=
         for (j = 0; j <= 7; j++) {
+            //[][] = <<
             multiDimIntArr[i][j] = 1<<30;
         }
     }
-    //set to
+    //[][] =
     multiDimIntArr[0][0] = 0;
     //for <
     for (i = 0; i < n; i++){
         //for <=
         for (j = 0; j <= 7; j++){
-            //set to
+            //[+][|] = min([+][|],[][]+[]+[])
             multiDimIntArr[i + 1][j | 1] = min(multiDimIntArr[i + 1][j | 1], 
             multiDimIntArr[i][j] + intVectorGreen[i] + intVectorBlue[i]);
+            //[+][|] = min([+][|],[][]+[]+[])
             multiDimIntArr[i + 1][j | 2] = min(multiDimIntArr[i + 1][j | 2], 
             multiDimIntArr[i][j] + intVectorRed[i] + intVectorBlue[i]);
+            //[+][|] = min([+][|],[][]+[]+[])
             multiDimIntArr[i + 1][j | 4] = min(multiDimIntArr[i + 1][j | 4], 
             multiDimIntArr[i][j] + intVectorRed[i] + intVectorGreen[i]);
         }
     }
-    //set to
+    //=
     j = 0;
     //for <
     for (i = 0; i < n; i++){
-        //if
+        //if [] |=
         if (intVectorRed[i]) j |= 1;
+        //if [] |=
         if (intVectorGreen[i]) j |= 2;
+        //if [] |=
         if (intVectorBlue[i]) j |= 4;
     }
-    //if >=
+    //if [][] >= (1<<30)
     if (multiDimIntArr[n][j] >= (1<<30))
+    //[][] =-
         multiDimIntArr[n][j] = -1;
-    //return
+    //return [][]
     return multiDimIntArr[n][j];
 }
 
@@ -65,7 +71,6 @@ int main() {
         intVectorGreen.push_back(green);
         intVectorBlue.push_back(blue);
     }
-
     cout << min_operations(intVectorRed, intVectorGreen, intVectorBlue) << "\n";
     return 0;
 }
